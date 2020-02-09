@@ -8,6 +8,7 @@ import HomeScreen from '../pages/home';
 import SessionsScreen from '../pages/sessions';
 import ProfileScreen from '../pages/profile';
 
+
 const config = Platform.select({
   web: {headerMode: 'screen'},
   default: {},
@@ -21,15 +22,17 @@ const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Home',
+  tabBarLabel: 'Início',
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-home${focused ? '' : '-outline'}`
-          : 'md-home'
-      }
+      // name={
+      //   Platform.OS === 'ios'
+      //     ? `ios-home${focused ? '' : '-outline'}`
+      //     : 'md-home'
+      // }
+      name={'home'}
+
     />
   ),
 };
@@ -44,7 +47,7 @@ const SessionsStack = createStackNavigator(
 );
 
 SessionsStack.navigationOptions = {
-  tabBarLabel: 'Sessions',
+  tabBarLabel: 'Sessões',
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
@@ -53,6 +56,8 @@ SessionsStack.navigationOptions = {
       //     ? `ios-home${focused ? '' : '-outline'}`
       //     : 'md-home'
       // }
+      name={'calendar'}
+      
     />
   ),
 };
@@ -68,15 +73,16 @@ const ProfileStack = createStackNavigator(
   );
   
   ProfileStack.navigationOptions = {
-    tabBarLabel: 'Profile',
+    tabBarLabel: 'Perfil',
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
-      name={
-        Platform.OS === 'ios'
-          ? `ios-home${focused ? '' : '-outline'}`
-          : 'md-home'
-        }
+      // name={
+      //   Platform.OS === 'ios'
+      //     ? `ios-home${focused ? '' : '-outline'}`
+      //     : 'md-home'
+      //   }
+      name={'person'}
     />
   ),
 };
