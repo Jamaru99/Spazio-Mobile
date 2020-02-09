@@ -4,9 +4,9 @@ import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../pages/home';
-import SessionsScreen from '../pages/sessions';
-import ProfileScreen from '../pages/profile';
+import HomeScreen from '../pages/Home';
+import AppointmentScreen from '../pages/Appointment';
+import ProfileScreen from '../pages/Profile';
 
 
 const config = Platform.select({
@@ -26,43 +26,31 @@ HomeStack.navigationOptions = {
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
-      // name={
-      //   Platform.OS === 'ios'
-      //     ? `ios-home${focused ? '' : '-outline'}`
-      //     : 'md-home'
-      // }
       name={'home'}
-
     />
   ),
 };
 
 HomeStack.path = '';
 
-const SessionsStack = createStackNavigator(
+const AppointmentStack = createStackNavigator(
   {
-    Sessions: SessionsScreen,
+    Appointment: AppointmentScreen,
   },
   config,
 );
 
-SessionsStack.navigationOptions = {
+AppointmentStack.navigationOptions = {
   tabBarLabel: 'Sessões',
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
-      // name={
-      //   Platform.OS === 'ios'
-      //     ? `ios-home${focused ? '' : '-outline'}`
-      //     : 'md-home'
-      // }
       name={'calendar'}
-      
     />
   ),
 };
 
-SessionsStack.path = '';
+AppointmentStack.path = '';
 
 
 const ProfileStack = createStackNavigator(
@@ -77,11 +65,6 @@ const ProfileStack = createStackNavigator(
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
-      // name={
-      //   Platform.OS === 'ios'
-      //     ? `ios-home${focused ? '' : '-outline'}`
-      //     : 'md-home'
-      //   }
       name={'person'}
     />
   ),
@@ -91,7 +74,7 @@ ProfileStack.path = '';
 
 const tabNavigator = createBottomTabNavigator({
   HomeStack,
-  SessionsStack,
+  AppointmentStack,
   ProfileStack
 });
 
