@@ -3,6 +3,7 @@ import {Platform} from 'react-native';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
+import Texts from '../components/Texts';
 import TabBarIcon from '../components/TabBarIcon';
 import HomeScreen from '../pages/Home';
 import AppointmentScreen from '../pages/Appointment';
@@ -22,7 +23,8 @@ const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  tabBarLabel: 'Início',
+  // tabBarLabel: Texts,
+  tabBarLabel: Texts["menu-tab:home"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
@@ -41,7 +43,7 @@ const AppointmentStack = createStackNavigator(
 );
 
 AppointmentStack.navigationOptions = {
-  tabBarLabel: 'Sessões',
+  tabBarLabel: Texts["menu-tab:appointment"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
@@ -61,7 +63,7 @@ const ProfileStack = createStackNavigator(
   );
   
   ProfileStack.navigationOptions = {
-    tabBarLabel: 'Perfil',
+  tabBarLabel: Texts["menu-tab:profile"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
