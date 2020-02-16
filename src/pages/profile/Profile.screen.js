@@ -1,10 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
+import Styles from './Profile.styles';
+
 const Profile = () => {
     return (
       <View>
-        <Text>Quero Dormir</Text>
+        <Text>Perfil com nome, email e senha</Text>
       </View>
     );
   };
