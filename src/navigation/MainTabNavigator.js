@@ -39,6 +39,7 @@ const AppointmentStack = createStackNavigator(
     Appointment: AppointmentScreen,
   },
   config,
+  
 );
 
 AppointmentStack.navigationOptions = {

@@ -12,7 +12,7 @@ import Icon from 'react-native-ionicons';
 import Styles from './Home.styles';
 import TouchableFooter from '../../components/TouchableOFooter';
 import Touchable from '../../components/TouchableOFooter';
-import DialCall from './DialCall';
+import DialCall from '../Lib';
 import Texts from '../../components/Texts';
 
 
