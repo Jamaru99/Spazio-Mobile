@@ -1,5 +1,5 @@
 import { Linking } from 'react-native'
-const dialCall = () => {
+export const dialCall = () => {
  
     let phoneNumber = '';
  
@@ -13,4 +13,4 @@ const dialCall = () => {
     Linking.openURL(phoneNumber);
   };
 
-  export default dialCall;
+  // export dialCall;

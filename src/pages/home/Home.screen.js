@@ -12,7 +12,7 @@ import Icon from 'react-native-ionicons';
 import Styles from './Home.styles';
 import TouchableFooter from '../../components/TouchableOFooter';
 import Touchable from '../../components/TouchableOFooter';
-import DialCall from '../Lib';
+import { dialCall } from '../Lib';
 import Texts from '../../components/Texts';
 
 
@@ -86,7 +86,7 @@ const Home = () => {
 
           <View style={Styles.network_content}>
             <TouchableOpacity
-              onPress={DialCall}
+              onPress={dialCall}
             >
               <View>
                 <Image style={Styles.network_icon}
@@ -102,7 +102,9 @@ const Home = () => {
 
           <View style={Styles.network_content}>
             <TouchableOpacity
-              onPress={DialCall}
+              onPress={() => 
+                Linking.openURL('mailto:nina.profissionaldabeleza@gmail.com')}
+                title='nina.profissionaldabeleza@gmail.com'
             >
               <View>
                 <Image style={Styles.network_icon}
