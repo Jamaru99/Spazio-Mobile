@@ -96,7 +96,7 @@ const Home = () => {
             </TouchableOpacity>
 
             <Text style={Styles.link} 
-            onPress={DialCall}
+            onPress={dialCall}
               >(11) 99647-1809</Text>
           </View>
 
