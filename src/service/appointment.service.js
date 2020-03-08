@@ -1,16 +1,18 @@
 import axios from 'axios';
-import { Value } from 'react-native-reanimated';
 
 let config = {
     headers: {
-      header1: value,
+      access: 'aqueleMarioSenpai',
     }
   }
   
-  let data = {
-    'HTTP_CONTENT_LANGUAGE': self.language
-  }
+  // let data = {
+  //   'HTTP_CONTENT_LANGUAGE': self.language
+  // }
   
-  axios.post(URL, data, config).then(...)
+  // axios.post(URL, data, config).then(...)
 
-const getNextAppointments = () => {}
+export const getNextAppointments = async(id) => {
+  const { data } = await axios.get(`https://spazio.mybluemix.net/appointment/list?customer=${id}`, config )
+  return data
+}

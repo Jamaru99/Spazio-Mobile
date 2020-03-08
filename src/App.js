@@ -11,6 +11,7 @@ import store from './state/store'
 export default (App = _props => {
   useEffect(() => {
     console.disableYellowBox = true;
+    
   }, []);
   return (
   <Provider store={store}>
