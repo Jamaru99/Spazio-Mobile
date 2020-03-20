@@ -6,43 +6,43 @@ const Styles = StyleSheet.create({
     width: 50,
     height: 50
   },
-  text_header:{
-    color: "white",
-  },
-  text_title:{
-    color: "black",
-    fontSize: 20,
-    fontWeight: "bold", 
-  },
-  text_price:{
-    color: "black",
-    fontSize: 16,
-    fontWeight: "bold",
-  },
-  text_description:{
-    color: "grey",
-    fontSize: 14,
-  },
-  view_header:{
-    backgroundColor: "#E82F13",
-    // borderTopWidth: 2,
-    // borderTopColor: "#E82F13",
-    alignContent:"flex-end", //não ta funfando
-    flexDirection:"row",
-    // borderTopRadius: 50,
-  },
   view_appointment_conteiner:{
     backgroundColor: "#FCF3D9",
-
+    marginBottom: 20,
   },
-  view_description:{
-    backgroundColor: "#FCF3D9",
-
+  view_content:{
+    marginHorizontal: 15,
+    marginVertical: 10,
   },
-  view_price:{
-    backgroundColor: "#FCF3D9",
+  view_header:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  view_footer:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+  },
+  text_title:{
+    fontSize: 20,
+    fontWeight: "bold", 
+    textAlign: "left",
+  },
+  // text_description:{
+  //   color: "grey",
+  //   fontSize: 14,
+  //   marginBottom: 10,
+  // },
+  text_price:{
+    fontSize: 16,
+    fontWeight: "bold",
+    textAlign:"left",
+  },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#F00',
+    padding: 5,
+  },
 
-  }
 })
-  
+
 export default Styles;

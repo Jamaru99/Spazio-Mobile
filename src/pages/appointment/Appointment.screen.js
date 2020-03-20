@@ -1,11 +1,20 @@
 import React, { useEffect } from 'react';
-import {Text, View, FlatList} from 'react-native';
+import {
+  Text,
+  View,
+  FlatList,
+  Button,
+  TouchableOpacity,
+  Alert,
+} from 'react-native';
+
 import { connect } from 'react-redux';
 
 import Styles from './Appointment.style';
 import reducer from '../../state/reducer';
-import { getNextAppointments } from '../../service/appointment.service'
-import { getAppointments } from '../../state/actions'
+import { getNextAppointments } from '../../service/appointment.service';
+import { getAppointments } from '../../state/actions';
+// import { TouchableOpacity } from 'react-native-gesture-handler';
 // import getNextAppointments from '../../service/appointment.service';
 
 const Appointment = (props) => {
@@ -30,34 +39,42 @@ const Appointment = (props) => {
       }
       {/* <Text>{reducer.nextAppointments[0].status}</Text> */}
       {/* <Text>{JSON.stringify(reducer.nextAppointments)}</Text> */}
-      <Text>Ola mundo</Text>
+      {/* <Text>Ola mundo</Text> */}
     </View>
   );
 };
 
 const AppointmentItem = (props) => {
-  const [date, time] = props.appointment.schedule.split("T")
+  const [date, timer] = props.appointment.schedule.split("T")
   const [year, month, day] = date.split('-')
+  const time = timer.slice(0,5)
+  const price = ((props.appointment.serviceData.price).toString()).replace('.',',')
+  //TODO tratamento com o price do serviço
   return (
-    <View>
-      <View style= {Styles.view_header}>
-        <Text style= {Styles.text_header}>situação {props.appointment.status}</Text>
-        <Text style= {Styles.text_header}>{day}/{month}/{year}</Text>
-        <Text style= {Styles.text_header}>{time}</Text>
-
-      </View>
-      <View style= {Styles.view_appointment_conteiner}>
-
-        <Text style={Styles.text_title}>{props.appointment.serviceData.name}</Text>
-        <View style={Styles.view_description}>
-
-          <Text style={Styles.text_description}>{props.appointment.serviceData.description}</Text>
+    <View style= {Styles.view_appointment_conteiner}>
+      <View style= {Styles.view_content}>
+        <View style={Styles.view_header}>
+          <Text style={Styles.text_title}>{props.appointment.serviceData.name}</Text>
+          <View>
+            <Text>{day}/{month}/{year}</Text>
+            <Text>{time}</Text>
+          </View>
         </View>
-        <View style= {Styles.view_price}>
 
-          <Text style={Styles.text_price}>R${props.appointment.serviceData.price}</Text>
+        {/* <Text style={Styles.text_description}>{props.appointment.serviceData.description}</Text> */}
+        <View style={Styles.view_footer}>
+          {/* <Text style={Styles.text_price}>R$ {props.appointment.serviceData.price}</Text> */}
+          <Text style={Styles.text_price}>R$ {price}</Text>
+          {/* <Button> Aperte para cancelar</Button> */}
+          <TouchableOpacity style={Styles.button}
+            onPress={alert('cancelado')}
+          >
+
+            <Text>Cancelar</Text>
+          </TouchableOpacity>
         </View>
-        {/* <Text>{props.appointment.serviceData.duration}</Text> */}
+
+
       </View>
     </View>
   )
