@@ -3,7 +3,6 @@ import {
   Text,
   View,
   FlatList,
-  Button,
   TouchableOpacity,
   Alert,
 } from 'react-native';
@@ -14,7 +13,6 @@ import Styles from './Appointment.style';
 import reducer from '../../state/reducer';
 import { getNextAppointments } from '../../service/appointment.service';
 import { getAppointments } from '../../state/actions';
-// import { TouchableOpacity } from 'react-native-gesture-handler';
 // import getNextAppointments from '../../service/appointment.service';
 
 const Appointment = (props) => {
@@ -23,7 +21,7 @@ const Appointment = (props) => {
     props.getAppointments(data);
   }, [])
   return (
-    <View>
+    <View style={Styles.view_container}>
       {/* <FlatList
         data={props.nextAppointments}
         keyExtractor={item => item._id}
@@ -37,7 +35,6 @@ const Appointment = (props) => {
           <AppointmentItem appointment={item} />
         )
       }
-      {/* <Text>{reducer.nextAppointments[0].status}</Text> */}
       {/* <Text>{JSON.stringify(reducer.nextAppointments)}</Text> */}
       {/* <Text>Ola mundo</Text> */}
     </View>
@@ -51,7 +48,7 @@ const AppointmentItem = (props) => {
   const price = ((props.appointment.serviceData.price).toString()).replace('.',',')
   //TODO tratamento com o price do serviço
   return (
-    <View style= {Styles.view_appointment_conteiner}>
+    <View style= {Styles.view_appointment_container}>
       <View style= {Styles.view_content}>
         <View style={Styles.view_header}>
           <Text style={Styles.text_title}>{props.appointment.serviceData.name}</Text>
@@ -61,19 +58,16 @@ const AppointmentItem = (props) => {
           </View>
         </View>
 
-        {/* <Text style={Styles.text_description}>{props.appointment.serviceData.description}</Text> */}
         <View style={Styles.view_footer}>
-          {/* <Text style={Styles.text_price}>R$ {props.appointment.serviceData.price}</Text> */}
           <Text style={Styles.text_price}>R$ {price}</Text>
-          {/* <Button> Aperte para cancelar</Button> */}
+
           <TouchableOpacity style={Styles.button}
-            onPress={alert('cancelado')}
+            onPress={() => alert('cancelado')}
           >
 
-            <Text>Cancelar</Text>
+            <Text style={Styles.button_text}>Cancelar</Text>
           </TouchableOpacity>
         </View>
-
 
       </View>
     </View>
