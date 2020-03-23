@@ -15,13 +15,14 @@ const Styles = StyleSheet.create({
   },
   // hprojeckt
   view_container:{
-    backgroundColor: '#333',
+    // backgroundColor: '#333',
     // backgroundImage: 
     width: '100%',
     height: '100%',
   },
   view_appointment_container:{
-    backgroundColor: "#FCF3D9BB",
+    // backgroundColor: "#FCF3D9BB",
+    backgroundColor: "#00000088",
     marginTop: 20,
   },
   view_content:{
@@ -41,11 +42,16 @@ const Styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold", 
     textAlign: "left",
+    color: "white",
   },
   text_price:{
     fontSize: 16,
     fontWeight: "bold",
     textAlign:"left",
+    color: "white",
+  },
+  text_appointment:{
+    color: "white",
   },
   button: {
     alignItems: 'center',

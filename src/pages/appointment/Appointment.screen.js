@@ -57,8 +57,8 @@ const AppointmentItem = (props) => {
         <View style={Styles.view_header}>
           <Text style={Styles.text_title}>{props.appointment.serviceData.name}</Text>
           <View>
-            <Text>{day}/{month}/{year}</Text>
-            <Text>{time}</Text>
+            <Text style={Styles.text_appointment}>{day}/{month}/{year}</Text>
+            <Text style={Styles.text_appointment}>{time}</Text>
           </View>
         </View>
 
