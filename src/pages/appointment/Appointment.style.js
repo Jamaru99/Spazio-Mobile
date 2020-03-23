@@ -6,8 +6,17 @@ const Styles = StyleSheet.create({
     width: 50,
     height: 50
   },
+  background:
+  {
+    flex: 1,
+    resizeMode: "cover",
+    width: '100%',
+    height: '100%',
+  },
+  // hprojeckt
   view_container:{
     backgroundColor: '#333',
+    // backgroundImage: 
     width: '100%',
     height: '100%',
   },
