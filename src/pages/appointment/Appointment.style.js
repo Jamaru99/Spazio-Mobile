@@ -13,15 +13,11 @@ const Styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  // hprojeckt
   view_container:{
-    // backgroundColor: '#333',
-    // backgroundImage: 
     width: '100%',
     height: '100%',
   },
   view_appointment_container:{
-    // backgroundColor: "#FCF3D9BB",
     backgroundColor: "#00000088",
     marginTop: 20,
   },
