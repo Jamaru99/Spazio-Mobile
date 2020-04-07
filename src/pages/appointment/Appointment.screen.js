@@ -65,6 +65,7 @@ const AppointmentItem = (props) => {
         <View style={Styles.view_footer}>
           <Text style={Styles.text_price}>R$ {price}</Text>
 
+          {/* TODO botao funcionar */}
           <TouchableOpacity style={Styles.button}
             onPress={() => alert('cancelado')}
           >
