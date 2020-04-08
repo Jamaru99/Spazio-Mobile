@@ -9,6 +9,8 @@ import HomeScreen from '../pages/home/Home.screen';
 import AppointmentScreen from '../pages/appointment/Appointment.screen';
 import ProfileScreen from '../pages/profile/Profile.screen';
 
+// TESTE
+import LoginScreen from '../pages/login/Login.screen';
 
 const config = Platform.select({
   web: {headerMode: 'screen'},
@@ -57,7 +59,8 @@ AppointmentStack.path = '';
 
 const ProfileStack = createStackNavigator(
   {
-    Profile: ProfileScreen,
+    // Profile: ProfileScreen,
+    Profile: LoginScreen,
   },
   config,
   );
