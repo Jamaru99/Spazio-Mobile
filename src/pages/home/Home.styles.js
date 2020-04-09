@@ -32,7 +32,6 @@ const Styles = StyleSheet.create({
   },
   panel:{
     height: 200,    
-    // backgroundColor: 'grey',
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',

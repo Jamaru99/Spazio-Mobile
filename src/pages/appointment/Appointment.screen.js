@@ -24,22 +24,11 @@ const Appointment = (props) => {
   return (
     <View style={Styles.view_container}>
       <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
-
-        {/* <FlatList
-          data={props.nextAppointments}
-          keyExtractor={item => item._id}
-          renderItem={
-            item => <Text> {item._id}</Text>
-          }
-        /> */}
-        
         {
           props.nextAppointments.map(item =>
             <AppointmentItem appointment={item} />
             )
           }
-        {/* <Text>{JSON.stringify(reducer.nextAppointments)}</Text> */}
-        {/* <Text>Ola mundo</Text> */}
       </ImageBackground>
     </View>
   );
