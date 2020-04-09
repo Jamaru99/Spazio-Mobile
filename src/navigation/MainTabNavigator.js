@@ -5,9 +5,9 @@ import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import Texts from '../components/Texts';
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../pages/Home';
-import AppointmentScreen from '../pages/Appointment';
-import ProfileScreen from '../pages/Profile';
+import HomeScreen from '../pages/home/Home.screen';
+import AppointmentScreen from '../pages/appointment/Appointment.screen';
+import ProfileScreen from '../pages/profile/Profile.screen';
 
 
 const config = Platform.select({
@@ -23,7 +23,6 @@ const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  // tabBarLabel: Texts,
   tabBarLabel: Texts["menu-tab:home"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
@@ -40,6 +39,7 @@ const AppointmentStack = createStackNavigator(
     Appointment: AppointmentScreen,
   },
   config,
+  
 );
 
 AppointmentStack.navigationOptions = {

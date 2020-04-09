@@ -1,10 +1,12 @@
 import React from 'react';
 import {Text, View} from 'react-native';
 
+import Styles from './Appointment.style';
+
 const Sessions = () => {
   return (
     <View>
-      <Text>Quero chorar</Text>
+      <Text>Appointment com as sessoes marcadas e para agendar</Text>
     </View>
   );
 };
