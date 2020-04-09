@@ -26,14 +26,15 @@ const Login = () => {
 							<View style={Styles.container_buttons}>
 								{/* TODO fazer buttons funcionar */}
 								<TouchableOpacity style={Styles.button}
-									onPress= {() => alert('Faça o cadastro!') }
-								>
-									<Text style={Styles.button_text}>Cadastrar</Text>
-								</TouchableOpacity>
-								<TouchableOpacity style={Styles.button}
 									onPress= {() => alert('Faça o login!') }
 								>
 									<Text style={Styles.button_text}>Login</Text>
+								</TouchableOpacity>
+								
+								<TouchableOpacity style={Styles.button_login}
+									onPress= {() => alert('Faça o cadastro!') }
+								>
+									<Text style={Styles.button_text}>Cadastrar</Text>
 								</TouchableOpacity>
 
 								{/* TODO fazer um texto com link de esqueceu a senha */}

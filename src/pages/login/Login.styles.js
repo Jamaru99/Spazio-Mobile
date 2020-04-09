@@ -21,7 +21,6 @@ const Styles = StyleSheet.create({
 	},
 	container_buttons:{
 		// width: 150,
-		flexDirection: 'row',
 		justifyContent: 'space-between',
 	},
 	input:{
@@ -34,10 +33,20 @@ const Styles = StyleSheet.create({
 		margin: 10,
 		marginHorizontal: 20,
 		padding: 10,
-		backgroundColor: '#2A24F4',
+		backgroundColor: '#9e0308',
 		justifyContent: 'center',
 		alignItems: 'center',
-		
+		borderRadius: 10,
+
+	},
+	button_login:{
+		margin: 10,
+		marginHorizontal: 20,
+		padding: 10,
+		backgroundColor: '#9e030800',
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 10,
 
 	},
 	button_text:{
