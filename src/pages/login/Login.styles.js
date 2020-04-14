@@ -39,7 +39,7 @@ const Styles = StyleSheet.create({
 		borderRadius: 10,
 
 	},
-	button_login:{
+	button_cadastro:{
 		margin: 10,
 		marginHorizontal: 20,
 		padding: 10,
@@ -47,6 +47,8 @@ const Styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
+		borderWidth: 2,
+		borderColor: '#9e0308',
 
 	},
 	button_text:{

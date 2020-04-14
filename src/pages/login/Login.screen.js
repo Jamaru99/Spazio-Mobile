@@ -31,7 +31,7 @@ const Login = () => {
 									<Text style={Styles.button_text}>Login</Text>
 								</TouchableOpacity>
 								
-								<TouchableOpacity style={Styles.button_login}
+								<TouchableOpacity style={Styles.button_cadastro}
 									onPress= {() => alert('Faça o cadastro!') }
 								>
 									<Text style={Styles.button_text}>Cadastrar</Text>
