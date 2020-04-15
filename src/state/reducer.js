@@ -1,4 +1,5 @@
 const initialState = {
+    isLogged: true,
     nextAppointments: [
         { 
             "status": "scheduled", 

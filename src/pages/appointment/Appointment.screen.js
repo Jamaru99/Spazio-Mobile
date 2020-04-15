@@ -12,9 +12,10 @@ import { connect } from 'react-redux';
 
 import Styles from './Appointment.style';
 import reducer from '../../state/reducer';
+import {initialState} from '../../state/reducer'
 import { getNextAppointments } from '../../service/appointment.service';
 import { getAppointments } from '../../state/actions';
-// import getNextAppointments from '../../service/appointment.service';
+import Login from '../login/Login.screen';
 
 const Appointment = (props) => {
   useEffect(async () => {
@@ -24,14 +25,6 @@ const Appointment = (props) => {
   return (
     <View style={Styles.view_container}>
       <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
-
-        {/* <FlatList
-          data={props.nextAppointments}
-          keyExtractor={item => item._id}
-          renderItem={
-            item => <Text> {item._id}</Text>
-          }
-        /> */}
         
         {
           props.nextAppointments.map(item =>
@@ -52,35 +45,46 @@ const AppointmentItem = (props) => {
   const price = ((props.appointment.serviceData.price).toString()).replace('.',',')
   //TODO tratamento com o price do serviço
   return (
-    <View style= {Styles.view_appointment_container}>
-      <View style= {Styles.view_content}>
-        <View style={Styles.view_header}>
-          <Text style={Styles.text_title}>{props.appointment.serviceData.name}</Text>
-          <View>
-            <Text style={Styles.text_appointment}>{day}/{month}/{year}</Text>
-            <Text style={Styles.text_appointment}>{time}</Text>
-          </View>
-        </View>
-
-        <View style={Styles.view_footer}>
-          <Text style={Styles.text_price}>R$ {price}</Text>
-
-          <TouchableOpacity style={Styles.button}
-            onPress={() => alert('cancelado')}
-          >
-
-            <Text style={Styles.button_text}>Cancelar</Text>
-          </TouchableOpacity>
-        </View>
-
-      </View>
+    <View>
+      {
+        props.isLogged
+        ? <AppointmentScreen/>
+        :<Login />
+      }
     </View>
   )
 }
 
+const AppointmentScreen = () => {(
+  <View style= {Styles.view_appointment_container}>
+    <View style= {Styles.view_content}>
+      <View style={Styles.view_header}>
+        <Text style={Styles.text_title}>{props.appointment.serviceData.name}</Text>
+        <View>
+          <Text style={Styles.text_appointment}>{day}/{month}/{year}</Text>
+          <Text style={Styles.text_appointment}>{time}</Text>
+        </View>
+      </View>
+
+      <View style={Styles.view_footer}>
+        <Text style={Styles.text_price}>R$ {price}</Text>
+
+        <TouchableOpacity style={Styles.button}
+          onPress={() => alert('cancelado')}
+        >
+
+          <Text style={Styles.button_text}>Cancelar</Text>
+        </TouchableOpacity>
+      </View>
+
+    </View>
+  </View>
+)}
+
 const mapStateToProps = (state) => {
   return{
-    nextAppointments: state.nextAppointments
+    nextAppointments: state.nextAppointments,
+    isLogged: state.isLogged
   }
 }
 
