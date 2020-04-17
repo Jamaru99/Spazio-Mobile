@@ -23,7 +23,7 @@ const Login = () => {
 								/>
 							</View>
 
-							TODO criar condição para funcionar 
+							{/* TODO criar condição para funcionar  */}
 							<View style={Styles.container_buttons}>
 								<TouchableOpacity style={Styles.button}
 									onPress= {() => alert('Faça o login!') }
