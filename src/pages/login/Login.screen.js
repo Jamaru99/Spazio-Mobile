@@ -1,9 +1,11 @@
-import React from 'react';
-import {View, Text, TouchableOpacity, TextInput, ImageBackground,} from 'react-native';
+import React from 'react'
+import {View, Text, TouchableOpacity, TextInput, ImageBackground,} from 'react-native'
 
-import Styles from './Login.styles';
+import Styles from './Login.styles'
+import {doLogin} from '../../service/customer.service'
 
 const Login = () => {
+		const [text, setText] = useState('')
     return(
         <View>
     		  <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
@@ -14,10 +16,12 @@ const Login = () => {
 							<View style={Styles.container_inputs}>
 
 								<TextInput style={Styles.input}
+									onChangeText={(text) => setLogin(text)}
 									placeholder= 'Digite seu email'
 								/>
 
 								<TextInput style={Styles.input}
+									onChangeText={(text) => setPassword(text)}
 									placeholder= 'Digite sua senha'
 									secureTextEntry={true}
 								/>
@@ -26,7 +30,10 @@ const Login = () => {
 							{/* TODO criar condição para funcionar  */}
 							<View style={Styles.container_buttons}>
 								<TouchableOpacity style={Styles.button}
-									onPress= {() => alert('Faça o login!') }
+									onPress= {() => {
+										// alert('Faça o login!') 
+										doLogin()
+									}}
 								>
 									<Text style={Styles.button_text}>Login</Text>
 								</TouchableOpacity>
@@ -45,5 +52,10 @@ const Login = () => {
         </View>
     )
 }
+
+// const setLogin = () => {
+
+// }
+
 
 export default Login;
