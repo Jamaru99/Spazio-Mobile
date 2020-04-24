@@ -1,5 +1,6 @@
 const initialState = {
     isLogged: true,
+    userData:{},
     nextAppointments: [],
 
 }

@@ -5,7 +5,8 @@ import Styles from './Login.styles'
 import {doLogin} from '../../service/customer.service'
 
 const Login = () => {
-		const [text, setText] = useState('')
+		const [login, setLogin] = useState('')
+		const [password, setPassword] = useState('')
     return(
         <View>
     		  <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
@@ -16,23 +17,39 @@ const Login = () => {
 							<View style={Styles.container_inputs}>
 
 								<TextInput style={Styles.input}
-									onChangeText={(text) => setLogin(text)}
+									onChangeText={(login) => setLogin(login)}
 									placeholder= 'Digite seu email'
+									// placeholderTextColor= '#'
+									returnKeyType= 'next'
+									// keyboardType= 'email-address'
+									// autoCapitalize= 'none'
+									// autoCorrect= {false}
+									// onSubmitEditing ={() => this.passwordInput.focus()}
 								/>
 
 								<TextInput style={Styles.input}
-									onChangeText={(text) => setPassword(text)}
+									onChangeText={(password) => setPassword(password)}
 									placeholder= 'Digite sua senha'
-									secureTextEntry={true}
+									// placeholderTextColor= '#'
+									returnKeyType= 'go'
+									// secureTextEntry={true}
+									secureTextEntry
+
+									// ref={(input) => this.passwordInput = input}
 								/>
 							</View>
 
 							{/* TODO criar condição para funcionar  */}
 							<View style={Styles.container_buttons}>
 								<TouchableOpacity style={Styles.button}
-									onPress= {() => {
-										// alert('Faça o login!') 
-										doLogin()
+									onPress= {async() => {
+										const userData = await doLogin(password, login)
+										if (!userData.error){
+
+										}
+										else{
+
+										}
 									}}
 								>
 									<Text style={Styles.button_text}>Login</Text>
@@ -53,9 +70,15 @@ const Login = () => {
     )
 }
 
-// const setLogin = () => {
+//arrumar map para login
+const mapStateToProps = (state) => {
+  return{
+    nextAppointments: state.nextAppointments,
+    isLogged: state.isLogged
+  }
+}
 
-// }
 
+export default connect (mapStateToProps) (LoginScreen);
 
-export default Login;
+// export default Login;
