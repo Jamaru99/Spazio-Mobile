@@ -22,6 +22,7 @@ const AppointmentScreen = (props) => {
     props.getAppointments(data);
   }, [])
   return (
+    // #TODO adicionar a ImageBackground aqui
     <View>
       {
         props.isLogged 

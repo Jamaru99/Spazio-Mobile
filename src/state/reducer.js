@@ -10,7 +10,7 @@ const reducer = (state = initialState, action) => {
         case "GET_APPOINTMENTS":
             return {
                 ...state, 
-                // nextAppointments: action.payload,
+                nextAppointments: action.payload,
             }
         default:
             return state

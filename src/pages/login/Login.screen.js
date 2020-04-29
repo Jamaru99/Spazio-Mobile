@@ -1,10 +1,13 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {View, Text, TouchableOpacity, TextInput, ImageBackground,} from 'react-native'
 
 import Styles from './Login.styles'
 import {doLogin} from '../../service/customer.service'
 
-const Login = () => {
+import { connect } from 'react-redux';
+
+
+const LoginScreen = (props) => {
 		const [login, setLogin] = useState('')
 		const [password, setPassword] = useState('')
     return(
@@ -21,9 +24,9 @@ const Login = () => {
 									placeholder= 'Digite seu email'
 									// placeholderTextColor= '#'
 									returnKeyType= 'next'
-									// keyboardType= 'email-address'
-									// autoCapitalize= 'none'
-									// autoCorrect= {false}
+									keyboardType= 'email-address'
+									autoCapitalize= 'none'
+									autoCorrect= {false}
 									// onSubmitEditing ={() => this.passwordInput.focus()}
 								/>
 
@@ -32,9 +35,9 @@ const Login = () => {
 									placeholder= 'Digite sua senha'
 									// placeholderTextColor= '#'
 									returnKeyType= 'go'
-									// secureTextEntry={true}
 									secureTextEntry
 
+									// TODO campo email mandar para o de senha
 									// ref={(input) => this.passwordInput = input}
 								/>
 							</View>
@@ -45,9 +48,9 @@ const Login = () => {
 									onPress= {async() => {
 										const userData = await doLogin(password, login)
 										if (!userData.error){
-
 										}
 										else{
+										props.isLogged = true
 
 										}
 									}}
@@ -73,7 +76,6 @@ const Login = () => {
 //arrumar map para login
 const mapStateToProps = (state) => {
   return{
-    nextAppointments: state.nextAppointments,
     isLogged: state.isLogged
   }
 }
