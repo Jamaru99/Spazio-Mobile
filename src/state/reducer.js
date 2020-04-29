@@ -12,6 +12,11 @@ const reducer = (state = initialState, action) => {
                 ...state, 
                 nextAppointments: action.payload,
             }
+        case "GET_USER":
+            return{
+                ...state,
+                userData: action.payload,
+            }
         default:
             return state
     }

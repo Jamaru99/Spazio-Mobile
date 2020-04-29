@@ -6,9 +6,9 @@ export const getAppointments = (payload) => {
 
 }
 
-export const login = () =>{
+export const doLogin = () =>{
     return{
-        type: 'DO_LOGIN'
+        type: 'GET_USER',
+        payload
     }
 }
-//criar action do login e arrumar o nome do type
