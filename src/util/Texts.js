@@ -11,7 +11,7 @@ const deviceLanguage=
     
 
     
-const english ={
+const english = {
     "menu-tab:home": "Home",
     "menu-tab:appointment": "Appointment",
     "menu-tab:profile": "Profile",
@@ -25,7 +25,7 @@ const english ={
     "home:phone": "Phone: ",
 }
 
-const portuguese ={
+const portuguese = {
     "menu-tab:home": "Início",
     "menu-tab:appointment": "Sessões",
     "menu-tab:profile": "Perfil",
@@ -43,8 +43,6 @@ const portuguese ={
     // "": "",
     // "": "",
     // "": "",
-    
-
     
 }
 

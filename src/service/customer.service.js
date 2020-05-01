@@ -1,12 +1,11 @@
-import axios from 'axios'
+import { CUSTOMER_BASE_URL, post } from '@utils'
 
-// TODO consertar o url do post
-export const doLogin = async(password, login) => {
+export const doLogin = async (password, login) => {
   try{
-    const {data} = await axios.post(`https://spazio.mybluemix.net/customer/login`, {password, login})
+    const { data } = await post(`${CUSTOMER_BASE_URL}/login`, { password, login })
     return data
   }
   catch{
-    return {error: true}
+    return { error: true }
   }
 }

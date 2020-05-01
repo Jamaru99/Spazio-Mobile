@@ -7,7 +7,6 @@ import { doLoginDispatched } from '@state'
 
 import { connect } from 'react-redux';
 
-
 const LoginScreen = (props) => {
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
@@ -17,7 +16,8 @@ const LoginScreen = (props) => {
 		if (!userData.error){
 			props.doLoginDispatched(userData)
 		} else{
-
+			// TODO: Mensagem de erro em um <Text>
+			console.error("Email ou usuãrio invalidos")
 		}
 	}
 	
