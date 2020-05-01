@@ -11,7 +11,6 @@ import {
 import { connect } from 'react-redux';
 
 import Styles from './Appointment.style';
-import reducer from '../../state/reducer';
 import { getNextAppointments } from '../../service/appointment.service';
 import { getAppointments } from '../../state/actions';
 import Login from '../login/Login.screen';

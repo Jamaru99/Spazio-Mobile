@@ -3,6 +3,7 @@ import {View, Text, TouchableOpacity, TextInput, ImageBackground,} from 'react-n
 
 import Styles from './Login.styles'
 import {doLogin} from '../../service/customer.service'
+import {doLoginDispatched} from '../../state/actions'
 
 import { connect } from 'react-redux';
 
@@ -73,14 +74,14 @@ const LoginScreen = (props) => {
     )
 }
 
-//arrumar map para login
 const mapStateToProps = (state) => {
   return{
     isLogged: state.isLogged
   }
 }
 
+const mapDispatchToProps = {
+  doLoginDispatched,
+}
 
-export default connect (mapStateToProps) (LoginScreen);
-
-// export default Login;
+export default connect (mapStateToProps, mapDispatchToProps	) (LoginScreen);

@@ -1,5 +1,5 @@
 const initialState = {
-    isLogged: true,
+    isLogged: false,
     userData:{},
     nextAppointments: [],
 
@@ -15,6 +15,7 @@ const reducer = (state = initialState, action) => {
         case "GET_USER":
             return{
                 ...state,
+                isLogged: true,
                 userData: action.payload,
             }
         default:
