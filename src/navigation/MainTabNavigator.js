@@ -12,19 +12,29 @@ import ProfileScreen from '../pages/profile/Profile.screen';
 // TESTE
 import LoginScreen from '../pages/login/Login.screen';
 
-const config = Platform.select({
-  web: {headerMode: 'screen'},
-  default: {},
-});
+const config = {
+  
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: '#9e0308',
+    },
+    headerTintColor: '#fff',
+  }
+}
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
   },
-  config,
+  config
 );
 
 HomeStack.navigationOptions = {
+  headerStyle: {
+    backgroundColor: '#9e0308',
+    headerTintColor: '#fff',
+    headerTitleStyle:{ color: 'green'},
+  },
   tabBarLabel: Texts["menu-tab:home"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
@@ -45,6 +55,7 @@ const AppointmentStack = createStackNavigator(
 );
 
 AppointmentStack.navigationOptions = {
+
   tabBarLabel: Texts["menu-tab:appointment"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
@@ -56,16 +67,15 @@ AppointmentStack.navigationOptions = {
 
 AppointmentStack.path = '';
 
-
 const ProfileStack = createStackNavigator(
   {
     // Profile: ProfileScreen,
     Profile: LoginScreen,
   },
   config,
-  );
+);
   
-  ProfileStack.navigationOptions = {
+ProfileStack.navigationOptions = {
   tabBarLabel: Texts["menu-tab:profile"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
@@ -81,6 +91,12 @@ const tabNavigator = createBottomTabNavigator({
   HomeStack,
   AppointmentStack,
   ProfileStack
+},{
+  tabBarOptions: {
+    activeBackgroundColor: '#000',
+    inactiveBackgroundColor: '#000',
+    activeTintColor: '#9e0308'
+  },
 });
 
 tabNavigator.path = '';

@@ -7,6 +7,12 @@ const Styles = StyleSheet.create({
     backgroundColor: '#333',
     flex: 1,
   },
+  background: {
+    flex: 1,
+    resizeMode: "cover",
+    width: '100%',
+    height: '100%',
+  },
   main:{
     flex: .95,
     marginHorizontal: 20,
@@ -25,14 +31,13 @@ const Styles = StyleSheet.create({
     justifyContent: "center"
   },
   title:{
-    color: '#DAA520',
+    color: '#cc0308',
     fontWeight: 'bold',
     fontSize: 24,
     marginVertical: 10,
   },
   panel:{
     height: 200,    
-    // backgroundColor: 'grey',
     justifyContent: 'center',
     alignSelf: 'center',
     alignItems: 'center',

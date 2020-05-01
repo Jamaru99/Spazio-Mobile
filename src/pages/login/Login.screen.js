@@ -9,8 +9,19 @@ import { connect } from 'react-redux';
 
 
 const LoginScreen = (props) => {
-		const [login, setLogin] = useState('')
-		const [password, setPassword] = useState('')
+	const [login, setLogin] = useState('')
+	const [password, setPassword] = useState('')
+
+	const handleOnLoginPress = async () => {
+		const userData = await doLogin(password, login)
+		//console.error(userData)
+		if (!userData.error){
+			props.doLoginDispatched(userData)
+		} else{
+
+		}
+	}
+	
     return(
         <View>
     		  <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
@@ -45,17 +56,7 @@ const LoginScreen = (props) => {
 
 							{/* TODO criar condição para funcionar  */}
 							<View style={Styles.container_buttons}>
-								<TouchableOpacity style={Styles.button}
-									onPress= {async() => {
-										const userData = await doLogin(password, login)
-										if (!userData.error){
-										}
-										else{
-										props.isLogged = true
-
-										}
-									}}
-								>
+								<TouchableOpacity style={Styles.button} onPress={handleOnLoginPress}>
 									<Text style={Styles.button_text}>Login</Text>
 								</TouchableOpacity>
 								

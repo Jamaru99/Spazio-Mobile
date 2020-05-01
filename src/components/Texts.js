@@ -15,6 +15,14 @@ const English ={
     "menu-tab:home": "Home",
     "menu-tab:appointment": "Appointment",
     "menu-tab:profile": "Profile",
+
+    "home:tt_opening-hours": "Opening hours",
+    "home:hours-week": "Tuesday to Saturday from 9:00 AM to 6:00 PM",
+    "home:hours-weekend": "Sunday from 10:00 to 16:00",
+    "home:hours-change": "Changes may occur on hollidays",
+    "home:tt_address": "Address",
+    "home:address": "Rua Augusta, 101 - Sala 805",
+    "home:phone": "Phone: ",
 }
 
 const Portuguese ={

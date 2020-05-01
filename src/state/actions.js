@@ -6,7 +6,7 @@ export const getAppointments = (payload) => {
 
 }
 
-export const doLoginDispatched = () =>{
+export const doLoginDispatched = (payload) =>{
     return{
         type: 'GET_USER',
         payload
