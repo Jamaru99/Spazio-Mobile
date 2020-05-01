@@ -11,7 +11,7 @@ const deviceLanguage=
     
 
     
-const English ={
+const english ={
     "menu-tab:home": "Home",
     "menu-tab:appointment": "Appointment",
     "menu-tab:profile": "Profile",
@@ -25,7 +25,7 @@ const English ={
     "home:phone": "Phone: ",
 }
 
-const Portuguese ={
+const portuguese ={
     "menu-tab:home": "Início",
     "menu-tab:appointment": "Sessões",
     "menu-tab:profile": "Perfil",
@@ -48,4 +48,4 @@ const Portuguese ={
     
 }
 
-export default deviceLanguage === 'pt_BR' ? Portuguese : English;
+export default deviceLanguage === 'pt_BR' ? portuguese : english;

@@ -11,7 +11,7 @@
             "@navigation": "./src/navigation",
             "@state": "./src/state/actions",
             "@services": "./src/service",
-            "@texts": "./utils/texts"
+            "@utils": "./src/util"
           }
         }
       ]

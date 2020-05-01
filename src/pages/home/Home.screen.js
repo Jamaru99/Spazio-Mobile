@@ -9,12 +9,11 @@ import {
   ImageBackground,
   Alert
 } from 'react-native';
-import Icon from 'react-native-ionicons';
 
 import Styles from './Home.styles';
 import { TouchableFooter } from '@components';
-import { dialCall } from '../Lib';
-import Texts from '../../components/Texts';
+import { dialCall } from '@utils';
+import { texts } from '@utils';
 
 
 const Home = () => {
@@ -39,26 +38,26 @@ const Home = () => {
 
             <View>
               <Text style={Styles.title}>
-                {Texts["home:tt_opening-hours"]}
+                {texts["home:tt_opening-hours"]}
               </Text>
               <Text style={Styles.text}>
-                {Texts["home:hours-week"]}
+                {texts["home:hours-week"]}
               </Text>
               <Text style={Styles.text}>
-                {Texts["home:hours-weekend"]}
+                {texts["home:hours-weekend"]}
               </Text>
               <Text style={Styles.text}>
-                {Texts["home:hours-change"]}
+                {texts["home:hours-change"]}
               </Text>
 
             </View>
 
             <View>
               <Text style={Styles.title}>
-                {Texts["home:tt_address"]} 
+                {texts["home:tt_address"]} 
               </Text> 
               <Text style={Styles.text}>
-                {Texts["home:address"]} 
+                {texts["home:address"]} 
               </Text> 
             </View>
 

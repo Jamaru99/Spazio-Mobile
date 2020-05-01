@@ -2,12 +2,12 @@ import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
-import Texts from '../components/Texts';
-import TabBarIcon from '../components/TabBarIcon';
+import { texts } from '@utils';
+import { TabBarIcon } from '@components';
 import { HomeScreen, AppointmentScreen, ProfileScreen } from '@pages';
 
 // TESTE
-import {LoginScreen} from '@pages';
+import { LoginScreen } from '@pages';
 
 const config = {
   
@@ -32,7 +32,7 @@ HomeStack.navigationOptions = {
     headerTintColor: '#fff',
     headerTitleStyle:{ color: 'green'},
   },
-  tabBarLabel: Texts["menu-tab:home"],
+  tabBarLabel: texts["menu-tab:home"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
@@ -53,7 +53,7 @@ const AppointmentStack = createStackNavigator(
 
 AppointmentStack.navigationOptions = {
 
-  tabBarLabel: Texts["menu-tab:appointment"],
+  tabBarLabel: texts["menu-tab:appointment"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
@@ -73,7 +73,7 @@ const ProfileStack = createStackNavigator(
 );
   
 ProfileStack.navigationOptions = {
-  tabBarLabel: Texts["menu-tab:profile"],
+  tabBarLabel: texts["menu-tab:profile"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}

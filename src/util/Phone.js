@@ -11,6 +11,6 @@ export const dialCall = () => {
     }
  
     Linking.openURL(phoneNumber);
-  };
+};
 
   // export dialCall;

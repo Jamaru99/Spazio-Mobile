@@ -14,7 +14,6 @@ const LoginScreen = (props) => {
 
 	const handleOnLoginPress = async () => {
 		const userData = await doLogin(password, login)
-		//console.error(userData)
 		if (!userData.error){
 			props.doLoginDispatched(userData)
 		} else{
