@@ -1,4 +1,4 @@
-export const getAppointments = (payload) => {
+export const getAppointmentsDispatched = (payload) => {
     return{
         type: 'GET_APPOINTMENTS',
         payload,

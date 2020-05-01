@@ -1,16 +1,13 @@
 import React from 'react';
-import {Platform} from 'react-native';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
 import Texts from '../components/Texts';
 import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../pages/home/Home.screen';
-import AppointmentScreen from '../pages/appointment/Appointment.screen';
-import ProfileScreen from '../pages/profile/Profile.screen';
+import { HomeScreen, AppointmentScreen, ProfileScreen } from '@pages';
 
 // TESTE
-import LoginScreen from '../pages/login/Login.screen';
+import {LoginScreen} from '@pages';
 
 const config = {
   
@@ -93,8 +90,8 @@ const tabNavigator = createBottomTabNavigator({
   ProfileStack
 },{
   tabBarOptions: {
-    activeBackgroundColor: '#000',
-    inactiveBackgroundColor: '#000',
+    activeBackgroundColor: '#000000DD',
+    inactiveBackgroundColor: '#000000DD',
     activeTintColor: '#9e0308'
   },
 });

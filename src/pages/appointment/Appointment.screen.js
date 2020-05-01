@@ -2,31 +2,30 @@ import React, { useEffect } from 'react';
 import {
   Text,
   View,
-  FlatList,
   TouchableOpacity,
-  Alert,
   ImageBackground,
 } from 'react-native';
 
 import { connect } from 'react-redux';
 
 import Styles from './Appointment.style';
-import { getNextAppointments } from '../../service/appointment.service';
-import { getAppointments } from '../../state/actions';
-import Login from '../login/Login.screen';
+import { getNextAppointments } from '@services';
+import { getAppointmentsDispatched } from '@state';
+import { LoginScreen } from '@pages';
 
 const AppointmentScreen = (props) => {
-  useEffect(async () => {
-    const data = await getNextAppointments('5e243f527e3ff81914f982a2');
-    props.getAppointments(data);
-  }, [])
+  
   return (
     // #TODO adicionar a ImageBackground aqui
     <View>
       {
         props.isLogged 
-        ? <AppointmentList nextAppointments={props.nextAppointments}/>
-        :<Login />
+        ? <AppointmentList
+            nextAppointments={props.nextAppointments}
+            getAppointments={props.getAppointmentsDispatched}
+            userId={props.userId}
+          />
+        : <LoginScreen />
       }
     </View>
     
@@ -69,6 +68,10 @@ const AppointmentItem = (props) => {
 }
 
 const AppointmentList = (props) => {
+  useEffect(async () => {
+    const data = await getNextAppointments(props.userId);
+    props.getAppointments(data);
+  }, [])
   return(
 
     <View style={Styles.view_container}>
@@ -77,8 +80,8 @@ const AppointmentList = (props) => {
         {
           props.nextAppointments.map(item =>
             <AppointmentItem appointment={item} />
-            )
-          }
+          )
+        }
       </ImageBackground>
     </View>
   )
@@ -87,12 +90,13 @@ const AppointmentList = (props) => {
 const mapStateToProps = (state) => {
   return{
     nextAppointments: state.nextAppointments,
-    isLogged: state.isLogged
+    isLogged: state.isLogged,
+    userId: state.userData._id
   }
 }
 
 const mapDispatchToProps = {
-  getAppointments,
+  getAppointmentsDispatched,
 }
 
 export default connect (mapStateToProps, mapDispatchToProps) (AppointmentScreen);
