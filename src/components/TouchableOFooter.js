@@ -5,8 +5,8 @@ const Touchable = (props) => {
     return(
         <View style={Styles.footer}>
             <TouchableOpacity
-            style={Styles.button}
-            onPress={props.onPress}
+                style={Styles.button}
+                onPress={props.onPress}
             >
                 <View style={Styles.touch_content}>
 
@@ -34,7 +34,7 @@ const Styles =  StyleSheet.create({
         textAlign: 'center',
     },
     text: {
-        color: '#DAA520',
+        color: '#cc0308',
         marginTop: 4,
         fontSize: 18,
         alignSelf: 'center',

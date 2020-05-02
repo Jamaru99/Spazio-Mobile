@@ -1,29 +1,38 @@
 import React from 'react';
-import {Platform} from 'react-native';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
-import Texts from '../components/Texts';
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../pages/home/Home.screen';
-import AppointmentScreen from '../pages/appointment/Appointment.screen';
-import ProfileScreen from '../pages/profile/Profile.screen';
+import { texts } from '@utils';
+import { TabBarIcon } from '@components';
+import { HomeScreen, AppointmentScreen, ProfileScreen } from '@pages';
 
+// TESTE
+import { LoginScreen } from '@pages';
 
-const config = Platform.select({
-  web: {headerMode: 'screen'},
-  default: {},
-});
+const config = {
+  
+  defaultNavigationOptions: {
+    headerStyle: {
+      backgroundColor: '#9e0308',
+    },
+    headerTintColor: '#fff',
+  }
+}
 
 const HomeStack = createStackNavigator(
   {
     Home: HomeScreen,
   },
-  config,
+  config
 );
 
 HomeStack.navigationOptions = {
-  tabBarLabel: Texts["menu-tab:home"],
+  headerStyle: {
+    backgroundColor: '#9e0308',
+    headerTintColor: '#fff',
+    headerTitleStyle:{ color: 'green'},
+  },
+  tabBarLabel: texts["menu-tab:home"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
@@ -43,7 +52,8 @@ const AppointmentStack = createStackNavigator(
 );
 
 AppointmentStack.navigationOptions = {
-  tabBarLabel: Texts["menu-tab:appointment"],
+
+  tabBarLabel: texts["menu-tab:appointment"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
@@ -54,16 +64,16 @@ AppointmentStack.navigationOptions = {
 
 AppointmentStack.path = '';
 
-
 const ProfileStack = createStackNavigator(
   {
-    Profile: ProfileScreen,
+    // Profile: ProfileScreen,
+    Profile: LoginScreen,
   },
   config,
-  );
+);
   
-  ProfileStack.navigationOptions = {
-  tabBarLabel: Texts["menu-tab:profile"],
+ProfileStack.navigationOptions = {
+  tabBarLabel: texts["menu-tab:profile"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
       focused={focused}
@@ -78,6 +88,12 @@ const tabNavigator = createBottomTabNavigator({
   HomeStack,
   AppointmentStack,
   ProfileStack
+},{
+  tabBarOptions: {
+    activeBackgroundColor: '#000000DD',
+    inactiveBackgroundColor: '#000000DD',
+    activeTintColor: '#9e0308'
+  },
 });
 
 tabNavigator.path = '';

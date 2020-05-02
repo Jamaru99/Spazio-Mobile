@@ -2,46 +2,33 @@ import React, { useEffect } from 'react';
 import {
   Text,
   View,
-  FlatList,
   TouchableOpacity,
-  Alert,
   ImageBackground,
 } from 'react-native';
 
 import { connect } from 'react-redux';
 
 import Styles from './Appointment.style';
-import reducer from '../../state/reducer';
-import { getNextAppointments } from '../../service/appointment.service';
-import { getAppointments } from '../../state/actions';
-// import getNextAppointments from '../../service/appointment.service';
+import { getNextAppointments } from '@services';
+import { getAppointmentsDispatched } from '@state';
+import { LoginScreen } from '@pages';
 
-const Appointment = (props) => {
-  useEffect(async () => {
-    const data = await getNextAppointments('5e243f527e3ff81914f982a2');
-    props.getAppointments(data);
-  }, [])
+const AppointmentScreen = (props) => {
+  
   return (
-    <View style={Styles.view_container}>
-      <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
-
-        {/* <FlatList
-          data={props.nextAppointments}
-          keyExtractor={item => item._id}
-          renderItem={
-            item => <Text> {item._id}</Text>
-          }
-        /> */}
-        
-        {
-          props.nextAppointments.map(item =>
-            <AppointmentItem appointment={item} />
-            )
-          }
-        {/* <Text>{JSON.stringify(reducer.nextAppointments)}</Text> */}
-        {/* <Text>Ola mundo</Text> */}
-      </ImageBackground>
+    // #TODO adicionar a ImageBackground aqui
+    <View>
+      {
+        props.isLogged 
+        ? <AppointmentList
+            nextAppointments={props.nextAppointments}
+            getAppointments={props.getAppointmentsDispatched}
+            userId={props.userId}
+          />
+        : <LoginScreen />
+      }
     </View>
+    
   );
 };
 
@@ -52,41 +39,65 @@ const AppointmentItem = (props) => {
   const price = ((props.appointment.serviceData.price).toString()).replace('.',',')
   //TODO tratamento com o price do serviço
   return (
-    <View style= {Styles.view_appointment_container}>
-      <View style= {Styles.view_content}>
-        <View style={Styles.view_header}>
-          <Text style={Styles.text_title}>{props.appointment.serviceData.name}</Text>
-          <View>
-            <Text style={Styles.text_appointment}>{day}/{month}/{year}</Text>
-            <Text style={Styles.text_appointment}>{time}</Text>
+    <View>
+      <View style= {Styles.view_appointment_container}>
+        <View style= {Styles.view_content}>
+          <View style={Styles.view_header}>
+            <Text style={Styles.text_title}>{props.appointment.serviceData.name}</Text>
+            <View>
+              <Text style={Styles.text_appointment}>{day}/{month}/{year}</Text>
+              <Text style={Styles.text_appointment}>{time}</Text>
+            </View>
           </View>
-        </View>
 
-        <View style={Styles.view_footer}>
-          <Text style={Styles.text_price}>R$ {price}</Text>
+          <View style={Styles.view_footer}>
+            <Text style={Styles.text_price}>R$ {price}</Text>
 
           {/* TODO botao funcionar */}
           <TouchableOpacity style={Styles.button}
             onPress={() => alert('cancelado')}
           >
 
-            <Text style={Styles.button_text}>Cancelar</Text>
-          </TouchableOpacity>
-        </View>
+              <Text style={Styles.button_text}>Cancelar</Text>
+            </TouchableOpacity>
+          </View>
 
       </View>
+  </View>
+    </View>
+  )
+}
+
+const AppointmentList = (props) => {
+  useEffect(async () => {
+    const data = await getNextAppointments(props.userId);
+    props.getAppointments(data);
+  }, [])
+  return(
+
+    <View style={Styles.view_container}>
+      <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
+        
+        {
+          props.nextAppointments.map(item =>
+            <AppointmentItem appointment={item} />
+          )
+        }
+      </ImageBackground>
     </View>
   )
 }
 
 const mapStateToProps = (state) => {
   return{
-    nextAppointments: state.nextAppointments
+    nextAppointments: state.nextAppointments,
+    isLogged: state.isLogged,
+    userId: state.userData._id
   }
 }
 
 const mapDispatchToProps = {
-  getAppointments,
+  getAppointmentsDispatched,
 }
 
-export default connect (mapStateToProps, mapDispatchToProps) (Appointment);
+export default connect (mapStateToProps, mapDispatchToProps) (AppointmentScreen);

@@ -1,18 +1,6 @@
-import axios from 'axios';
+import { APPOINTMENT_BASE_URL, getAuthorized } from '@utils'
 
-let config = {
-    headers: {
-      access: 'aqueleMarioSenpai',
-    }
-  }
-  
-  // let data = {
-  //   'HTTP_CONTENT_LANGUAGE': self.language
-  // }
-  
-  // axios.post(URL, data, config).then(...)
-
-export const getNextAppointments = async(id) => {
-  const { data } = await axios.get(`https://spazio.mybluemix.net/appointment/list?customer=${id}`, config )
+export const getNextAppointments = async (id) => {
+  const { data } = await getAuthorized(`${APPOINTMENT_BASE_URL}/list?customer=${id}`)
   return data
 }
