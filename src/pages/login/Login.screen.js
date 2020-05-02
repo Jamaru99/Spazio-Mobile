@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { View, Text, TouchableOpacity, TextInput, ImageBackground } from 'react-native'
 
 import Styles from './Login.styles'
-import { doLogin } from '@services'
+import { doLogin, index } from '@services'
 import { doLoginDispatched } from '@state'
 
 import { connect } from 'react-redux';
@@ -15,6 +15,9 @@ const LoginScreen = (props) => {
 		const userData = await doLogin(password, login)
 		if (!userData.error){
 			props.doLoginDispatched(userData)
+			// TODO arrumar para pegar as infos do store
+			// Nao sei como armazenar as infos
+			// data = async index.getUserDataFromStorage
 		} else{
 			// TODO: Mensagem de erro em um <Text>
 			console.error("Email ou usuãrio invalidos")

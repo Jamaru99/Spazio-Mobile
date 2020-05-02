@@ -11,6 +11,8 @@ import store from './state/store'
 export default (App = _props => {
   useEffect(() => {
     console.disableYellowBox = true;
+    checkUserSignedIn
+    // function la embaixo
     
   }, []);
   return (
@@ -19,3 +21,25 @@ export default (App = _props => {
   </Provider>
   );
 });
+
+
+
+const checkUserSignedIn = async() => {
+  let context = this;
+  try {
+     let value = await AsyncStorage.getItem('userData');
+     if (value != null){
+        // #TODO não sei o q mais, se devo pegar os dados de 
+        // Devo fazer connection com o dologin ou aqui ja consigo manipular
+        // doLogin = true
+     }
+     else {
+        // do something else
+        // doLogin = false
+        
+    }
+  } catch (error) {
+    // Error retrieving data
+  }
+}
+
