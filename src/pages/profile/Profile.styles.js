@@ -1,5 +1,5 @@
-import React from 'react';
 import { StyleSheet } from 'react-native';
+import { colors } from '@utils';
 
 const Styles = StyleSheet.create({
   logo:{

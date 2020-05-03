@@ -1,5 +1,5 @@
-import React from 'react';
-import {StyleSheet} from 'react-native';
+import { StyleSheet } from 'react-native';
+import { colors } from '@utils';
 
 const Styles = StyleSheet.create({
 	container:{
@@ -7,12 +7,11 @@ const Styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 	},
-	background:
-  {
-    // flex: 1,
-    resizeMode: "cover",
-    width: '100%',
-    height: '100%',
+	background: {
+		// flex: 1,
+		resizeMode: "cover",
+		width: '100%',
+		height: '100%',
 	},
 	container_inputs:{
 		marginTop: 20,
@@ -25,7 +24,7 @@ const Styles = StyleSheet.create({
 	},
 	input:{
 		width: '100%',
-		backgroundColor: '#EFEFEF',
+		backgroundColor: colors.inputBackground,
 		margin: 5,
 		borderRadius: 10,
 	},
@@ -33,7 +32,7 @@ const Styles = StyleSheet.create({
 		margin: 10,
 		marginHorizontal: 20,
 		padding: 10,
-		backgroundColor: '#9e0308',
+		backgroundColor: colors.primary,
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
@@ -43,20 +42,19 @@ const Styles = StyleSheet.create({
 		margin: 10,
 		marginHorizontal: 20,
 		padding: 10,
-		backgroundColor: '#9e030800',
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
 		borderWidth: 2,
-		borderColor: '#9e0308',
+		borderColor: colors.primary,
 
 	},
 	button_text:{
-		color: 'white',
+		color: colors.accent,
 		fontWeight: 'bold',
 	},
 	text:{
-		color: 'white',
+		color: colors.accent,
 		fontWeight: 'bold',
 	}
 
