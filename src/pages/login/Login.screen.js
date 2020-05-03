@@ -1,17 +1,20 @@
 import React, { useState } from 'react'
-import { View, Text, TouchableOpacity, TextInput, ImageBackground } from 'react-native'
+import { View, Text, TouchableOpacity, TextInput, ImageBackground } from 'react-native';
+import { connect } from 'react-redux';
+
+import { doLogin, setUserDataInStorage } from '@services';
+import { doLoginDispatched } from '@state';
+import { InnerLoader } from '@components';
 
 import Styles from './Login.styles'
-import { doLogin, setUserDataInStorage } from '@services'
-import { doLoginDispatched } from '@state'
-
-import { connect } from 'react-redux';
 
 const LoginScreen = (props) => {
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
+	const [loading, setLoading] = useState(false)
 
 	const handleOnLoginPress = async () => {
+		setLoading(true)
 		const userData = await doLogin(password, login)
 		if (!userData.error){
 			props.doLoginDispatched(userData)
@@ -20,6 +23,7 @@ const LoginScreen = (props) => {
 			// TODO: Mensagem de erro em um <Text>
 			console.error("Email ou usuãrio invalidos")
 		}
+		setLoading(false)
 	}
 	
     return(
@@ -52,12 +56,14 @@ const LoginScreen = (props) => {
 						{/* TODO criar condição para funcionar  */}
 					<View style={Styles.container_buttons}>
 						<TouchableOpacity style={Styles.button} onPress={handleOnLoginPress}>
-							<Text style={Styles.button_text}>Login</Text>
+							{
+								loading 
+								? <InnerLoader />
+								: <Text style={Styles.button_text}>Login</Text>
+							}
 						</TouchableOpacity>
 						
-						<TouchableOpacity style={Styles.button_cadastro}
-							onPress= {() => alert('Faça o cadastro!') }
-						>
+						<TouchableOpacity style={Styles.button_cadastro} onPress= {() => alert('Faça o cadastro!') }>
 							<Text style={Styles.button_text}>Cadastrar</Text>
 						</TouchableOpacity>
 							{/* TODO fazer um texto com link de esqueceu a senha */}
@@ -69,7 +75,7 @@ const LoginScreen = (props) => {
 }
 
 const mapStateToProps = (state) => {
-  return{
+  return {
     isLogged: state.isLogged
   }
 }

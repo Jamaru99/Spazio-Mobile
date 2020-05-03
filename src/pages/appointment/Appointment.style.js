@@ -1,4 +1,3 @@
-// import React from 'react';
 import { StyleSheet } from 'react-native';
 
 const Styles = StyleSheet.create({
@@ -6,12 +5,15 @@ const Styles = StyleSheet.create({
     width: 50,
     height: 50
   },
-  background:
-  {
+  background:{
     flex: 1,
     resizeMode: "cover",
     width: '100%',
     height: '100%',
+  },
+  loader_container:{
+    flex: 1,
+    justifyContent: 'center'
   },
   view_container:{
     width: '100%',
