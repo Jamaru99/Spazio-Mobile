@@ -85,9 +85,9 @@ const tabNavigator = createBottomTabNavigator({
   ProfileStack
 },{
   tabBarOptions: {
-    activeBackgroundColor: '#000000DD',
-    inactiveBackgroundColor: '#000000DD',
-    activeTintColor: '#9e0308'
+    activeBackgroundColor: "#000000DD",
+    inactiveBackgroundColor: "#000000DD",
+    activeTintColor: colors.primary
   },
 });
 
