@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Text,
   View,
   TouchableOpacity,
   ImageBackground,
 } from 'react-native';
-
 import { connect } from 'react-redux';
 
-import Styles from './Appointment.style';
 import { getNextAppointments } from '@services';
 import { getAppointmentsDispatched } from '@state';
 import { LoginScreen } from '@pages';
+import { ContentLoader } from '@components';
+
+import Styles from './Appointment.style';
 
 const AppointmentScreen = (props) => {
   
@@ -31,6 +32,30 @@ const AppointmentScreen = (props) => {
     
   );
 };
+
+const AppointmentList = (props) => {
+  const [loading, setLoading] = useState(false)
+
+  useEffect(async () => {
+    setLoading(true)
+    const data = await getNextAppointments(props.userId)
+    props.getAppointments(data)
+    setLoading(false)
+  }, [])
+  return (
+    <View style={Styles.view_container}>
+      <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
+        {
+          loading
+          ? <ContentLoader />
+          : props.nextAppointments.map(item =>
+              <AppointmentItem appointment={item} />
+            )
+        }
+      </ImageBackground>
+    </View>
+  )
+}
 
 const AppointmentItem = (props) => {
   const [date, timer] = props.appointment.schedule.split("T")
@@ -68,28 +93,8 @@ const AppointmentItem = (props) => {
   )
 }
 
-const AppointmentList = (props) => {
-  useEffect(async () => {
-    const data = await getNextAppointments(props.userId);
-    props.getAppointments(data);
-  }, [])
-  return(
-
-    <View style={Styles.view_container}>
-      <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
-        
-        {
-          props.nextAppointments.map(item =>
-            <AppointmentItem appointment={item} />
-          )
-        }
-      </ImageBackground>
-    </View>
-  )
-}
-
 const mapStateToProps = (state) => {
-  return{
+  return {
     nextAppointments: state.nextAppointments,
     isLogged: state.isLogged,
     userId: state.userData._id

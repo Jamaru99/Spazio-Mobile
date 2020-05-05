@@ -1,4 +1,5 @@
 export { default as texts } from './Texts'
+export { default as colors } from './Colors'
 export { dialCall } from './Phone'
 export {
     CUSTOMER_BASE_URL,

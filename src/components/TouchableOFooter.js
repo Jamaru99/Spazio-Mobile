@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { colors } from '@utils'
 
 const Touchable = (props) => {
     return(
@@ -24,8 +25,7 @@ const Styles =  StyleSheet.create({
     },
     button: {
         alignItems: 'center',
-        // backgroundColor: 'rgba(255, 255, 255, 1)',
-        backgroundColor: '#FFFFFF0F',
+        backgroundColor: colors.blackWithTransparency,
         flex: 1,
     },
     touch_content:{
@@ -34,7 +34,7 @@ const Styles =  StyleSheet.create({
         textAlign: 'center',
     },
     text: {
-        color: '#cc0308',
+        color: colors.primary,
         marginTop: 4,
         fontSize: 18,
         alignSelf: 'center',

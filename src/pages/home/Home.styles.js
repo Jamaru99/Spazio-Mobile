@@ -1,10 +1,8 @@
-import React from 'react';
 import { StyleSheet } from 'react-native';
-
+import { colors } from '@utils';
 
 const Styles = StyleSheet.create({
   container:{
-    backgroundColor: '#333',
     flex: 1,
   },
   background: {
@@ -13,25 +11,25 @@ const Styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  main:{
+  main: {
     flex: .95,
     marginHorizontal: 20,
   },
-  container_logo:{
+  container_logo: {
     maxHeight: 120,
     margin: 20,
     alignSelf: 'center',
   },
-  img_logo:{
+  img_logo: {
     resizeMode: 'contain',
     maxHeight: 100
   },
-  consult:{
+  consult: {
     textAlign: "center",
     justifyContent: "center"
   },
-  title:{
-    color: '#cc0308',
+  title: {
+    color: colors.primary,
     fontWeight: 'bold',
     fontSize: 24,
     marginVertical: 10,
@@ -42,31 +40,31 @@ const Styles = StyleSheet.create({
     alignSelf: 'center',
     alignItems: 'center',
   },
-  img_panel:{
+  img_panel: {
     height: 200,
     resizeMode: 'contain',
   },
-  text:{
-    color: '#FFF',
+  text: {
+    color: colors.accent,
   },
-  networks_container:{
+  networks_container: {
     justifyContent: 'flex-start',
     alignSelf: 'center',
     marginTop: 50,
   },
-  network_content:{
+  network_content: {
     flexDirection: 'row',
     margin: 5,
     justifyContent: 'flex-start',
     alignItems: 'center',
   },
-  network_icon:{
+  network_icon: {
     height: 30,
     width: 30,
     marginRight: 10,
   },
-  link:{
-    color: 'skyblue',
+  link: {
+    color: colors.link,
     fontWeight: 'bold',
     fontSize: 14,
   },

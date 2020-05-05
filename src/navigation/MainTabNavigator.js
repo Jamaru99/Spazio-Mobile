@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from 'react-navigation-stack';
 import {createBottomTabNavigator} from 'react-navigation-tabs';
 
-import { texts } from '@utils';
+import { texts, colors } from '@utils';
 import { TabBarIcon } from '@components';
 import { HomeScreen, AppointmentScreen, ProfileScreen } from '@pages';
 
@@ -13,9 +13,9 @@ const config = {
   
   defaultNavigationOptions: {
     headerStyle: {
-      backgroundColor: '#9e0308',
+      backgroundColor: colors.primary,
     },
-    headerTintColor: '#fff',
+    headerTintColor: colors.accent,
   }
 }
 
@@ -27,11 +27,6 @@ const HomeStack = createStackNavigator(
 );
 
 HomeStack.navigationOptions = {
-  headerStyle: {
-    backgroundColor: '#9e0308',
-    headerTintColor: '#fff',
-    headerTitleStyle:{ color: 'green'},
-  },
   tabBarLabel: texts["menu-tab:home"],
   tabBarIcon: ({focused}) => (
     <TabBarIcon
@@ -90,9 +85,9 @@ const tabNavigator = createBottomTabNavigator({
   ProfileStack
 },{
   tabBarOptions: {
-    activeBackgroundColor: '#000000DD',
-    inactiveBackgroundColor: '#000000DD',
-    activeTintColor: '#9e0308'
+    activeBackgroundColor: "#000000DD",
+    inactiveBackgroundColor: "#000000DD",
+    activeTintColor: colors.primary
   },
 });
 

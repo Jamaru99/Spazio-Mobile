@@ -1,24 +1,27 @@
-// import React from 'react';
 import { StyleSheet } from 'react-native';
+import { colors } from '@utils';
 
 const Styles = StyleSheet.create({
   logo:{
     width: 50,
     height: 50
   },
-  background:
-  {
+  background:{
     flex: 1,
     resizeMode: "cover",
     width: '100%',
     height: '100%',
+  },
+  loader_container:{
+    flex: 1,
+    justifyContent: 'center'
   },
   view_container:{
     width: '100%',
     height: '100%',
   },
   view_appointment_container:{
-    backgroundColor: "#00000088",
+    backgroundColor: colors.blackWithTransparency,
     marginTop: 20,
   },
   view_content:{
@@ -38,24 +41,24 @@ const Styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold", 
     textAlign: "left",
-    color: "white",
+    color: colors.accent,
   },
   text_price:{
     fontSize: 16,
     fontWeight: "bold",
     textAlign:"left",
-    color: "white",
+    color: colors.accent,
   },
   text_appointment:{
-    color: "white",
+    color: colors.accent,
   },
   button: {
     alignItems: 'center',
-    backgroundColor: '#F00',
+    backgroundColor: colors.primary,
     padding: 5,
   },
   button_text:{
-    color: "#FFF",
+    color: colors.accent,
   },
 
 })
