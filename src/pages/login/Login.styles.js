@@ -1,7 +1,7 @@
 import { StyleSheet } from 'react-native';
 import { colors } from '@utils';
 
-const Styles = StyleSheet.create({
+const styles = StyleSheet.create({
 	container:{
 		flex: 1,
 		justifyContent: 'center',
@@ -38,7 +38,7 @@ const Styles = StyleSheet.create({
 		borderRadius: 10,
 
 	},
-	button_cadastro:{
+	button_register:{
 		margin: 10,
 		marginHorizontal: 20,
 		padding: 10,
@@ -56,8 +56,13 @@ const Styles = StyleSheet.create({
 	text:{
 		color: colors.accent,
 		fontWeight: 'bold',
+	},
+	text_error:{
+		color: colors.primary,
+		fontWeight: 'bold',
+		fontSize: 18,
 	}
 
 })
 
-export default Styles;
+export default styles;

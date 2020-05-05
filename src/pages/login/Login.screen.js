@@ -6,12 +6,13 @@ import { doLogin, setUserDataInStorage } from '@services';
 import { doLoginDispatched } from '@state';
 import { InnerLoader } from '@components';
 
-import Styles from './Login.styles'
+import styles from './Login.styles'
 
 const LoginScreen = (props) => {
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
 	const [loading, setLoading] = useState(false)
+	const [errorLogin, setError] = useState('')
 
 	const handleOnLoginPress = async () => {
 		setLoading(true)
@@ -19,21 +20,21 @@ const LoginScreen = (props) => {
 		if (!userData.error){
 			props.doLoginDispatched(userData)
 			await setUserDataInStorage(userData)
-		} else{
-			// TODO: Mensagem de erro em um <Text>
-			console.error("Email ou usuãrio invalidos")
+			setError('')
+		}else{
+			setError('Email ou senha inválidos')
 		}
 		setLoading(false)
 	}
 	
     return(
         <View>
-    		<ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
-				<View style={Styles.container}>
-					<Text style={Styles.text}>Para acessar esta página, faça o login!</Text>
+    		<ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
+				<View style={styles.container}>
+					<Text style={styles.text}>Para acessar esta página, faça o login!</Text>
 						
-					<View style={Styles.container_inputs}>
-						<TextInput style={Styles.input}
+					<View style={styles.container_inputs}>
+						<TextInput style={styles.input}
 							onChangeText={(login) => setLogin(login)}
 							placeholder= 'Digite seu email'
 							// placeholderTextColor= '#'
@@ -43,7 +44,7 @@ const LoginScreen = (props) => {
 							autoCorrect= {false}
 							// onSubmitEditing ={() => this.passwordInput.focus()}
 						/>
-						<TextInput style={Styles.input}
+						<TextInput style={styles.input}
 							onChangeText={(password) => setPassword(password)}
 							placeholder= 'Digite sua senha'
 							// placeholderTextColor= '#'
@@ -54,17 +55,20 @@ const LoginScreen = (props) => {
 						/>
 					</View>
 						{/* TODO criar condição para funcionar  */}
-					<View style={Styles.container_buttons}>
-						<TouchableOpacity style={Styles.button} onPress={handleOnLoginPress}>
+
+					<Text style={styles.text_error}>{errorLogin}</Text>
+
+					<View style={styles.container_buttons}>
+						<TouchableOpacity style={styles.button} onPress={handleOnLoginPress}>
 							{
 								loading 
 								? <InnerLoader />
-								: <Text style={Styles.button_text}>Login</Text>
+								: <Text style={styles.button_text}>Login</Text>
 							}
 						</TouchableOpacity>
 						
-						<TouchableOpacity style={Styles.button_cadastro} onPress= {() => alert('Faça o cadastro!') }>
-							<Text style={Styles.button_text}>Cadastrar</Text>
+						<TouchableOpacity style={styles.button_register} onPress= {() => alert('Faça o cadastro!') }>
+							<Text style={styles.button_text}>Cadastrar</Text>
 						</TouchableOpacity>
 							{/* TODO fazer um texto com link de esqueceu a senha */}
 					</View>
