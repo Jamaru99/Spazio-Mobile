@@ -12,7 +12,7 @@ const LoginScreen = (props) => {
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
 	const [loading, setLoading] = useState(false)
-	const [errorLogin, setError] = useState('')
+	const [errorLogin, setErrorLogin] = useState('')
 
 	const handleOnLoginPress = async () => {
 		setLoading(true)
@@ -20,9 +20,9 @@ const LoginScreen = (props) => {
 		if (!userData.error){
 			props.doLoginDispatched(userData)
 			await setUserDataInStorage(userData)
-			setError('')
+			setErrorLogin('')
 		}else{
-			setError('Email ou senha inválidos')
+			setErrorLogin('Email ou senha inválidos')
 		}
 		setLoading(false)
 	}
