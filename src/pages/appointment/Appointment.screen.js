@@ -10,6 +10,7 @@ import { connect } from 'react-redux';
 import { getNextAppointments } from '@services';
 import { getAppointmentsDispatched } from '@state';
 import { LoginScreen } from '@pages';
+//import { LoginStack } from '@navigation';
 import { ContentLoader } from '@components';
 
 import Styles from './Appointment.style';

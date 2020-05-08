@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
 import { doLoginDispatched } from '@state'
 import { getUserDataFromStorage } from '@services'
-import AppNavigator from './navigation/AppNavigator'
+import MainTabNavigator from './navigation/MainTabNavigator';
 
 // if(__DEV__) {
 //   import('./ReactotronConfig').then(() => console.log('Reactotron Configured'))
@@ -18,13 +18,17 @@ const App = props => {
   }, [])
 
   return (
-    <AppNavigator />
+    <MainTabNavigator />
   );
 };
+
+const mapStateToProps = (state) => ({
+  isLogged: state.isLogged
+})
 
 const mapDispatchToProps = {
   doLoginDispatched
 }
 
-export default connect(null, mapDispatchToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 

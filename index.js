@@ -12,6 +12,9 @@ import { Provider } from 'react-redux';
 import App from './src/App.js';
 import store from './src/state/store'
 import {name as appName} from './app.json';
+import { enableScreens } from 'react-native-screens';
+
+enableScreens();
 
 const SpazioNinaBernardes = () => (
     <Provider store={store}>
