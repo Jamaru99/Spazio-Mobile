@@ -1,12 +1,22 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import { View, Text, TouchableOpacity, TextInput, ImageBackground } from 'react-native';
 
-import Styles from './Profile.styles';
+import styles from './Profile.styles';
 
 const Profile = () => {
     return (
       <View>
-        <Text>Perfil com nome, email e senha</Text>
+        <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
+          {/* TODO criar uma view branca arredondada e transparente para colocar os outros campos */}
+          {/* TODO input text email, data de nascimento, nome, sexo */}
+          {/* TODO criar um text input com titulo (placeholder) */}
+          <TextInput>
+
+
+          </TextInput>
+          {/* TODO botao logout */}
+          <TouchableOpacity style={styles.button} >Logout</TouchableOpacity>
+        </ImageBackground>
       </View>
     );
   };
