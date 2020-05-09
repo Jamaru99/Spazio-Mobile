@@ -1,85 +1,10 @@
 import React from 'react';
-import { createNativeStackNavigator } from '@react-navigation/native-stack'
-import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
-import {createSwitchNavigator, NavigationContainer} from '@react-navigation/native';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { NavigationContainer } from '@react-navigation/native';
 
 import { texts, colors } from '@utils';
 import { TabBarIcon } from '@components';
-import { HomeScreen, AppointmentScreen, ProfileScreen, RegisterScreen, LoginScreen } from '@pages';
-
-const config = {
-    headerStyle: {
-      backgroundColor: colors.primary,
-    },
-    headerTintColor: colors.accent,
-}
-
-const { Navigator, Screen } = createNativeStackNavigator()
-
-function HomeStack() {
-  return (
-    <Navigator
-      initialRouteName="Home"
-      screenOptions={config}
-    >
-      <Screen
-        name="Home"
-        component={HomeScreen}
-        options={{ title: 'Spazio Nina Bernardes' }}
-      />
-    </Navigator>
-  );
-}
-
-function AppointmentStack() {
-  return (
-    <Navigator
-      initialRouteName="Appointment"
-      screenOptions={config}
-    >
-      <Screen
-        name="Appointment"
-        component={AppointmentScreen}
-        options={{ title: 'Sessões marcadas' }}
-      />
-    </Navigator>
-  );
-}
-
-function ProfileStack() {
-  return (
-    <Navigator
-      initialRouteName="Profile"
-      screenOptions={config}
-    >
-      <Screen
-        name="Profile"
-        component={ProfileScreen}
-        options={{ title: 'Meus dados' }}
-      />
-    </Navigator>
-  );
-}
-
-function LoginStack() {
-  return (
-    <Navigator
-      initialRouteName="Login"
-      screenOptions={config}
-    >
-      <Screen
-        name="Login"
-        component={LoginScreen}
-        options={{ title: 'Login' }}
-      />
-      <Screen
-        name="Register"
-        component={RegisterScreen}
-        //options={{ hasTabBar: false }}
-      />
-    </Navigator>
-  );
-}
+import { HomeStack, AppointmentStack, ProfileStack, LoginStack } from './Stacks';
 
 const Tab = createBottomTabNavigator();
 

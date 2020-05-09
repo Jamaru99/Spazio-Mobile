@@ -10,19 +10,24 @@ import { connect } from 'react-redux';
 import { getNextAppointments } from '@services';
 import { getAppointmentsDispatched } from '@state';
 import { ContentLoader } from '@components';
+import { texts } from '@utils'
 
 import Styles from './Appointment.style';
 
 const AppointmentScreen = (props) => {
   const [loading, setLoading] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
 
   useEffect(async () => {
     setLoading(true)
     const data = await getNextAppointments(props.userId)
     if(!data.error)
       props.getAppointmentsDispatched(data)
+    else
+      setErrorMessage(texts["error:connection"])
     setLoading(false)
   }, [])
+
   return (
     <View style={Styles.view_container}>
       <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
@@ -33,6 +38,7 @@ const AppointmentScreen = (props) => {
               <AppointmentItem appointment={item} />
             )
         }
+        <Text style={Styles.text_error_message}>{errorMessage}</Text>
       </ImageBackground>
     </View>
   )
@@ -63,7 +69,6 @@ const AppointmentItem = (props) => {
           <TouchableOpacity style={Styles.button}
             onPress={() => alert('cancelado')}
           >
-
               <Text style={Styles.button_text}>Cancelar</Text>
             </TouchableOpacity>
           </View>

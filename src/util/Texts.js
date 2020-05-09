@@ -16,6 +16,8 @@ const english = {
     "menu-tab:appointment": "Appointments",
     "menu-tab:profile": "Profile",
 
+    // home
+    "home:header": "Spazio Nina Bernardes",
     "home:tt_opening-hours": "Opening hours",
     "home:hours-week": "Tuesday to Saturday from 9:00 AM to 6:00 PM",
     "home:hours-weekend": "Sunday from 10:00 to 16:00",
@@ -23,6 +25,14 @@ const english = {
     "home:tt_address": "Address",
     "home:address": "Rua Augusta, 101 - Sala 805",
     "home:phone": "Phone: ",
+
+    // appointment
+    "appointment:header": "Scheduled appointments",
+
+    // profile
+    "profile:header": "My info",
+
+    "error:connection": "Check your internet connection"
 }
 
 const portuguese = {
@@ -31,6 +41,7 @@ const portuguese = {
     "menu-tab:profile": "Perfil",
 
     // home
+    "home:header": "Spazio Nina Bernardes",
     "home:tt_opening-hours": "Horário de funcionamento",
     "home:hours-week": "Terça à sábado das 9:00 as 18:00",
     "home:hours-weekend": "Domingo das 10:00 as 16:00",
@@ -38,12 +49,14 @@ const portuguese = {
     "home:tt_address": "Endereço",
     "home:address": "Rua Augusta, 101 - Sala 805",
     "home:phone": "Telefone: ",
-    // "home:": "",
-    // "": "",
-    // "": "",
-    // "": "",
-    // "": "",
-    
+
+    // appointment
+    "appointment:header": "Sessões marcadas",
+
+    // profile
+    "profile:header": "Meus dados",
+
+    "error:connection": "Verifique sua conexão à internet"
 }
 
 export default deviceLanguage === 'pt_BR' ? portuguese : english;

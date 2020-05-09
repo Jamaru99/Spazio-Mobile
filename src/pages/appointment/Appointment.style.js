@@ -52,6 +52,11 @@ const Styles = StyleSheet.create({
   text_appointment:{
     color: colors.accent,
   },
+  text_error_message: {
+    color: colors.accent,
+    alignSelf: 'center',
+    fontSize: 18
+  },
   button: {
     alignItems: 'center',
     backgroundColor: colors.primary,
