@@ -9,38 +9,18 @@ import { connect } from 'react-redux';
 
 import { getNextAppointments } from '@services';
 import { getAppointmentsDispatched } from '@state';
-import { LoginScreen } from '@pages';
-//import { LoginStack } from '@navigation';
 import { ContentLoader } from '@components';
 
 import Styles from './Appointment.style';
 
 const AppointmentScreen = (props) => {
-  
-  return (
-    // #TODO adicionar a ImageBackground aqui
-    <View>
-      {
-        props.isLogged 
-        ? <AppointmentList
-            nextAppointments={props.nextAppointments}
-            getAppointments={props.getAppointmentsDispatched}
-            userId={props.userId}
-          />
-        : <LoginScreen />
-      }
-    </View>
-    
-  );
-};
-
-const AppointmentList = (props) => {
   const [loading, setLoading] = useState(false)
 
   useEffect(async () => {
     setLoading(true)
     const data = await getNextAppointments(props.userId)
-    props.getAppointments(data)
+    if(!data.error)
+      props.getAppointmentsDispatched(data)
     setLoading(false)
   }, [])
   return (

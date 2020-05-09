@@ -67,7 +67,7 @@ const LoginScreen = (props) => {
 							}
 						</TouchableOpacity>
 						
-						<TouchableOpacity style={styles.button_register} onPress= {() => alert('Faça o cadastro!') }>
+						<TouchableOpacity style={styles.button_register} onPress= {() => props.navigation.navigate("Register") }>
 							<Text style={styles.button_text}>Cadastrar</Text>
 						</TouchableOpacity>
 							{/* TODO fazer um texto com link de esqueceu a senha */}

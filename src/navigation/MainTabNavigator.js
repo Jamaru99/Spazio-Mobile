@@ -5,13 +5,9 @@ import {createSwitchNavigator, NavigationContainer} from '@react-navigation/nati
 
 import { texts, colors } from '@utils';
 import { TabBarIcon } from '@components';
-import { HomeScreen, AppointmentScreen, ProfileScreen, RegisterScreen } from '@pages';
-
-// TESTE
-import { LoginScreen } from '@pages';
+import { HomeScreen, AppointmentScreen, ProfileScreen, RegisterScreen, LoginScreen } from '@pages';
 
 const config = {
-  
     headerStyle: {
       backgroundColor: colors.primary,
     },
@@ -20,26 +16,7 @@ const config = {
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
-// const HomeStack = createStackNavigator(
-//   {
-//     Home: HomeScreen,
-//   },
-//   config
-// );
-
-// HomeStack.navigationOptions = {
-//   tabBarLabel: texts["menu-tab:home"],
-//   tabBarIcon: ({focused}) => (
-//     <TabBarIcon
-//       focused={focused}
-//       name={'home'}
-//     />
-//   ),
-// };
-
-// HomeStack.path = '';
-
-function RootStack() {
+function HomeStack() {
   return (
     <Navigator
       initialRouteName="Home"
@@ -48,55 +25,112 @@ function RootStack() {
       <Screen
         name="Home"
         component={HomeScreen}
-        options={{ title: 'My app' }}
+        options={{ title: 'Spazio Nina Bernardes' }}
       />
     </Navigator>
   );
 }
 
-function OtherStack() {
+function AppointmentStack() {
+  return (
+    <Navigator
+      initialRouteName="Appointment"
+      screenOptions={config}
+    >
+      <Screen
+        name="Appointment"
+        component={AppointmentScreen}
+        options={{ title: 'Sessões marcadas' }}
+      />
+    </Navigator>
+  );
+}
+
+function ProfileStack() {
   return (
     <Navigator
       initialRouteName="Profile"
-      screenOptions={{ gestureEnabled: false }}
+      screenOptions={config}
     >
       <Screen
         name="Profile"
         component={ProfileScreen}
-        initialParams={{ user: 'me' }}
+        options={{ title: 'Meus dados' }}
+      />
+    </Navigator>
+  );
+}
+
+function LoginStack() {
+  return (
+    <Navigator
+      initialRouteName="Login"
+      screenOptions={config}
+    >
+      <Screen
+        name="Login"
+        component={LoginScreen}
+        options={{ title: 'Login' }}
+      />
+      <Screen
+        name="Register"
+        component={RegisterScreen}
+        //options={{ hasTabBar: false }}
       />
     </Navigator>
   );
 }
 
 const Tab = createBottomTabNavigator();
-// function tabNavigator(){
-//   return (
-    
-//   )
-// }
 
-export default () => (
+const tabBarOptions = {
+  activeBackgroundColor: "#000000DD",
+  inactiveBackgroundColor: "#000000DD",
+  activeTintColor: colors.primary
+}
+
+export default (props) => (
   <NavigationContainer>
-    <Tab.Navigator tabBarOptions={{
-      activeBackgroundColor: "#000000DD",
-      inactiveBackgroundColor: "#000000DD",
-      activeTintColor: colors.primary
-      }}>
+    <Tab.Navigator tabBarOptions={tabBarOptions}>
       <Tab.Screen
-        name="seila"
-        component={RootStack}
-        options={{tabBarIcon: ({focused}) => (
-          <TabBarIcon
-            focused={focused}
-            name={'person'}
-          />
+        name="HomeStack"
+        component={HomeStack}
+        options={{
+          tabBarLabel: texts['menu-tab:home'],
+          tabBarIcon: ({focused}) => (
+            <TabBarIcon
+              focused={focused}
+              name={'home'}
+            />
           )
         }}
       />
-      {/* <Tab.Screen name="Appointment" Component={AppointmentStack} /> */}
-      <Tab.Screen name="Other" component={OtherStack} />
+      <Tab.Screen
+        name="AppointmentStack"
+        component={props.isLogged ? AppointmentStack : LoginStack}
+        options={{
+          tabBarLabel: texts['menu-tab:appointment'],
+          tabBarIcon: ({focused}) => (
+            <TabBarIcon
+              focused={focused}
+              name={'calendar'}
+            />
+          )
+        }}
+      />
+      <Tab.Screen
+        name="ProfileStack"
+        component={props.isLogged ? ProfileStack : LoginStack}
+        options={{
+          tabBarLabel: texts['menu-tab:profile'],
+          tabBarIcon: ({focused}) => (
+            <TabBarIcon
+              focused={focused}
+              name={'person'}
+            />
+          )
+        }}
+      />
     </Tab.Navigator>
-  </NavigationContainer>)
-
-//</NavigationContainer>export default tabNavigator;
+  </NavigationContainer>
+)

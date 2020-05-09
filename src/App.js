@@ -18,7 +18,7 @@ const App = props => {
   }, [])
 
   return (
-    <MainTabNavigator />
+    <MainTabNavigator isLogged={props.isLogged} />
   );
 };
 

@@ -13,7 +13,7 @@ const deviceLanguage=
     
 const english = {
     "menu-tab:home": "Home",
-    "menu-tab:appointment": "Appointment",
+    "menu-tab:appointment": "Appointments",
     "menu-tab:profile": "Profile",
 
     "home:tt_opening-hours": "Opening hours",
