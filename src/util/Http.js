@@ -3,6 +3,7 @@ import axios from 'axios';
 const BASE_URL = 'https://spazio.mybluemix.net'
 export const CUSTOMER_BASE_URL = `${BASE_URL}/customer`
 export const APPOINTMENT_BASE_URL = `${BASE_URL}/appointment`
+export const SERVICE_BASE_URL = `${BASE_URL}/service`
 
 const config = {
     headers: {
