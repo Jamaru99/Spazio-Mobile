@@ -4,7 +4,8 @@ const initialState = {
     isLogged: false,
     userData: {},
     nextAppointments: [],
-    services: []
+    services: [],
+    newAppointment: {},
 }
 
 const reducer = (state = initialState, action) => {

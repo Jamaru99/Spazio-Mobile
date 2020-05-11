@@ -6,7 +6,7 @@ import {
   ProfileScreen,
   RegisterScreen,
   LoginScreen,
-  ServiceEmployeeScreen,
+  ServiceScreen,
   ScheduleScreen
 } from '@pages';
 import { texts, colors } from '@utils';
@@ -101,7 +101,7 @@ export function NewAppointmentStack() {
     >
       <Screen
         name={SERVICE_EMPLOYEE_SCREEN}
-        component={ServiceEmployeeScreen}
+        component={ServiceScreen}
         options={{ title: 'Agendar sessão' }}
       />
       <Screen

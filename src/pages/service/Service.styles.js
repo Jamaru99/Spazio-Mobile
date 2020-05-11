@@ -9,11 +9,21 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
   },
-  text: {
-    color: colors.accent
+  title: {
+    color: colors.accent,
+    fontSize: 18
+  },
+  title_container: {
+    width: '90%',
+    marginTop: 10
+  },
+  service_item_text: {
+    color: colors.accent,
+    fontSize: 16
   },
   service_item_container: {
     flexDirection: 'row',
+    justifyContent: 'space-between',
     width: '90%',
     marginTop: 10,
     padding: 10,
