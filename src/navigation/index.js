@@ -1,1 +1,2 @@
-export { default as LoginStack } from './LoginStack';
+export { default as AppNavigator } from './AppNavigator'
+export * from './routes'

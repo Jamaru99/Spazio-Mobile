@@ -1,7 +1,7 @@
 import { Platform, NativeModules } from 'react-native';
 
 //pegando o idioma do aparelho
-const deviceLanguage=
+const deviceLanguage =
 
     Platform.OS === 'ios'
     ? NativeModules.SettingsManager.settings.AppleLocale ||
@@ -32,6 +32,9 @@ const english = {
     // profile
     "profile:header": "My info",
 
+    // login
+    "login:header": "Login",
+
     "error:connection": "Check your internet connection"
 }
 
@@ -55,6 +58,9 @@ const portuguese = {
 
     // profile
     "profile:header": "Meus dados",
+
+    // login
+    "login:header": "Login",
 
     "error:connection": "Verifique sua conexão à internet"
 }

@@ -1,11 +1,28 @@
 import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import { HomeScreen, AppointmentScreen, ProfileScreen, RegisterScreen, LoginScreen } from '@pages';
+import { 
+  HomeScreen,
+  AppointmentScreen,
+  ProfileScreen,
+  RegisterScreen,
+  LoginScreen,
+  ServiceEmployeeScreen,
+  ScheduleScreen
+} from '@pages';
 import { texts, colors } from '@utils';
+import {
+  HOME_SCREEN,
+  APPOINTMENT_SCREEN,
+  PROFILE_SCREEN,
+  LOGIN_SCREEN,
+  REGISTER_SCREEN,
+  SERVICE_EMPLOYEE_SCREEN,
+  SCHEDULE_SCREEN
+} from './routes'
 
 const { Navigator, Screen } = createNativeStackNavigator()
 
-const config = {
+const defaultScreenOptions = {
     headerStyle: {
       backgroundColor: colors.primary,
     },
@@ -15,11 +32,11 @@ const config = {
 export function HomeStack() {
   return (
     <Navigator
-      initialRouteName="Home"
-      screenOptions={config}
+      initialRouteName={HOME_SCREEN}
+      screenOptions={defaultScreenOptions}
     >
       <Screen
-        name="Home"
+        name={HOME_SCREEN}
         component={HomeScreen}
         options={{ title: texts["home:header"] }}
       />
@@ -30,11 +47,11 @@ export function HomeStack() {
 export function AppointmentStack() {
   return (
     <Navigator
-      initialRouteName="Appointment"
-      screenOptions={config}
+      initialRouteName={APPOINTMENT_SCREEN}
+      screenOptions={defaultScreenOptions}
     >
       <Screen
-        name="Appointment"
+        name={APPOINTMENT_SCREEN}
         component={AppointmentScreen}
         options={{ title: texts["appointment:header"] }}
       />
@@ -45,11 +62,11 @@ export function AppointmentStack() {
 export function ProfileStack() {
   return (
     <Navigator
-      initialRouteName="Profile"
-      screenOptions={config}
+      initialRouteName={PROFILE_SCREEN}
+      screenOptions={defaultScreenOptions}
     >
       <Screen
-        name="Profile"
+        name={PROFILE_SCREEN}
         component={ProfileScreen}
         options={{ title: texts["profile:header"] }}
       />
@@ -60,18 +77,37 @@ export function ProfileStack() {
 export function LoginStack() {
   return (
     <Navigator
-      initialRouteName="Login"
-      screenOptions={config}
+      initialRouteName={LOGIN_SCREEN}
+      screenOptions={defaultScreenOptions}
     >
       <Screen
-        name="Login"
+        name={LOGIN_SCREEN}
         component={LoginScreen}
-        options={{ title: 'Login' }}
+        options={{ title: texts["login:header"] }}
       />
       <Screen
-        name="Register"
+        name={REGISTER_SCREEN}
         component={RegisterScreen}
-        //options={{ tabBarVisible: false }}
+      />
+    </Navigator>
+  );
+}
+
+export function NewAppointmentStack() {
+  return (
+    <Navigator
+      initialRouteName={SERVICE_EMPLOYEE_SCREEN}
+      screenOptions={defaultScreenOptions}
+    >
+      <Screen
+        name={SERVICE_EMPLOYEE_SCREEN}
+        component={ServiceEmployeeScreen}
+        options={{ title: 'Agendar sessão' }}
+      />
+      <Screen
+        name={SCHEDULE_SCREEN}
+        component={ScheduleScreen}
+        options={{ title: 'Selecione o horário' }}
       />
     </Navigator>
   );

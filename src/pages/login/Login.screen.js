@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { doLogin, setUserDataInStorage } from '@services';
 import { doLoginDispatched } from '@state';
 import { InnerLoader } from '@components';
+import { REGISTER_SCREEN } from '@navigation';
 
 import styles from './Login.styles'
 
@@ -67,7 +68,7 @@ const LoginScreen = (props) => {
 							}
 						</TouchableOpacity>
 						
-						<TouchableOpacity style={styles.button_register} onPress= {() => props.navigation.navigate("Register") }>
+						<TouchableOpacity style={styles.button_register} onPress= {() => props.navigation.navigate(REGISTER_SCREEN) }>
 							<Text style={styles.button_text}>Cadastrar</Text>
 						</TouchableOpacity>
 							{/* TODO fazer um texto com link de esqueceu a senha */}
