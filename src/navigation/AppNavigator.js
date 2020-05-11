@@ -29,14 +29,13 @@ const defaultStackOptions = {
 
 const AppNavigator = (props) => (
   <NavigationContainer>
-    <Navigator initialRouteName={NEW_APPOINTMENT_STACK}>
-    <Screen name={NEW_APPOINTMENT_STACK} component={NewAppointmentStack} options={defaultStackOptions}/>
+    <Navigator initialRouteName={MAIN_TAB_NAVIGATOR}>
       <Screen 
         name={MAIN_TAB_NAVIGATOR}
         component={() => <MainTabNavigator isLogged={props.isLogged} />}
         options={defaultStackOptions}
       />
-      
+      <Screen name={NEW_APPOINTMENT_STACK} component={NewAppointmentStack} options={defaultStackOptions}/>
     </Navigator>
   </NavigationContainer>
 )
