@@ -1,6 +1,5 @@
 import { Platform, NativeModules } from 'react-native';
 
-//pegando o idioma do aparelho
 const deviceLanguage =
 
     Platform.OS === 'ios'
@@ -8,8 +7,6 @@ const deviceLanguage =
     
     NativeModules.SettingsManager.setting.AppleLanguaguages[0] //IOS 13
     : NativeModules.I18nManager.localeIdentifier;
-    
-
     
 const english = {
     "menu-tab:home": "Home",
