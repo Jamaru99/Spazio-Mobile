@@ -8,7 +8,7 @@ import {
 import { connect } from 'react-redux';
 
 import { getNextAppointments } from '@services';
-import { getAppointmentsDispatched } from '@state';
+import { setAppointmentsDispatched } from '@state';
 import { ContentLoader } from '@components';
 import { texts } from '@utils'
 
@@ -22,7 +22,7 @@ const AppointmentScreen = (props) => {
     setLoading(true)
     const data = await getNextAppointments(props.userId)
     if(!data.error)
-      props.getAppointmentsDispatched(data)
+      props.setAppointmentsDispatched(data)
     else
       setErrorMessage(texts["error:connection"])
     setLoading(false)
@@ -88,7 +88,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  getAppointmentsDispatched,
+  setAppointmentsDispatched,
 }
 
 export default connect (mapStateToProps, mapDispatchToProps) (AppointmentScreen);

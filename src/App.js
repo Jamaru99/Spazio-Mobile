@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { connect } from 'react-redux'
-import { doLoginDispatched } from '@state'
+import { setUserDataDispatched } from '@state'
 import { getUserDataFromStorage } from '@services'
 import { AppNavigator } from '@navigation';
 
@@ -14,7 +14,7 @@ const App = props => {
     console.disableYellowBox = true;
     const userData = await getUserDataFromStorage()
     if(userData != null)
-      props.doLoginDispatched(userData)
+      props.setUserDataDispatched(userData)
   }, [])
 
   return (
@@ -27,7 +27,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  doLoginDispatched
+  setUserDataDispatched
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

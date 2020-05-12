@@ -1,1 +1,7 @@
-export { getAppointmentsDispatched } from './actions'
+export {
+    setAppointmentsDispatched,
+    setUserDataDispatched,
+    setServicesDispatched,
+    setEmployeesDispatched,
+    updateNewAppointmentDispatched,
+} from './actions'

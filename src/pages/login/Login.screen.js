@@ -3,7 +3,7 @@ import { View, Text, TouchableOpacity, TextInput, ImageBackground } from 'react-
 import { connect } from 'react-redux';
 
 import { doLogin, setUserDataInStorage } from '@services';
-import { doLoginDispatched } from '@state';
+import { setUserDataDispatched } from '@state';
 import { InnerLoader } from '@components';
 import { REGISTER_SCREEN } from '@navigation';
 
@@ -19,7 +19,7 @@ const LoginScreen = (props) => {
 		setLoading(true)
 		const userData = await doLogin(password, login)
 		if (!userData.error){
-			props.doLoginDispatched(userData)
+			props.setUserDataDispatched(userData)
 			await setUserDataInStorage(userData)
 			setError('')
 		}else{
@@ -86,7 +86,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  doLoginDispatched,
+  setUserDataDispatched,
 }
 
 export default connect (mapStateToProps, mapDispatchToProps	) (LoginScreen);

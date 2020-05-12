@@ -32,6 +32,15 @@ const english = {
     // login
     "login:header": "Login",
 
+    // service
+    "service:header": "New appointment",
+    "service:title": "Choose the service you want:",
+    "service:duration_prefix": "Duration:",
+
+    // employee
+    "employee:header": "New appointment",
+    "employee:title": "Choose the employee:",
+
     "error:connection": "Check your internet connection"
 }
 
@@ -58,6 +67,15 @@ const portuguese = {
 
     // login
     "login:header": "Login",
+
+    // service
+    "service:header": "Agendar sessão",
+    "service:title": "Selecione o serviço desejado:",
+    "service:duration_prefix": "Duração:",
+
+    // employee
+    "employee:header": "Agendar sessão",
+    "employee:title": "Escolha a(o) profissional:",
 
     "error:connection": "Verifique sua conexão à internet"
 }
