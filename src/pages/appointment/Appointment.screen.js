@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { getNextAppointments } from '@services';
 import { setAppointmentsDispatched } from '@state';
 import { ContentLoader } from '@components';
-import { texts } from '@utils'
+import { texts, reais, dateAndTime } from '@utils'
 
 import Styles from './Appointment.style';
 
@@ -18,15 +18,19 @@ const AppointmentScreen = (props) => {
   const [loading, setLoading] = useState(false)
   const [errorMessage, setErrorMessage] = useState('')
 
-  useEffect(async () => {
+  useEffect(() => {
+    setAppointments()
+  }, [setAppointments])
+
+  const setAppointments = async () => {
     setLoading(true)
     const data = await getNextAppointments(props.userId)
     if(!data.error)
       props.setAppointmentsDispatched(data)
     else
       setErrorMessage(texts["error:connection"])
-    setLoading(false)
-  }, [])
+      setLoading(false)
+  }
 
   return (
     <View style={Styles.view_container}>
@@ -45,10 +49,8 @@ const AppointmentScreen = (props) => {
 }
 
 const AppointmentItem = (props) => {
-  const [date, timer] = props.appointment.schedule.split("T")
-  const [year, month, day] = date.split('-')
-  const time = timer.slice(0,5)
-  const price = ((props.appointment.serviceData.price).toString()).replace('.',',')
+  const [date, time] = dateAndTime(props.appointment.schedule)
+  const price = reais(props.appointment.serviceData.price)
   //TODO tratamento com o price do serviço
   return (
     <View>
@@ -57,18 +59,16 @@ const AppointmentItem = (props) => {
           <View style={Styles.view_header}>
             <Text style={Styles.text_title}>{props.appointment.serviceData.name}</Text>
             <View>
-              <Text style={Styles.text_appointment}>{day}/{month}/{year}</Text>
+              <Text style={Styles.text_appointment}>{date}</Text>
               <Text style={Styles.text_appointment}>{time}</Text>
             </View>
           </View>
 
           <View style={Styles.view_footer}>
-            <Text style={Styles.text_price}>R$ {price}</Text>
+            <Text style={Styles.text_price}>{price}</Text>
 
           {/* TODO botao funcionar */}
-          <TouchableOpacity style={Styles.button}
-            onPress={() => alert('cancelado')}
-          >
+          <TouchableOpacity style={Styles.button} onPress={() => alert('cancelado')}>
               <Text style={Styles.button_text}>Cancelar</Text>
             </TouchableOpacity>
           </View>
