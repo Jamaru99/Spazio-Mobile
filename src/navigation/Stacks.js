@@ -104,12 +104,12 @@ export function NewAppointmentStack() {
       <Screen
         name={SERVICE_SCREEN}
         component={ServiceScreen}
-        options={{ title: 'Agendar sessão' }}
+        options={{ title: texts["service:header"] }}
       />
       <Screen
         name={EMPLOYEE_SCREEN}
         component={EmployeeScreen}
-        options={{ title: 'Agendar sessão' }}
+        options={{ title: texts["employee:header"] }}
       />
       <Screen
         name={SCHEDULE_SCREEN}

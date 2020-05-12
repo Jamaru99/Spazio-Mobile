@@ -20,11 +20,10 @@ const styles = StyleSheet.create({
   },
   employee_item_text: {
     color: colors.accent,
-    fontSize: 16
+    fontSize: 17,
+    fontWeight: 'bold'
   },
   employee_item_container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
     width: '90%',
     marginTop: 10,
     padding: 10,

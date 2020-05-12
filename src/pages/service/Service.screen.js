@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 
 import { setServicesDispatched, updateNewAppointmentDispatched } from '@state';
 import { getServices } from '@services';
+import { texts, reais, floatToTime } from '@utils';
+import { SCHEDULE_SCREEN, EMPLOYEE_SCREEN } from '@navigation';
 
 import styles from './Service.styles';
 
@@ -22,7 +24,7 @@ const ServiceScreen = (props) => {
     <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
       <ScrollView contentContainerStyle={styles.scroll_container}>
         <View style={styles.title_container}>
-          <Text style={styles.title}>Selecione o serviço desejado:</Text>
+          <Text style={styles.title}>{texts["service:title"]}</Text>
         </View>
         {
           props.services.map(
@@ -45,13 +47,13 @@ const ServiceItem = (props) => {
   const handleOnPress = (id) => {
     if(props.service.employees.length > 1) {
       props.updateNewAppointmentDispatched({ serviceId: id })
-      props.navigation.navigate("EmployeeScreen", { serviceEmployees: props.service.employees })
+      props.navigation.navigate(EMPLOYEE_SCREEN, { serviceEmployees: props.service.employees })
     } else {
       props.updateNewAppointmentDispatched({
         serviceId: id,
         employeeId: props.service.employees[0] || ""
       })
-      props.navigation.navigate("ScheduleScreen")
+      props.navigation.navigate(SCHEDULE_SCREEN)
     }
   }
 
@@ -62,8 +64,8 @@ const ServiceItem = (props) => {
         <Text style={styles.service_item_text_secondary}>{props.service.description}</Text>
       </View>
       <View>
-        <Text style={styles.service_item_text_primary}>{props.service.price}</Text>
-        <Text style={styles.service_item_text_secondary}>{props.service.duration}</Text>
+        <Text style={styles.service_item_text_primary}>{reais(props.service.price)}</Text>
+        <Text style={styles.service_item_text_secondary}>{texts["service:duration_prefix"]} {floatToTime(props.service.duration)}</Text>
       </View>
     </TouchableOpacity>
   )
