@@ -33,7 +33,6 @@ const ServiceScreen = (props) => {
         ? <ContentLoader />
         : (
           <ScrollView contentContainerStyle={styles.scroll_container}>
-            
             {
               props.services.map(
                 service => (
