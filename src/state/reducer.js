@@ -1,10 +1,17 @@
-import { SET_APPOINTMENTS, SET_USER_DATA, SET_SERVICES, UPDATE_NEW_APPOINTMENT } from './actions'
+import {
+    SET_APPOINTMENTS,
+    SET_USER_DATA,
+    SET_SERVICES,
+    SET_EMPLOYEES,
+    UPDATE_NEW_APPOINTMENT
+} from './actions'
 
 const initialState = {
     isLogged: false,
     userData: {},
     nextAppointments: [],
     services: [],
+    employees: [],
     newAppointment: {},
 }
 
@@ -25,6 +32,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 services: action.payload,
+            }
+        case SET_EMPLOYEES:
+            return {
+                ...state,
+                employees: action.payload,
             }
         case UPDATE_NEW_APPOINTMENT:
             return {

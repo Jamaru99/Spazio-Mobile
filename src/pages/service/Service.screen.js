@@ -19,8 +19,8 @@ const ServiceScreen = (props) => {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
-      <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
+    <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
+      <ScrollView contentContainerStyle={styles.scroll_container}>
         <View style={styles.title_container}>
           <Text style={styles.title}>Selecione o serviço desejado:</Text>
         </View>
@@ -30,21 +30,29 @@ const ServiceScreen = (props) => {
               <ServiceItem
                 navigation={props.navigation}
                 service={service}
-                updateNewAppointmentDispatched={props.updateNewAppointmentDispatched} />
+                updateNewAppointmentDispatched={props.updateNewAppointmentDispatched}
+              />
             )
           )
         }
-      </ImageBackground>
-    </ScrollView>
+      </ScrollView>
+    </ImageBackground>
   );
 };
 
 const ServiceItem = (props) => {
 
   const handleOnPress = (id) => {
-    props.updateNewAppointmentDispatched({ serviceId: id })
-    if(props.service.employees.length > 1)
+    if(props.service.employees.length > 1) {
+      props.updateNewAppointmentDispatched({ serviceId: id })
       props.navigation.navigate("EmployeeScreen")
+    } else {
+      props.updateNewAppointmentDispatched({
+        serviceId: id,
+        employeeId: props.service.employees[0] || ""
+      })
+      props.navigation.navigate("ScheduleScreen")
+    }
   }
 
   return (

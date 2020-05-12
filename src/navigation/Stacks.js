@@ -7,6 +7,7 @@ import {
   RegisterScreen,
   LoginScreen,
   ServiceScreen,
+  EmployeeScreen,
   ScheduleScreen
 } from '@pages';
 import { texts, colors } from '@utils';
@@ -16,8 +17,9 @@ import {
   PROFILE_SCREEN,
   LOGIN_SCREEN,
   REGISTER_SCREEN,
-  SERVICE_EMPLOYEE_SCREEN,
-  SCHEDULE_SCREEN
+  SERVICE_SCREEN,
+  EMPLOYEE_SCREEN,
+  SCHEDULE_SCREEN,
 } from './routes'
 
 const { Navigator, Screen } = createNativeStackNavigator()
@@ -96,12 +98,17 @@ export function LoginStack() {
 export function NewAppointmentStack() {
   return (
     <Navigator
-      initialRouteName={SERVICE_EMPLOYEE_SCREEN}
+      initialRouteName={SERVICE_SCREEN}
       screenOptions={defaultScreenOptions}
     >
       <Screen
-        name={SERVICE_EMPLOYEE_SCREEN}
+        name={SERVICE_SCREEN}
         component={ServiceScreen}
+        options={{ title: 'Agendar sessão' }}
+      />
+      <Screen
+        name={EMPLOYEE_SCREEN}
+        component={EmployeeScreen}
         options={{ title: 'Agendar sessão' }}
       />
       <Screen

@@ -18,11 +18,11 @@ const styles = StyleSheet.create({
     width: '90%',
     marginTop: 10
   },
-  service_item_text: {
+  employee_item_text: {
     color: colors.accent,
     fontSize: 16
   },
-  service_item_container: {
+  employee_item_container: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     width: '90%',
