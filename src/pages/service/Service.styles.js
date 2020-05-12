@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
   },
   title_container: {
     width: '90%',
-    marginTop: 10
+    marginVertical: 10,
+    alignSelf: 'center'
   },
   service_item_text_primary: {
     color: colors.accent,

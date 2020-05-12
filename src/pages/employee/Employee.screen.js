@@ -1,7 +1,8 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, ScrollView, ImageBackground, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
+import { ContentLoader } from '@components';
 import { setEmployeesDispatched, updateNewAppointmentDispatched } from '@state';
 import { getEmployees } from '@services';
 import { texts } from '@utils';
@@ -10,35 +11,43 @@ import { SCHEDULE_SCREEN } from '@navigation';
 import styles from './Employee.styles';
 
 const EmployeeScreen = (props) => {
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setEmployees()
   }, [setEmployees])
 
   const setEmployees = async () => {
+    setLoading(true)
     const data = await getEmployees()
     const filteredData = data.filter(e => props.route.params.serviceEmployees.includes(e._id))
     props.setEmployeesDispatched(filteredData)
+    setLoading(false)
   }
 
   return (
     <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
-      <ScrollView contentContainerStyle={styles.scroll_container}>
-        <View style={styles.title_container}>
-          <Text style={styles.title}>{texts["employee:title"]}</Text>
-        </View>
-        {
-          props.employees.map(
-            employee => (
-              <EmployeeItem
-                navigation={props.navigation}
-                employee={employee}
-                updateNewAppointmentDispatched={props.updateNewAppointmentDispatched}
-              />
+      <View style={styles.title_container}>
+        <Text style={styles.title}>{texts["employee:title"]}</Text>
+      </View>
+      {loading
+        ? <ContentLoader />
+        : (
+          <ScrollView contentContainerStyle={styles.scroll_container}>
+          {
+            props.employees.map(
+              employee => (
+                <EmployeeItem
+                  navigation={props.navigation}
+                  employee={employee}
+                  updateNewAppointmentDispatched={props.updateNewAppointmentDispatched}
+                />
+              )
             )
-          )
-        }
-      </ScrollView>
+          }
+          </ScrollView>
+        )
+      }
     </ImageBackground>
   );
 };
