@@ -3,6 +3,7 @@ import {
     SET_USER_DATA,
     SET_SERVICES,
     SET_EMPLOYEES,
+    SET_AVAILABLE_SCHEDULES,
     UPDATE_NEW_APPOINTMENT
 } from './actions'
 
@@ -13,6 +14,7 @@ const initialState = {
     services: [],
     employees: [],
     newAppointment: {},
+    availableSchedules: []
 }
 
 const reducer = (state = initialState, action) => {
@@ -37,6 +39,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 employees: action.payload,
+            }
+        case SET_AVAILABLE_SCHEDULES:
+            return {
+                ...state,
+                availableSchedules: action.payload,
             }
         case UPDATE_NEW_APPOINTMENT:
             return {

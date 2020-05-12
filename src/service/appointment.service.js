@@ -8,3 +8,12 @@ export const getNextAppointments = async (id) => {
     return { error: true }
   }
 }
+
+export const getAvailableSchedules = async (date, service, employee) => {
+  try {
+    const { data } = await getAuthorized(`${APPOINTMENT_BASE_URL}/list/${date}?employee=${employee}&service=${service}`)
+    return data
+  } catch {
+    return { error: true }
+  }
+}

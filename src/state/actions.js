@@ -2,6 +2,7 @@ export const SET_APPOINTMENTS = 'SET_APPOINTMENTS'
 export const SET_USER_DATA = 'SET_USER_DATA'
 export const SET_SERVICES = 'SET_SERVICES'
 export const SET_EMPLOYEES = 'SET_EMPLOYEES'
+export const SET_AVAILABLE_SCHEDULES = 'SET_AVAILABLE_SCHEDULES'
 export const UPDATE_NEW_APPOINTMENT = 'UPDATE_NEW_APPOINTMENT'
 
 export const setAppointmentsDispatched = (payload) => {
@@ -28,6 +29,13 @@ export const setServicesDispatched = (payload) => {
 export const setEmployeesDispatched = (payload) => {
     return {
         type: SET_EMPLOYEES,
+        payload
+    }
+}
+
+export const setAvailableSchedulesDispatched = (payload) => {
+    return {
+        type: SET_AVAILABLE_SCHEDULES,
         payload
     }
 }

@@ -15,3 +15,10 @@ export const dateAndTime = (isoDatetime) => {
     
     return [formattedDate, formattedTime]
 }
+
+export const date = (isoDate) => {
+    const [_, month, day] = isoDate.split('-')
+    const formattedDate = `${day}/${month}`
+    
+    return formattedDate
+}

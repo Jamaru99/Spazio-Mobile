@@ -1,30 +1,45 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, ImageBackground, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
+import { setAvailableSchedulesDispatched } from '@state'
+import { getAvailableSchedules } from '@services'
+import { date } from '@utils'
+
 import styles from './Schedule.styles';
 
-const data = ["12/03", "13/03", "14/03", "15/03", "16/03", "17/03", "12/03", "13/03", "14/03", "15/03", "16/03", "17/03"]
+const dates = ["2020-05-13", "2020-05-14", "2020-05-15", "2020-05-16"]
 
 const ScheduleScreen = (props) => {
   const [selectedDateIndex, setSelectedDateIndex] = useState(0)
+
+  useEffect(() => {
+    setAvailableSchedules()
+  }, [setAvailableSchedules])
+
+  const setAvailableSchedules = async () => {
+    const data = await getAvailableSchedules(dates[selectedDateIndex], props.newAppointment.serviceId, props.newAppointment.employeeId)
+    props.setAvailableSchedulesDispatched(data)
+  }
 
   return (
     <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
       <View style={styles.date_list_container}>
         <Text style={{color: 'white'}}>Escolha a data: </Text>
         <FlatList
-          data={data}
+          data={dates}
           horizontal
           keyExtractor={(_, index) => index}
           renderItem={({item, index}) => (
             <DateItem
-              date={item}
+              date={date(item)}
               selected={selectedDateIndex === index}
               onPress={() => setSelectedDateIndex(index)}
             />
           )}
         />
+      </View>
+      <View>
       </View>
     </ImageBackground>
   );
@@ -42,7 +57,12 @@ const DateItem = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-  newAppointment: state.newAppointment
+  newAppointment: state.newAppointment,
+  availableSchedules: state.availableSchedules
 })
+
+const mapDispatchToProps = {
+  setAvailableSchedulesDispatched
+}
   
-export default connect(mapStateToProps, null)(ScheduleScreen)
+export default connect(mapStateToProps, mapDispatchToProps)(ScheduleScreen)
