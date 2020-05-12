@@ -45,7 +45,7 @@ const ServiceItem = (props) => {
   const handleOnPress = (id) => {
     if(props.service.employees.length > 1) {
       props.updateNewAppointmentDispatched({ serviceId: id })
-      props.navigation.navigate("EmployeeScreen")
+      props.navigation.navigate("EmployeeScreen", { serviceEmployees: props.service.employees })
     } else {
       props.updateNewAppointmentDispatched({
         serviceId: id,
@@ -58,12 +58,12 @@ const ServiceItem = (props) => {
   return (
     <TouchableOpacity style={styles.service_item_container} onPress={() => handleOnPress(props.service._id)}>
       <View>
-        <Text style={styles.service_item_text}>{props.service.name}</Text>
-        <Text style={styles.service_item_text}>{props.service.description}</Text>
+        <Text style={styles.service_item_text_primary}>{props.service.name}</Text>
+        <Text style={styles.service_item_text_secondary}>{props.service.description}</Text>
       </View>
       <View>
-        <Text style={styles.service_item_text}>{props.service.price}</Text>
-        <Text style={styles.service_item_text}>{props.service.duration}</Text>
+        <Text style={styles.service_item_text_primary}>{props.service.price}</Text>
+        <Text style={styles.service_item_text_secondary}>{props.service.duration}</Text>
       </View>
     </TouchableOpacity>
   )

@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 const ScheduleScreen = (props) => {
   return (
     <View>
-      <Text>Selecione data e horário</Text>
+      <Text>Selecione data e horário {JSON.stringify(props.newAppointment)}</Text>
     </View>
   );
 };

@@ -18,7 +18,12 @@ const styles = StyleSheet.create({
     width: '90%',
     marginTop: 10
   },
-  service_item_text: {
+  service_item_text_primary: {
+    color: colors.accent,
+    fontSize: 17,
+    fontWeight: 'bold'
+  },
+  service_item_text_secondary: {
     color: colors.accent,
     fontSize: 16
   },

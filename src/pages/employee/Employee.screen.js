@@ -15,7 +15,8 @@ const EmployeeScreen = (props) => {
 
   const setEmployees = async () => {
     const data = await getEmployees()
-    props.setEmployeesDispatched(data)
+    const filteredData = data.filter(e => props.route.params.serviceEmployees.includes(e._id))
+    props.setEmployeesDispatched(filteredData)
   }
 
   return (
@@ -45,7 +46,6 @@ const EmployeeItem = (props) => {
   const handleOnPress = (id) => {
       props.updateNewAppointmentDispatched({ employeeId: id })
       props.navigation.navigate("ScheduleScreen")
-    }
   }
 
   return (
