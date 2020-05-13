@@ -7,8 +7,16 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
     width: '100%',
   },
-  date_list_container: {
+  list_container: {
     marginVertical: 20,
+    marginHorizontal: 20
+  },
+  title_container: {
+    marginBottom: 10,
+  },
+  title: {
+    color: colors.accent,
+    fontSize: 18
   },
   date_item_container: {
     backgroundColor: 'black',
@@ -30,6 +38,17 @@ const styles = StyleSheet.create({
   },
   date_item_text_selected:{
     color: 'black',
+  },
+  schedule_item_container: {
+    marginTop: 10,
+    paddingVertical: 13,
+    backgroundColor: colors.blackWithTransparency
+  },
+  schedule_item_text: {
+    color: colors.accent,
+    fontSize: 17,
+    fontWeight: 'bold',
+    textAlign: 'center'
   }
 })
 

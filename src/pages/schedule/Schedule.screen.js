@@ -8,24 +8,27 @@ import { date } from '@utils'
 
 import styles from './Schedule.styles';
 
-const dates = ["2020-05-13", "2020-05-14", "2020-05-15", "2020-05-16"]
+const dates = ["2021-05-13", "2021-05-14", "2021-05-15", "2021-05-16"]
 
 const ScheduleScreen = (props) => {
   const [selectedDateIndex, setSelectedDateIndex] = useState(0)
 
   useEffect(() => {
-    setAvailableSchedules()
+    setAvailableSchedules(0)
   }, [setAvailableSchedules])
 
-  const setAvailableSchedules = async () => {
-    const data = await getAvailableSchedules(dates[selectedDateIndex], props.newAppointment.serviceId, props.newAppointment.employeeId)
+  const setAvailableSchedules = async (index) => {
+    setSelectedDateIndex(index)
+    const data = await getAvailableSchedules(dates[index], props.newAppointment.serviceId, props.newAppointment.employeeId)
     props.setAvailableSchedulesDispatched(data)
   }
 
   return (
     <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
-      <View style={styles.date_list_container}>
-        <Text style={{color: 'white'}}>Escolha a data: </Text>
+      <View style={styles.list_container}>
+        <View style={styles.title_container}>
+          <Text style={styles.title}>Selecione a data:</Text>
+        </View>
         <FlatList
           data={dates}
           horizontal
@@ -34,12 +37,25 @@ const ScheduleScreen = (props) => {
             <DateItem
               date={date(item)}
               selected={selectedDateIndex === index}
-              onPress={() => setSelectedDateIndex(index)}
+              onPress={() => setAvailableSchedules(index)}
             />
           )}
         />
       </View>
-      <View>
+      <View style={styles.list_container}>
+        <View style={styles.title_container}>
+          <Text style={styles.title}>Escolha o horário:</Text>
+        </View>
+        <FlatList
+          data={props.availableSchedules}
+          keyExtractor={(_, index) => index}
+          style={{marginBottom: 150}}
+          renderItem={({item}) => (
+            <ScheduleItem
+              schedule={item}
+            />
+          )}
+        />
       </View>
     </ImageBackground>
   );
@@ -52,6 +68,17 @@ const DateItem = (props) => {
       onPress={props.onPress}
     >
       <Text style={[styles.date_item_text, props.selected && styles.date_item_text_selected]}>{props.date}</Text>
+    </TouchableOpacity>
+  )
+}
+
+const ScheduleItem = (props) => {
+  return (
+    <TouchableOpacity
+      style={styles.schedule_item_container}
+      onPress={props.onPress}
+    >
+      <Text style={styles.schedule_item_text}>{props.schedule}</Text>
     </TouchableOpacity>
   )
 }
