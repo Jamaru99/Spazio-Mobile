@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, ImageBackground, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
+import { ContentLoader } from '@components'
 import { setAvailableSchedulesDispatched, updateNewAppointmentDispatched } from '@state'
 import { getAvailableSchedules } from '@services'
+import { SUMMARY_SCREEN } from '@navigation'
 import { texts, formattedDate, nextDays } from '@utils'
 
 import styles from './Schedule.styles';
@@ -12,20 +14,23 @@ const dates = nextDays()
 
 const ScheduleScreen = (props) => {
   const [selectedDateIndex, setSelectedDateIndex] = useState(0)
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
     setAvailableSchedules(0)
   }, [setAvailableSchedules])
 
   const setAvailableSchedules = async (index) => {
+    setLoading(true)
     setSelectedDateIndex(index)
     const data = await getAvailableSchedules(dates[index].date, props.newAppointment.serviceId, props.newAppointment.employeeId)
     props.setAvailableSchedulesDispatched(data)
+    setLoading(false)
   }
 
   const handleSchedulePress = (schedule) => {
     props.updateNewAppointmentDispatched({ schedule: `${dates[selectedDateIndex].date}T${schedule}` })
-    props.navigation.navigate("SummaryScreen")
+    props.navigation.navigate(SUMMARY_SCREEN)
   }
 
   return (
@@ -52,17 +57,20 @@ const ScheduleScreen = (props) => {
         <View style={styles.title_container}>
           <Text style={styles.title}>{texts["schedule:schedule_title"]}</Text>
         </View>
-        <FlatList
-          data={props.availableSchedules}
-          keyExtractor={(_, index) => index}
-          style={{marginBottom: 150}}
-          renderItem={({item}) => (
-            <ScheduleItem
-              schedule={item}
-              onPress={() => handleSchedulePress(item)}
+        {loading
+          ? <ContentLoader />
+          : <FlatList
+              data={props.availableSchedules}
+              keyExtractor={(_, index) => index}
+              style={{marginBottom: 150}}
+              renderItem={({item}) => (
+                <ScheduleItem
+                  schedule={item}
+                  onPress={() => handleSchedulePress(item)}
+                />
+              )}
             />
-          )}
-        />
+        }
       </View>
     </ImageBackground>
   );
