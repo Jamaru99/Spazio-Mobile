@@ -1,5 +1,5 @@
 const colors = {
-    primary: '#BB1308', //#D49F24
+    primary: '#CC3131', //#D49F24
     accent: '#DDD',
     link: 'skyblue',
     tabBar: '#000000DD',

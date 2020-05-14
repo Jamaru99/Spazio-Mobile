@@ -23,7 +23,7 @@ const ScheduleScreen = (props) => {
   const setAvailableSchedules = async (index) => {
     setLoading(true)
     setSelectedDateIndex(index)
-    const data = await getAvailableSchedules(dates[index].date, props.newAppointment.serviceId, props.newAppointment.employeeId)
+    const data = await getAvailableSchedules(dates[index].date, props.newAppointment.service._id, props.newAppointment.employeeId)
     props.setAvailableSchedulesDispatched(data)
     setLoading(false)
   }
