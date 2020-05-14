@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Text, View, FlatList, ImageBackground, TouchableOpacity } from 'react-native';
 import { connect } from 'react-redux';
 
-import { setAvailableSchedulesDispatched } from '@state'
+import { setAvailableSchedulesDispatched, updateNewAppointmentDispatched } from '@state'
 import { getAvailableSchedules } from '@services'
 import { texts, formattedDate, nextDays } from '@utils'
 
@@ -21,6 +21,11 @@ const ScheduleScreen = (props) => {
     setSelectedDateIndex(index)
     const data = await getAvailableSchedules(dates[index].date, props.newAppointment.serviceId, props.newAppointment.employeeId)
     props.setAvailableSchedulesDispatched(data)
+  }
+
+  const handleSchedulePress = (schedule) => {
+    props.updateNewAppointmentDispatched({ schedule: `${dates[selectedDateIndex].date}T${schedule}` })
+    props.navigation.navigate("SummaryScreen")
   }
 
   return (
@@ -54,6 +59,7 @@ const ScheduleScreen = (props) => {
           renderItem={({item}) => (
             <ScheduleItem
               schedule={item}
+              onPress={() => handleSchedulePress(item)}
             />
           )}
         />
@@ -91,7 +97,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  setAvailableSchedulesDispatched
+  setAvailableSchedulesDispatched,
+  updateNewAppointmentDispatched
 }
   
 export default connect(mapStateToProps, mapDispatchToProps)(ScheduleScreen)

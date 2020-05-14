@@ -8,7 +8,8 @@ import {
   LoginScreen,
   ServiceScreen,
   EmployeeScreen,
-  ScheduleScreen
+  ScheduleScreen,
+  SummaryScreen
 } from '@pages';
 import { texts, colors } from '@utils';
 import {
@@ -20,6 +21,7 @@ import {
   SERVICE_SCREEN,
   EMPLOYEE_SCREEN,
   SCHEDULE_SCREEN,
+  SUMMARY_SCREEN
 } from './routes'
 
 const { Navigator, Screen } = createNativeStackNavigator()
@@ -115,6 +117,11 @@ export function NewAppointmentStack() {
         name={SCHEDULE_SCREEN}
         component={ScheduleScreen}
         options={{ title: texts["schedule:header"] }}
+      />
+      <Screen
+        name={SUMMARY_SCREEN}
+        component={SummaryScreen}
+        options={{ title: 'Confirmar agendamento' }}
       />
     </Navigator>
   );
