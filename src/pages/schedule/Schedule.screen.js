@@ -54,21 +54,11 @@ const ScheduleScreen = (props) => {
         />
       </View>
       <View style={styles.list_container}>
-        <View style={styles.title_container}>
-          <Text style={styles.title}>{texts["schedule:schedule_title"]}</Text>
-        </View>
         {loading
           ? <ContentLoader />
-          : <FlatList
-              data={props.availableSchedules}
-              keyExtractor={(_, index) => index}
-              style={{marginBottom: 150}}
-              renderItem={({item}) => (
-                <ScheduleItem
-                  schedule={item}
-                  onPress={() => handleSchedulePress(item)}
-                />
-              )}
+          : <ScheduleSection
+              availableSchedules={props.availableSchedules}
+              handleSchedulePress={handleSchedulePress}
             />
         }
       </View>
@@ -85,6 +75,34 @@ const DateItem = (props) => {
       <Text style={[styles.date_item_text, props.selected && styles.date_item_text_selected]}>{props.date}</Text>
       <Text style={[styles.date_item_text, props.selected && styles.date_item_text_selected]}>{props.weekday}</Text>
     </TouchableOpacity>
+  )
+}
+
+const ScheduleSection = (props) => {
+  return (
+    props.availableSchedules.length > 0
+      ? (
+        <>
+          <View style={styles.title_container}>
+            <Text style={styles.title}>{texts["schedule:schedule_title"]}</Text>
+          </View>
+          <FlatList
+            data={props.availableSchedules}
+            keyExtractor={(_, index) => index}
+            style={{marginBottom: 150}}
+            renderItem={({item}) => (
+              <ScheduleItem
+                schedule={item}
+                onPress={() => props.handleSchedulePress(item)}
+              />
+            )}
+          />
+        </>
+      ) : (
+        <View style={styles.title_container}>
+          <Text style={styles.title}>{texts["schedule:no_schedule"]}</Text>
+        </View>
+      )
   )
 }
 

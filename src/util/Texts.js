@@ -52,6 +52,7 @@ const english = {
     "schedule:header": "New appointment",
     "schedule:date_title": "Choose date:",
     "schedule:schedule_title": "Choose time:", 
+    "schedule:no_schedule": "No available schedule at this date.",
 
     "error:connection": "Check your internet connection"
 }
@@ -92,6 +93,7 @@ const portuguese = {
     "service:header": "Agendar sessão",
     "service:title": "Selecione o serviço desejado:",
     "service:duration_prefix": "Duração:",
+    "schedule:no_schedule": "Nenhum horário disponível na data selecionada.",
 
     // employee
     "employee:header": "Agendar sessão",
