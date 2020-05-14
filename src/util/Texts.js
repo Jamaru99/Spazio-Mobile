@@ -12,6 +12,14 @@ const english = {
     "menu-tab:appointment": "Appointments",
     "menu-tab:profile": "Profile",
 
+    "sunday": "sun",
+    "monday": "mon",
+    "tuesday": "tue",
+    "wednesday": "wed",
+    "thursday": "thu",
+    "friday": "fri",
+    "saturday": "sat",
+
     // home
     "home:header": "Spazio Nina Bernardes",
     "home:tt_opening-hours": "Opening hours",
@@ -40,6 +48,11 @@ const english = {
     "employee:header": "New appointment",
     "employee:title": "Choose the employee:",
 
+    // schedule
+    "schedule:header": "New appointment",
+    "schedule:date_title": "Choose date:",
+    "schedule:schedule_title": "Choose time:", 
+
     "error:connection": "Check your internet connection"
 }
 
@@ -47,6 +60,14 @@ const portuguese = {
     "menu-tab:home": "Início",
     "menu-tab:appointment": "Sessões",
     "menu-tab:profile": "Perfil",
+
+    "sunday": "dom",
+    "monday": "seg",
+    "tuesday": "ter",
+    "wednesday": "qua",
+    "thursday": "qui",
+    "friday": "sex",
+    "saturday": "sáb",
 
     // home
     "home:header": "Spazio Nina Bernardes",
@@ -75,6 +96,11 @@ const portuguese = {
     // employee
     "employee:header": "Agendar sessão",
     "employee:title": "Escolha a(o) profissional:",
+
+    // schedule
+    "schedule:header": "Agendar sessão",
+    "schedule:date_title": "Escolha a data:",
+    "schedule:schedule_title": "Escolha o horário:", 
 
     "error:connection": "Verifique sua conexão à internet"
 }

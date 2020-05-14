@@ -114,7 +114,7 @@ export function NewAppointmentStack() {
       <Screen
         name={SCHEDULE_SCREEN}
         component={ScheduleScreen}
-        options={{ title: 'Selecione o horário' }}
+        options={{ title: texts["schedule:header"] }}
       />
     </Navigator>
   );

@@ -1,3 +1,5 @@
+import { texts } from '@utils';
+
 export const floatToTime = (schedule) => {
     const decimal = schedule - Math.floor(schedule);
     var formattedDecimal = "";
@@ -37,13 +39,13 @@ export const nextDays = () => {
 
 const getWeekday = (weekdayNumber) => {
     switch(weekdayNumber) {
-        case 0: return "dom"
-        case 1: return "seg"
-        case 2: return "ter"
-        case 3: return "qua"
-        case 4: return "qui"
-        case 5: return "sex"
-        case 6: return "sáb"
+        case 0: return texts["sunday"]
+        case 1: return texts["monday"]
+        case 2: return texts["tuesday"]
+        case 3: return texts["wednesday"]
+        case 4: return texts["thursday"]
+        case 5: return texts["friday"]
+        case 6: return texts["saturday"]
     }
 }
 

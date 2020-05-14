@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { setAvailableSchedulesDispatched } from '@state'
 import { getAvailableSchedules } from '@services'
-import { formattedDate, nextDays } from '@utils'
+import { texts, formattedDate, nextDays } from '@utils'
 
 import styles from './Schedule.styles';
 
@@ -27,7 +27,7 @@ const ScheduleScreen = (props) => {
     <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
       <View style={styles.list_container}>
         <View style={styles.title_container}>
-          <Text style={styles.title}>Selecione a data:</Text>
+          <Text style={styles.title}>{texts["schedule:date_title"]}</Text>
         </View>
         <FlatList
           data={dates}
@@ -45,7 +45,7 @@ const ScheduleScreen = (props) => {
       </View>
       <View style={styles.list_container}>
         <View style={styles.title_container}>
-          <Text style={styles.title}>Escolha o horário:</Text>
+          <Text style={styles.title}>{texts["schedule:schedule_title"]}</Text>
         </View>
         <FlatList
           data={props.availableSchedules}
