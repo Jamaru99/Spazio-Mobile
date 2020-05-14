@@ -4,11 +4,11 @@ import { connect } from 'react-redux';
 
 import { setAvailableSchedulesDispatched } from '@state'
 import { getAvailableSchedules } from '@services'
-import { date } from '@utils'
+import { formattedDate, nextDays } from '@utils'
 
 import styles from './Schedule.styles';
 
-const dates = ["2021-05-13", "2021-05-14", "2021-05-15", "2021-05-16"]
+const dates = nextDays()
 
 const ScheduleScreen = (props) => {
   const [selectedDateIndex, setSelectedDateIndex] = useState(0)
@@ -35,7 +35,7 @@ const ScheduleScreen = (props) => {
           keyExtractor={(_, index) => index}
           renderItem={({item, index}) => (
             <DateItem
-              date={date(item)}
+              date={formattedDate(item)}
               selected={selectedDateIndex === index}
               onPress={() => setAvailableSchedules(index)}
             />

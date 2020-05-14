@@ -10,7 +10,7 @@ import { connect } from 'react-redux';
 import { getNextAppointments } from '@services';
 import { setAppointmentsDispatched } from '@state';
 import { ContentLoader } from '@components';
-import { texts, reais, dateAndTime } from '@utils'
+import { texts, reais, formattedDatetime } from '@utils'
 
 import Styles from './Appointment.style';
 
@@ -49,7 +49,7 @@ const AppointmentScreen = (props) => {
 }
 
 const AppointmentItem = (props) => {
-  const [date, time] = dateAndTime(props.appointment.schedule)
+  const [date, time] = formattedDatetime(props.appointment.schedule)
   const price = reais(props.appointment.serviceData.price)
   //TODO tratamento com o price do serviço
   return (
