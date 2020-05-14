@@ -19,7 +19,7 @@ const ScheduleScreen = (props) => {
 
   const setAvailableSchedules = async (index) => {
     setSelectedDateIndex(index)
-    const data = await getAvailableSchedules(dates[index], props.newAppointment.serviceId, props.newAppointment.employeeId)
+    const data = await getAvailableSchedules(dates[index].date, props.newAppointment.serviceId, props.newAppointment.employeeId)
     props.setAvailableSchedulesDispatched(data)
   }
 
@@ -35,7 +35,8 @@ const ScheduleScreen = (props) => {
           keyExtractor={(_, index) => index}
           renderItem={({item, index}) => (
             <DateItem
-              date={formattedDate(item)}
+              date={formattedDate(item.date)}
+              weekday={item.weekday}
               selected={selectedDateIndex === index}
               onPress={() => setAvailableSchedules(index)}
             />
@@ -68,6 +69,7 @@ const DateItem = (props) => {
       onPress={props.onPress}
     >
       <Text style={[styles.date_item_text, props.selected && styles.date_item_text_selected]}>{props.date}</Text>
+      <Text style={[styles.date_item_text, props.selected && styles.date_item_text_selected]}>{props.weekday}</Text>
     </TouchableOpacity>
   )
 }

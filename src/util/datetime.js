@@ -26,12 +26,25 @@ export const formattedDate = (isoDate) => {
 export const nextDays = () => {
     var today = new Date()
     var next = []
-    for(let i = 0; i < 10; i++) {
+    for(let i = 0; i < 15; i++) {
         const date = addDays(today, i)
         const isoDate = date.toISOString().split("T")[0]
-        next.push(isoDate)
+        if(date.getDay() > 1)
+            next.push({ date: isoDate, weekday: getWeekday(date.getDay()) })
     }
     return next;
+}
+
+const getWeekday = (weekdayNumber) => {
+    switch(weekdayNumber) {
+        case 0: return "dom"
+        case 1: return "seg"
+        case 2: return "ter"
+        case 3: return "qua"
+        case 4: return "qui"
+        case 5: return "sex"
+        case 6: return "sáb"
+    }
 }
 
 const addDays = (date, days) => {
