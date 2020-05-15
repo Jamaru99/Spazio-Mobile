@@ -29,6 +29,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
     padding: 10,
     backgroundColor: colors.blackWithTransparency
+  },
+  total_text: {
+    marginTop: 15,
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: colors.accent
+  },
+  payment_text: {
+    marginTop: 20,
+    color: colors.accent,
+    fontSize: 16,
+    textAlign: 'center',
+    width: '90%'
   }
 })
 
