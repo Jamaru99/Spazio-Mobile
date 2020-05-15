@@ -19,19 +19,19 @@ const styles = StyleSheet.create({
     marginTop: 10,
     alignSelf: 'center'
   },
-  employee_item_text: {
+  summary_item_text: {
     color: colors.accent,
     fontSize: 17,
     fontWeight: 'bold'
   },
-  employee_item_container: {
+  summary_item_container: {
     width: '90%',
     marginTop: 10,
     padding: 10,
     backgroundColor: colors.blackWithTransparency
   },
   total_text: {
-    marginTop: 15,
+    marginTop: 20,
     fontSize: 20,
     fontWeight: 'bold',
     color: colors.accent
