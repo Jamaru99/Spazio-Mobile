@@ -6,7 +6,7 @@ import { ContentLoader } from '@components'
 import { setAvailableSchedulesDispatched, updateNewAppointmentDispatched } from '@state'
 import { getAvailableSchedules } from '@services'
 import { SUMMARY_SCREEN } from '@navigation'
-import { texts, formattedDate, nextDays } from '@utils'
+import { texts, formattedDate, isoDatetime, nextDays } from '@utils'
 
 import styles from './Schedule.styles';
 
@@ -29,7 +29,7 @@ const ScheduleScreen = (props) => {
   }
 
   const handleSchedulePress = (schedule) => {
-    props.updateNewAppointmentDispatched({ schedule: `${dates[selectedDateIndex].date}T${schedule}` })
+    props.updateNewAppointmentDispatched({ schedule: isoDatetime(dates[selectedDateIndex].date, schedule) })
     props.navigation.navigate(SUMMARY_SCREEN)
   }
 

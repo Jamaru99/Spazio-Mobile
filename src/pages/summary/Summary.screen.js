@@ -43,7 +43,7 @@ const SummaryScreen = (props) => {
 
     const returnToHome = () => {
         props.navigation.popToTop()
-        props.navigation.navigate("MainTabNavigator")
+        props.navigation.push("MainTabNavigator")
     }
 
     return (
