@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import { TouchableFooter } from '@components';
 import { getEmployeeDetail, createAppointment } from '@services';
+import { MAIN_TAB_NAVIGATOR } from '@navigation';
 import { texts, formattedDatetime, reais } from '@utils'
 
 import styles from './Summary.styles'
@@ -43,7 +44,7 @@ const SummaryScreen = (props) => {
 
     const returnToHome = () => {
         props.navigation.popToTop()
-        props.navigation.push("MainTabNavigator")
+        props.navigation.push(MAIN_TAB_NAVIGATOR)
     }
 
     return (
