@@ -89,7 +89,7 @@ const ScheduleSection = (props) => {
           <FlatList
             data={props.availableSchedules}
             keyExtractor={(_, index) => index}
-            style={{marginBottom: 150}}
+            style={{marginBottom: 172}}
             renderItem={({item}) => (
               <ScheduleItem
                 schedule={item}
