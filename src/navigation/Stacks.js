@@ -97,7 +97,7 @@ export function LoginStack() {
   );
 }
 
-export function NewAppointmentStack() {
+export function NewAppointmentStack(props) {
   return (
     <Navigator
       initialRouteName={SERVICE_SCREEN}
@@ -120,8 +120,8 @@ export function NewAppointmentStack() {
       />
       <Screen
         name={SUMMARY_SCREEN}
-        component={SummaryScreen}
-        options={{ title: 'Confirmar agendamento' }}
+        component={props.isLogged ? SummaryScreen : LoginStack}
+        options={{ title: texts["summary:header"], headerShown: props.isLogged }}
       />
     </Navigator>
   );
