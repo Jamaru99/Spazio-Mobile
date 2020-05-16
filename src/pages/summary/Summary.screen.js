@@ -11,7 +11,7 @@ import styles from './Summary.styles'
 const SummaryScreen = (props) => {
 
     const [employeeName, setEmployeeName] = useState("")
-    const [buttonText, setButtonText] = useState("CONFIRMAR")
+    const [buttonText, setButtonText] = useState(texts["summary:button_confirm"])
     const [loading, setLoading] = useState(false)
     const [date, time] = formattedDatetime(props.newAppointment.schedule)
 
@@ -34,10 +34,10 @@ const SummaryScreen = (props) => {
         }
         const appointment = await createAppointment(data)
         setLoading(false)
-        if(appointment.error) setButtonText("Erro, tente novamente")
+        if(appointment.error) setButtonText(texts["error:unexpected"])
         else { 
-            setButtonText("AGENDADO!")
-            setTimeout(() => returnToHome(), 2300)
+            setButtonText(texts["summary:button_confirmed"])
+            setTimeout(() => returnToHome(), 2200)
         }
     }
 
@@ -50,25 +50,25 @@ const SummaryScreen = (props) => {
       <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
         <ScrollView contentContainerStyle={styles.scroll_container}>
           <View style={styles.title_container}>
-            <Text style={styles.title}>Serviço:</Text>
+            <Text style={styles.title}>{texts["summary:service_label"]}</Text>
           </View>
           <View style={styles.summary_item_container}>
             <Text style={styles.summary_item_text}>{props.newAppointment.service.name}</Text>
           </View>
           <View style={styles.title_container}>
-            <Text style={styles.title}>Profissional:</Text>
+            <Text style={styles.title}>{texts["summary:employee_label"]}</Text>
           </View>
           <View style={styles.summary_item_container}>
             <Text style={styles.summary_item_text}>{employeeName}</Text>
           </View>
           <View style={styles.title_container}>
-            <Text style={styles.title}>Data e horário:</Text>
+            <Text style={styles.title}>{texts["summary:datetime_label"]}</Text>
           </View>
           <View style={styles.summary_item_container}>
             <Text style={styles.summary_item_text}>{date} - {time}</Text>
           </View>
-          <Text style={styles.total_text}>Total: {reais(props.newAppointment.service.price)}</Text>
-          <Text style={styles.payment_text}>Pagamento em dinheiro ou cartão no próprio estabelecimento</Text>
+          <Text style={styles.total_text}>{texts["summary:total_label"]} {reais(props.newAppointment.service.price)}</Text>
+          <Text style={styles.payment_text}>{texts["summary:payment_advise"]}</Text>
         </ScrollView>
         <TouchableFooter text={buttonText} onPress={handleConfirmPress} loading={loading} />
       </ImageBackground>

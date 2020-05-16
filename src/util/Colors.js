@@ -4,6 +4,7 @@ const colors = {
     link: 'skyblue',
     tabBar: '#000000DD',
     inputBackground: '#EFEFEF',
+    black: "#000000",
     blackWithTransparency: '#00000066'
 }
 

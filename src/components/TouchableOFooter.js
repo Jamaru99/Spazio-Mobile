@@ -9,7 +9,7 @@ const TouchableFooter = (props) => {
         <TouchableOpacity style={styles.button} onPress={props.onPress}>
             {
                 props.loading
-                ? <InnerLoader />
+                ? <InnerLoader color={colors.primary} />
                 : <Text style={styles.text}>{props.text || "AGENDAR"}</Text>
             }
         </TouchableOpacity>
