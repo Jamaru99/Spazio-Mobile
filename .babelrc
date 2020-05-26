@@ -9,7 +9,7 @@
             "@pages": "./src/pages",
             "@components": "./src/components",
             "@navigation": "./src/navigation",
-            "@state": "./src/state/actions",
+            "@state": "./src/state",
             "@services": "./src/service",
             "@utils": "./src/util"
           }

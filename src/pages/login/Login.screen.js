@@ -3,8 +3,9 @@ import { View, Text, TouchableOpacity, TextInput, ImageBackground } from 'react-
 import { connect } from 'react-redux';
 
 import { doLogin, setUserDataInStorage } from '@services';
-import { doLoginDispatched } from '@state';
+import { setUserDataDispatched } from '@state';
 import { InnerLoader } from '@components';
+import { REGISTER_SCREEN } from '@navigation';
 
 import styles from './Login.styles'
 
@@ -18,7 +19,7 @@ const LoginScreen = (props) => {
 		setLoading(true)
 		const userData = await doLogin(password, login)
 		if (!userData.error){
-			props.doLoginDispatched(userData)
+			props.setUserDataDispatched(userData)
 			await setUserDataInStorage(userData)
 			setErrorLogin('')
 		}else{
@@ -67,7 +68,7 @@ const LoginScreen = (props) => {
 							}
 						</TouchableOpacity>
 						
-						<TouchableOpacity style={styles.button_register} onPress= {() => alert('Faça o cadastro!') }>
+						<TouchableOpacity style={styles.button_register} onPress= {() => props.navigation.navigate(REGISTER_SCREEN) }>
 							<Text style={styles.button_text}>Cadastrar</Text>
 						</TouchableOpacity>
 							{/* TODO fazer um texto com link de esqueceu a senha */}
@@ -85,7 +86,7 @@ const mapStateToProps = (state) => {
 }
 
 const mapDispatchToProps = {
-  doLoginDispatched,
+  setUserDataDispatched,
 }
 
 export default connect (mapStateToProps, mapDispatchToProps	) (LoginScreen);

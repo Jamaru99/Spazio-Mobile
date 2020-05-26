@@ -1,45 +1,36 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet } from 'react-native';
+import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 import { colors } from '@utils'
 
-const Touchable = (props) => {
-    return(
-        <View style={Styles.footer}>
-            <TouchableOpacity
-                style={Styles.button}
-                onPress={props.onPress}
-            >
-                <View style={Styles.touch_content}>
-
-                    <Text style={Styles.text}> AGENDAR </Text>
-                </View>
-            </TouchableOpacity>
-
-        </View>
+const TouchableFooter = (props) => {
+    return (
+        <TouchableOpacity style={styles.button} onPress={props.onPress}>
+            <Text style={styles.text}> AGENDAR </Text>
+        </TouchableOpacity>
     );
 };
 
-const Styles =  StyleSheet.create({
-    footer: {
-        flex: 0.05,
-    },
+const styles =  StyleSheet.create({
     button: {
         alignItems: 'center',
-        backgroundColor: colors.blackWithTransparency,
-        flex: 1,
-    },
-    touch_content:{
-        alignContent: 'center' ,
-        alignItems: 'center' ,
-        textAlign: 'center',
+        justifyContent: 'center',
+        alignSelf: 'center',
+        height: 40,
+        width: '90%',
+        marginTop: 5,
+        marginBottom: 10,
+        borderRadius: 20,
+        borderStyle: 'solid',
+        borderWidth: 1.5,
+        borderColor: colors.primary,
+        backgroundColor: colors.blackWithTransparency
     },
     text: {
         color: colors.primary,
-        marginTop: 4,
         fontSize: 18,
         alignSelf: 'center',
         fontWeight: 'bold',
     },
 })
 
-export default Touchable;
+export default TouchableFooter;

@@ -6,17 +6,16 @@ import {
   TouchableOpacity,
   Linking, 
   ScrollView,
-  ImageBackground,
-  Alert
+  ImageBackground
 } from 'react-native';
 
-import Styles from './Home.styles';
 import { TouchableFooter } from '@components';
-import { dialCall } from '@utils';
-import { texts } from '@utils';
+import { dialCall, texts } from '@utils';
+import { NEW_APPOINTMENT_STACK } from '@navigation';
 
+import Styles from './Home.styles';
 
-const Home = () => {
+const Home = (props) => {
   return (
     <View style={Styles.container}>
       <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
@@ -123,7 +122,7 @@ const Home = () => {
           </ScrollView>
         </View>
         <TouchableFooter
-          onPress={()=> alert('oi')}
+          onPress={() => props.navigation.navigate(NEW_APPOINTMENT_STACK)}
         />
       </ImageBackground>
     </View>

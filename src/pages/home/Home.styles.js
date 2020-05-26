@@ -12,7 +12,7 @@ const Styles = StyleSheet.create({
     height: '100%',
   },
   main: {
-    flex: .95,
+    flex: 1,
     marginHorizontal: 20,
   },
   container_logo: {
@@ -50,7 +50,7 @@ const Styles = StyleSheet.create({
   networks_container: {
     justifyContent: 'flex-start',
     alignSelf: 'center',
-    marginTop: 50,
+    marginTop: 25,
   },
   network_content: {
     flexDirection: 'row',
