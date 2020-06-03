@@ -2,34 +2,17 @@ import React, { useState } from 'react';
 import { View, 
          Text, 
          TouchableOpacity,
-         TextInput, 
-         ImageBackground 
-         } from 'react-native';
-import { TextField,
-         FilledTextField,
-         OutlinedTextField
-         } from 'react-native-material-textfield'
+         ImageBackground,
+         ScrollView, 
+       } from 'react-native';
+import { TextField } from 'react-native-material-textfield'
 import { RadioButton } from 'react-native-paper'
+
+import { colors } from '@utils';
 import styles from './Profile.styles';
-
-const PROP = [
-	{
-		key: 'masculino',
-		text: 'Masculino',
-	},
-	{
-		key: 'feminino',
-		text: 'Feminino',
-	},
-	{
-		key: 'outro',
-		text: 'Outro',
-	},
-];
-
+import { color } from 'react-native-reanimated';
 
 const Profile = () => {
-  // TODO: receber os dados de user e as outras
   const [name, setName] = useState('')
   const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
@@ -37,15 +20,6 @@ const Profile = () => {
   const [birthDate, setBirthDate] = useState('')
   
   const [gender, setGender] = useState('first')
-  
-
-  fieldRef = React.createRef();
-
-  onSubmit = () => {
-    let { current: field } = this.fieldRef;
-
-    console.log(field.value());
-  };
 
   formatText = (text) => {
     return text.replace(/[^+\d]/g, '');}
@@ -53,76 +27,96 @@ const Profile = () => {
   return (
     <View>
       <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
-        {/* TODO input text login, name, password, birthDate, gender */}
-        <View style={styles.container_inputs}>
+				<ScrollView>
 
-          <FilledTextField
-            onChangeText={(login) => setLogin(login)}
-            label='Nome'
-            // keyboardType= 'phone-pad'
-            autoCapitalize= 'none'
-            autoCorrect= {false}
-            returnKeyType= 'next'
+          <View style={styles.container}>
+            <View style={styles.container_inputs}>
+              {/* <Text style={ styles.text }> Nome: </Text> */}
+              <TextField style={styles.input}
+                label='Nome'
+                labelFontSize= {20}
+                textColor= {colors.primary}
+                baseColor= {colors.accent}
+                tintColor= {colors.primary}
+                onChangeText={(name) => setName(name)}
+                returnKeyType= 'next'
+                // autoCapitalize= 'none'
+                // autoCorrect= {false}
+                error= 'Erro'
+                errorColor= {colors.primary}
+              />
 
-          />
-          <Text style={ styles.text }> Nome: </Text>
-          <TextInput style={styles.input}
-          onChangeText={(name) => setName(name)}
-          placeholder= 'Digite seu name'
-          // placeholderTextColor= '#'
-          returnKeyType= 'next'
-          // keyboardType= 'email-address'
-          // autoCapitalize= 'none'
-          // autoCorrect= {false}
-          // onSubmitEditing ={() => this.passwordInput.focus()}
-          />
-          <Text style={ styles.text }> Email: </Text>
-          <TextInput style={styles.input}
-            onChangeText={(login) => setLogin(login)}
-            placeholder= 'Digite seu email'
-            // placeholderTextColor= '#'
-            returnKeyType= 'next'
-            keyboardType= 'email-address'
-            autoCapitalize= 'none'
-            autoCorrect= {false}
-            // onSubmitEditing ={() => this.passwordInput.focus()}
-          />
-          <Text style={ styles.text }> Senha: </Text>
-          <TextInput style={styles.input}
-            onChangeText={(password) => setPassword(password)}
-            placeholder= 'Digite sua senha'
-            // placeholderTextColor= '#'
-            returnKeyType= 'go'
-            secureTextEntry
-            // TODO campo email mandar para o de senha
-            // ref={(input) => this.passwordInput = input}
-          />
-				</View>
+              <TextField style={styles.input}
+                label='Email'
+                labelFontSize= {20}
+                textColor= {colors.primary}
+                baseColor= {colors.accent}
+                tintColor= {colors.primary}
+                onChangeText={(login) => setLogin(login)}
+                returnKeyType= 'next'
+                keyboardType= 'email-address'
+                autoCapitalize= 'none'
+                autoCorrect= {false}
+                // onSubmitEditing ={() => this.passwordInput.focus()}
+                error= 'Erro'
+                errorColor= {colors.primary}
+              />
 
-        <Text style={ styles.text }>Radio Button</Text>
+              <TextField style={styles.input}
+                label='Senha'
+                labelFontSize= {20}
+                textColor= {colors.primary}
+                baseColor= {colors.accent}
+                tintColor= {colors.primary}
+                onChangeText={(password) => setPassword(password)}
+                returnKeyType= 'go'
+                secureTextEntry
+                error= 'Erro'
+                errorColor= {colors.primary}
+              />
 
-        <RadioButton
-          value="first"
-          status={gender === 'first' ? 'checked' : 'unchecked'}
-          onPress={(gender) =>{ setGender('first')}}
-        />
-        <RadioButton
-          value="second"
-          status={gender === 'second' ? 'checked' : 'unchecked'}
-          onPress={(gender) =>{ setGender('second')}}
-        />
-        <RadioButton
-          value="third"
-          status={gender === 'third' ? 'checked' : 'unchecked'}
-          onPress={(gender) =>{ setGender('third')}}
-        />
+              <TextField style={styles.input}
+                label='Data de Nascimento'
+                labelFontSize= {20}
+                textColor= {colors.primary}
+                baseColor= {colors.accent}
+                tintColor= {colors.primary}
+                onChangeText={(password) => setPassword(password)}
+                returnKeyType= 'go'
+                secureTextEntry
+                error= 'Erro'
+                errorColor= {colors.primary}
+              />
+              
+            </View>
 
-        <Text style={ styles.text }>Datetime</Text>
-        {/* TODO botao logout funcionar */}
-        {/* TODO botao atualizar funcionar */}
-        <TouchableOpacity style={styles.button} >
-          <Text> Logout </Text>
-        </TouchableOpacity>
+            <Text style={ styles.text }>Radio Button</Text>
+
+            <RadioButton
+              value="first"
+              status={gender === 'first' ? 'checked' : 'unchecked'}
+              onPress={(gender) =>{ setGender('first')}}
+            />
+            <RadioButton
+              value="second"
+              status={gender === 'second' ? 'checked' : 'unchecked'}
+              onPress={(gender) =>{ setGender('second')}}
+            />
+            <RadioButton
+              value="third"
+              status={gender === 'third' ? 'checked' : 'unchecked'}
+              onPress={(gender) =>{ setGender('third')}}
+            />
+
+            {/* TODO botao atualizar e logout funcionar */}
+            <TouchableOpacity style={styles.button} >
+              <Text> Atualizar </Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.button} >
+              <Text> Logout </Text>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
       </ImageBackground>
     </View>
   )

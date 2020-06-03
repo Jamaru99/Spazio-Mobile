@@ -15,16 +15,16 @@ const styles = StyleSheet.create({
 		height: '100%',
 	},
 	container_inputs:{
-		marginTop: 20,
-		width: 250,
-		alignItems: 'center',
+		// marginTop: 20,
+		width: 300,
+		// alignItems: 'center',
 	},
 	container_buttons:{
 		justifyContent: 'space-between',
 	},
 	input:{
 		width: '100%',
-		backgroundColor: colors.inputBackground,
+		// backgroundColor: colors.inputBackground,
 		margin: 5,
 		borderRadius: 10,
 	},
