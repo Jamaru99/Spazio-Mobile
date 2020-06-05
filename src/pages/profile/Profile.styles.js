@@ -8,6 +8,8 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center',
 		alignItems: 'center',
+		width: '100%',
+		height: '100%',
 	},
 	background: {
 		resizeMode: "cover",
@@ -19,12 +21,21 @@ const styles = StyleSheet.create({
 		width: 300,
 		// alignItems: 'center',
 	},
+	container_radios:{
+		width: 300,
+		// width: '100%',
+		alignItems: 'flex-start',
+	},
+	content_radio:{
+		// width: '100%',
+    flexDirection: "row",
+		alignItems: 'center',
+	},
 	container_buttons:{
 		justifyContent: 'space-between',
 	},
 	input:{
 		width: '100%',
-		// backgroundColor: colors.inputBackground,
 		margin: 5,
 		borderRadius: 10,
 	},
@@ -47,7 +58,6 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		borderWidth: 2,
 		borderColor: colors.primary,
-
 	},
 	button_text:{
 		color: colors.accent,
@@ -61,6 +71,10 @@ const styles = StyleSheet.create({
 		color: colors.primary,
 		fontWeight: 'bold',
 		fontSize: 18,
+	},
+	radio_text:{
+		color: colors.accent,
+		fontSize: 12,
 	}
 
 })
