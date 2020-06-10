@@ -7,21 +7,42 @@ import { View,
        } from 'react-native';
 import { TextField } from 'react-native-material-textfield'
 import { RadioButton } from 'react-native-paper'
+import { setUserDataDispatched } from '@state';
+import { connect } from 'react-redux';
 
 import { colors } from '@utils';
 import styles from './Profile.styles';
 
-const Profile = () => {
-  const [name, setName] = useState('')
-  const [login, setLogin] = useState('')
-	const [password, setPassword] = useState('')
+const Profile = ( props ) => {
   const [loading, setLoading] = useState(false)
-  const [birthDate, setBirthDate] = useState('banana')
-  
-  const [gender, setGender] = useState('')
+  const [name, setName] = useState(props.userData.name)
+  const [login, setLogin] = useState(props.userData.login)
+	const [password, setPassword] = useState(props.userData.password)
+  const [birthDate, setBirthDate] = useState(props.userData.birthDate)
+  const [gender, setGender] = useState(props.userData.gender)
 
-  const handleChangeText = (e) => {
-   setBirthDate('seila')
+  // const handleChangeText = (e) => {
+  //  setBirthDate('seila')
+  // }
+
+  const handleSaveUserData = async () => {
+    const userDataChange ={
+      name: props.userData.name,
+      login: props.userData.login,
+      password: props.userData.password,
+      birthDate: props.userData.birthDate,
+      gender: props.userData.gender
+    }
+    setLoading(true)
+    const userData = await doLogin(password, login)
+    if (!userData.error){
+      props.setUserDataDispatched(userData)
+      await setUserDataInStorage(userData)
+      setErrorLogin('')
+    }else{
+      setErrorLogin('Email ou senha inválidos')
+    }
+    setLoading(false)
   }
   return (
     <View>
@@ -31,11 +52,12 @@ const Profile = () => {
           <View style={styles.container}>
             <View style={styles.container_inputs}>
               <TextField style={styles.input}
+                value= {name}
                 label='Nome'
                 labelFontSize= {20}
-                textColor= {colors.primary}
+                textColor= {colors.accent}
                 baseColor= {colors.accent}
-                tintColor= {colors.primary}
+                tintColor= {colors.accent}
                 onChangeText={(name) => setName(name)}
                 returnKeyType= 'next'
                 // error= 'Erro'
@@ -43,11 +65,12 @@ const Profile = () => {
               />
 
               <TextField style={styles.input}
+                value= {login}
                 label='Email'
                 labelFontSize= {20}
-                textColor= {colors.primary}
+                textColor= {colors.accent}
                 baseColor= {colors.accent}
-                tintColor= {colors.primary}
+                tintColor= {colors.accent}
                 onChangeText={(login) => setLogin(login)}
                 returnKeyType= 'next'
                 keyboardType= 'email-address'
@@ -59,11 +82,12 @@ const Profile = () => {
               />
 
               <TextField style={styles.input}
+                value= {password}
                 label='Senha'
                 labelFontSize= {20}
-                textColor= {colors.primary}
+                textColor= {colors.accent}
                 baseColor= {colors.accent}
-                tintColor= {colors.primary}
+                tintColor= {colors.accent}
                 onChangeText={(password) => setPassword(password)}
                 returnKeyType= 'go'
                 secureTextEntry
@@ -72,19 +96,16 @@ const Profile = () => {
               />
 
               {/* TODO arrumar mask do txtfield */}
-              <Text style={ styles.text }>{birthDate}</Text>
               <TextField style={styles.input}
                 value= {birthDate}
                 label='Data de Nascimento'
                 labelFontSize= {20}
                 keyboardType='phone-pad'
-                textColor= {colors.primary}
+                textColor= {colors.accent}
                 baseColor= {colors.accent}
-                tintColor= {colors.primary}
-                // onChangeText={(birthDate) => setBirthDate(birthDate)}
-                onChangeText= { handleChangeText }
+                tintColor= {colors.accent}
+                onChangeText={(birthDate) => setBirthDate(birthDate)}
                 setValue={birthDate}
-                // formatText={birthDate}
                 returnKeyType= 'go'
                 // error= ''
                 // errorColor= {colors.primary}
@@ -95,48 +116,61 @@ const Profile = () => {
             <Text style={ styles.text }>Gênero</Text>
 
             <View style={ styles.container_radios }>
-              <View style={ styles.content_radio }>
-                <RadioButton
-                  value="male"
-                  status={gender === 'male' ? 'checked' : 'unchecked'}
-                  onPress={(gender) =>{ setGender('male')}}
-                  color={colors.primary}
-                  uncheckedColor={colors.accent}
-                />
-                <Text style={ styles.radio_text }>Masculino</Text>
-              </View>
-              <View style={ styles.content_radio }>
-                <RadioButton
-                  value="female"
-                  status={gender === 'female' ? 'checked' : 'unchecked'}
-                  onPress={(gender) =>{ setGender('female')}}
-                  color={colors.primary}
-                  uncheckedColor={colors.accent}
-                >
-                </RadioButton>
-                <Text style={ styles.radio_text }>Feminino</Text>
-              </View>
-              <View style={ styles.content_radio }>
-                <RadioButton
-                  value="other"
-                  status={gender === 'other' ? 'checked' : 'unchecked'}
-                  onPress={(gender) =>{ setGender('other')}}
-                  color={colors.primary}
-                  uncheckedColor={colors.accent}
-                />
-                <Text style={ styles.radio_text }>Outro</Text>
-              </View>
+              <TouchableOpacity style={styles.button_radio} 
+                    onPress={(gender) =>{ setGender('m')}}
+              >
+                <View style={ styles.content_radio }>
+                  <RadioButton 
+                    value="m"
+                    status={gender === 'm' ? 'checked' : 'unchecked'}
+                    onPress={(gender) =>{ setGender('m')}}
+                    color={colors.primary}
+                    uncheckedColor={colors.accent}
+                  />
+                  <Text style={ styles.radio_text }>Masculino</Text>
+                </View>
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.button_radio} 
+                    onPress={(gender) =>{ setGender('f')}}
+              >
+                <View style={ styles.content_radio }>
+                  <RadioButton
+                    value="f"
+                    status={gender === 'f' ? 'checked' : 'unchecked'}
+                    color={colors.primary}
+                    uncheckedColor={colors.accent}
+                  />
+                  <Text style={ styles.radio_text }>Feminino</Text>
+                </View>
+              </TouchableOpacity>
+              <TouchableOpacity style={styles.button_radio} 
+                    onPress={(gender) =>{ setGender('o')}}
+              >
+                <View style={ styles.content_radio }>
+                  <RadioButton
+                    value="o"
+                    status={gender === 'o' ? 'checked' : 'unchecked'}
+                    color={colors.primary}
+                    uncheckedColor={colors.accent}
+                  />
+                  <Text style={ styles.radio_text }>Outro</Text>
+                </View>
+              </TouchableOpacity>
+                
+              
             </View>
             
-            
-            
-
             {/* TODO botao salvar e logout funcionar */}
-            <TouchableOpacity style={styles.button} >
-              <Text> Salvar </Text>
+            <TouchableOpacity style={styles.button} onPress={handleSaveUserData}>
+								{
+									loading 
+									? <InnerLoader />
+									: <Text style={styles.button_text}>Salvar</Text>
+								}
             </TouchableOpacity>
             <TouchableOpacity style={styles.button} >
-              <Text> Logout </Text>
+              <Text style={styles.button_text}> Logout </Text>
             </TouchableOpacity>
           </View>
         </ScrollView>
@@ -145,9 +179,15 @@ const Profile = () => {
   )
 }
 
-// formatedText = (text) => {
-//     // return text.replace(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/)
-// }
+const mapStateToProps = (state) => {
+  return {
+    isLogged: state.isLogged,
+    userData: state.userData
+  }
+}
 
+const mapDispatchToProps = {
+  setUserDataDispatched,
+}
 
-export default Profile;
+export default connect (mapStateToProps, mapDispatchToProps	) (Profile);

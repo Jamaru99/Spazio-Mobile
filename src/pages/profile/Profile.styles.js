@@ -18,16 +18,17 @@ const styles = StyleSheet.create({
 	},
 	container_inputs:{
 		// marginTop: 20,
-		width: 300,
+		width: '90%',
 		// alignItems: 'center',
 	},
 	container_radios:{
-		width: 300,
+		width: '90%',
+		// width: 300,
 		// width: '100%',
 		alignItems: 'flex-start',
 	},
 	content_radio:{
-		// width: '100%',
+		width: '100%',
     flexDirection: "row",
 		alignItems: 'center',
 	},
@@ -47,17 +48,12 @@ const styles = StyleSheet.create({
 		justifyContent: 'center',
 		alignItems: 'center',
 		borderRadius: 10,
-
 	},
-	button_register:{
-		margin: 10,
-		marginHorizontal: 20,
-		padding: 10,
+	button_radio:{
+		width: '100%',
 		justifyContent: 'center',
 		alignItems: 'center',
-		borderRadius: 10,
-		borderWidth: 2,
-		borderColor: colors.primary,
+		// borderColor: colors.primary,
 	},
 	button_text:{
 		color: colors.accent,

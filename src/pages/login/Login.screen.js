@@ -9,6 +9,19 @@ import { REGISTER_SCREEN } from '@navigation';
 
 import styles from './Login.styles'
 
+const handleOnLoginPress = async () => {
+	setLoading(true)
+	const userData = await doLogin(password, login)
+	if (!userData.error){
+		props.setUserDataDispatched(userData)
+		await setUserDataInStorage(userData)
+		setErrorLogin('')
+	}else{
+		setErrorLogin('Email ou senha inválidos')
+	}
+	setLoading(false)
+}
+
 const LoginScreen = (props) => {
 	const [login, setLogin] = useState('')
 	const [password, setPassword] = useState('')
@@ -38,21 +51,17 @@ const LoginScreen = (props) => {
 							<TextInput style={styles.input}
 								onChangeText={(login) => setLogin(login)}
 								placeholder= 'Digite seu email'
-								// placeholderTextColor= '#'
 								returnKeyType= 'next'
 								keyboardType= 'email-address'
 								autoCapitalize= 'none'
 								autoCorrect= {false}
-								// onSubmitEditing ={() => this.passwordInput.focus()}
 							/>
 							<TextInput style={styles.input}
 								onChangeText={(password) => setPassword(password)}
 								placeholder= 'Digite sua senha'
-								// placeholderTextColor= '#'
 								returnKeyType= 'go'
 								secureTextEntry
 								// TODO campo email mandar para o de senha
-								// ref={(input) => this.passwordInput = input}
 							/>
 						</View>
 							{/* TODO criar condição para funcionar  */}
