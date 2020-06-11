@@ -1,4 +1,4 @@
-import { CUSTOMER_BASE_URL, post } from '@utils'
+import { CUSTOMER_BASE_URL, post, put } from '@utils'
 
 export const doLogin = async (password, login) => {
   try{
@@ -6,6 +6,15 @@ export const doLogin = async (password, login) => {
     return data
   }
   catch{
+    return { error: true }
+  }
+}
+
+export const putProfile = async (id, userData) => {
+  try {
+    const { data } = await put(`${CUSTOMER_BASE_URL}/${id}`, userData)
+    return data
+  } catch {
     return { error: true }
   }
 }

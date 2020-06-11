@@ -21,10 +21,6 @@ const Profile = ( props ) => {
   const [birthDate, setBirthDate] = useState(props.userData.birthDate)
   const [gender, setGender] = useState(props.userData.gender)
 
-  // const handleChangeText = (e) => {
-  //  setBirthDate('seila')
-  // }
-
   const handleSaveUserData = async () => {
     const userDataChange ={
       name: props.userData.name,
@@ -34,7 +30,7 @@ const Profile = ( props ) => {
       gender: props.userData.gender
     }
     setLoading(true)
-    const userData = await doLogin(password, login)
+    const userData = await putProfile(props.userId)
     if (!userData.error){
       props.setUserDataDispatched(userData)
       await setUserDataInStorage(userData)
