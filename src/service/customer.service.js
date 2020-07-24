@@ -12,7 +12,7 @@ export const doLogin = async (password, login) => {
 
 export const putProfile = async (id, userData) => {
   try {
-    const { data } = await put(`${CUSTOMER_BASE_URL}/${id}`, userData)
+    const { data } = await put(`${CUSTOMER_BASE_URL}/update/${id}`, userData)
     return data
   } catch {
     return { error: true }

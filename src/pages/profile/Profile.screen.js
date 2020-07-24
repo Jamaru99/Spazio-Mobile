@@ -9,6 +9,9 @@ import { TextField } from 'react-native-material-textfield'
 import { RadioButton } from 'react-native-paper'
 import { setUserDataDispatched } from '@state';
 import { connect } from 'react-redux';
+import { InnerLoader } from '@components';
+
+// import Toast, {DURATION} from 'react-native-easy-toast'
 
 import { colors } from '@utils';
 import styles from './Profile.styles';
@@ -20,23 +23,31 @@ const Profile = ( props ) => {
 	const [password, setPassword] = useState(props.userData.password)
   const [birthDate, setBirthDate] = useState(props.userData.birthDate)
   const [gender, setGender] = useState(props.userData.gender)
+  const [errorName, setErrorName] = useState('')
+  const [errorEmail, setErrorEmail] = useState('')
+	const [errorPassword, setErrorPassword] = useState('')
+  const [errorBirthDate, setErrorBirthDate] = useState('')
+  const [updateMessage, setUpdateMessage] = useState('')
 
   const handleSaveUserData = async () => {
     const userDataChange ={
-      name: props.userData.name,
-      login: props.userData.login,
-      password: props.userData.password,
-      birthDate: props.userData.birthDate,
-      gender: props.userData.gender
+      name: name,
+      login: login,
+      password: password,
+      birthDate: birthDate,
+      gender: gender
     }
     setLoading(true)
-    const userData = await putProfile(props.userId)
+    const userData = await putProfile(props.userId, userDataChange)
     if (!userData.error){
       props.setUserDataDispatched(userData)
       await setUserDataInStorage(userData)
-      setErrorLogin('')
+      // setUpdateMessage('Dados alterado com sucesso')
+      // toast.show('Dados alterado com sucesso',DURATION.LENGTH_LONG)
+      // TODO REMOVER O TOAST E FAZER N MAO
     }else{
-      setErrorLogin('Email ou senha inválidos')
+      // toast.show('Não foi possível alterar os dados',DURATION.LENGTH_LONG)
+      // setUpdateMessage('Não foi possível alterar os dados')
     }
     setLoading(false)
   }
@@ -44,7 +55,16 @@ const Profile = ( props ) => {
     <View>
       <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
 				<ScrollView>
-
+          {/* <Toast
+            ref="toast"
+            // style={{backgroundColor:'red'}}
+            position='top'
+            // positionValue={200}
+            fadeInDuration={750}
+            fadeOutDuration={1000}
+            opacity={0.8}
+            // textStyle={{color:'red'}}
+          /> */}
           <View style={styles.container}>
             <View style={styles.container_inputs}>
               <TextField style={styles.input}
@@ -56,8 +76,8 @@ const Profile = ( props ) => {
                 tintColor= {colors.accent}
                 onChangeText={(name) => setName(name)}
                 returnKeyType= 'next'
-                // error= 'Erro'
-                // errorColor= {colors.primary}
+                error= {errorName}
+                errorColor= {colors.primary}
               />
 
               <TextField style={styles.input}
@@ -72,9 +92,8 @@ const Profile = ( props ) => {
                 keyboardType= 'email-address'
                 autoCapitalize= 'none'
                 autoCorrect= {false}
-                // onSubmitEditing ={() => this.passwordInput.focus()}
-                // error= 'Erro'
-                // errorColor= {colors.primary}
+                error= {errorEmail}
+                errorColor= {colors.primary}
               />
 
               <TextField style={styles.input}
@@ -87,8 +106,8 @@ const Profile = ( props ) => {
                 onChangeText={(password) => setPassword(password)}
                 returnKeyType= 'go'
                 secureTextEntry
-                // error= 'Erro'
-                // errorColor= {colors.primary}
+                error= {errorPassword}
+                errorColor= {colors.primary}
               />
 
               {/* TODO arrumar mask do txtfield */}
@@ -103,8 +122,8 @@ const Profile = ( props ) => {
                 onChangeText={(birthDate) => setBirthDate(birthDate)}
                 setValue={birthDate}
                 returnKeyType= 'go'
-                // error= ''
-                // errorColor= {colors.primary}
+                error= {errorBirthDate}
+                errorColor= {colors.primary}
               />
               
             </View>
