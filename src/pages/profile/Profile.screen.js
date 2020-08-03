@@ -12,7 +12,7 @@ import { connect } from 'react-redux';
 import { InnerLoader } from '@components';
 
 // import Toast, {DURATION} from 'react-native-easy-toast'
-
+import Toast from 'react-native-tiny-toast'
 import { colors } from '@utils';
 import styles from './Profile.styles';
 
@@ -27,7 +27,6 @@ const Profile = ( props ) => {
   const [errorEmail, setErrorEmail] = useState('')
 	const [errorPassword, setErrorPassword] = useState('')
   const [errorBirthDate, setErrorBirthDate] = useState('')
-  const [updateMessage, setUpdateMessage] = useState('')
 
   const handleSaveUserData = async () => {
     const userDataChange ={
@@ -42,11 +41,9 @@ const Profile = ( props ) => {
     if (!userData.error){
       props.setUserDataDispatched(userData)
       await setUserDataInStorage(userData)
-      // setUpdateMessage('Dados alterado com sucesso')
-      // toast.show('Dados alterado com sucesso',DURATION.LENGTH_LONG)
-      // TODO REMOVER O TOAST E FAZER N MAO
+      Toast.show('Dados alterado com sucesso')
     }else{
-      // toast.show('Não foi possível alterar os dados',DURATION.LENGTH_LONG)
+      Toast.show('Não foi possível alterar os dados',DURATION.LENGTH_LONG)
       // setUpdateMessage('Não foi possível alterar os dados')
     }
     setLoading(false)
@@ -55,16 +52,6 @@ const Profile = ( props ) => {
     <View>
       <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
 				<ScrollView>
-          {/* <Toast
-            ref="toast"
-            // style={{backgroundColor:'red'}}
-            position='top'
-            // positionValue={200}
-            fadeInDuration={750}
-            fadeOutDuration={1000}
-            opacity={0.8}
-            // textStyle={{color:'red'}}
-          /> */}
           <View style={styles.container}>
             <View style={styles.container_inputs}>
               <TextField style={styles.input}
