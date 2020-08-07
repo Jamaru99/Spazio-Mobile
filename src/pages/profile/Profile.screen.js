@@ -5,16 +5,17 @@ import { View,
          ImageBackground,
          ScrollView, 
        } from 'react-native';
+import { InnerLoader } from '@components';
+import { setUserDataDispatched } from '@state';
+import { setUserDataInStorage } from '@services';
+import { putProfile } from '@services';
+import { colors } from '@utils';
 import { TextField } from 'react-native-material-textfield'
 import { RadioButton } from 'react-native-paper'
-import { setUserDataDispatched } from '@state';
 import { connect } from 'react-redux';
-import { InnerLoader } from '@components';
-
-// import Toast, {DURATION} from 'react-native-easy-toast'
 import Toast from 'react-native-tiny-toast'
-import { colors } from '@utils';
 import styles from './Profile.styles';
+
 
 const Profile = ( props ) => {
   const [loading, setLoading] = useState(false)
@@ -31,20 +32,21 @@ const Profile = ( props ) => {
   const handleSaveUserData = async () => {
     const userDataChange ={
       name: name,
-      login: login,
-      password: password,
+      // login: login,
+      // password: password,
       birthDate: birthDate,
       gender: gender
     }
     setLoading(true)
-    const userData = await putProfile(props.userId, userDataChange)
+    // alert(userDataChange)
+    // alert(userDataChange.name)
+    const userData = await putProfile(props.userData._id, userDataChange)
     if (!userData.error){
       props.setUserDataDispatched(userData)
       await setUserDataInStorage(userData)
-      Toast.show('Dados alterado com sucesso')
+      Toast.showSuccess('Dados alterado com sucesso')
     }else{
-      Toast.show('Não foi possível alterar os dados',DURATION.LENGTH_LONG)
-      // setUpdateMessage('Não foi possível alterar os dados')
+      Toast.show('Não foi possível alterar os dados')
     }
     setLoading(false)
   }
@@ -53,6 +55,7 @@ const Profile = ( props ) => {
       <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
 				<ScrollView>
           <View style={styles.container}>
+            <Text style={colors.primary}>{props.userData.password}</Text>
             <View style={styles.container_inputs}>
               <TextField style={styles.input}
                 value= {name}
@@ -67,6 +70,7 @@ const Profile = ( props ) => {
                 errorColor= {colors.primary}
               />
 
+              {/* TODO: não pode alterar o email */}
               <TextField style={styles.input}
                 value= {login}
                 label='Email'
@@ -91,7 +95,7 @@ const Profile = ( props ) => {
                 baseColor= {colors.accent}
                 tintColor= {colors.accent}
                 onChangeText={(password) => setPassword(password)}
-                returnKeyType= 'go'
+                returnKeyType= 'next'
                 secureTextEntry
                 error= {errorPassword}
                 errorColor= {colors.primary}
