@@ -36,15 +36,15 @@ const Profile = ( props ) => {
 	const [confirmedNewPassword, setConfirmedNewPassword] = useState('')
 	const [userDataChange, setUserDataChange] = useState('')
 
+
   const handleSaveUserData = async () => {
     if(login == props.userData.login){
-      setUserDataChange ={
+      setUserDataChange ({
         name: name,
-        // login: login,
         // password: password,
         birthDate: isoDate(birthDate),
         gender: gender
-      }
+      })
     }
     else{
       setUserDataChange( {
