@@ -12,7 +12,7 @@ import { InnerLoader } from '@components';
 import { setUserDataDispatched } from '@state';
 import { setUserDataInStorage } from '@services';
 import { putProfile } from '@services';
-import { colors } from '@utils';
+import { colors, formattedDatetime, isoDate } from '@utils';
 import { TextField } from 'react-native-material-textfield'
 import { RadioButton } from 'react-native-paper'
 import { connect } from 'react-redux';
@@ -25,7 +25,7 @@ const Profile = ( props ) => {
   const [name, setName] = useState(props.userData.name)
   const [login, setLogin] = useState(props.userData.login)
 	const [password, setPassword] = useState(props.userData.password)
-  const [birthDate, setBirthDate] = useState(props.userData.birthDate)
+  const [birthDate, setBirthDate] = useState(formattedDatetime(props.userData.birthDate)[0])
   const [gender, setGender] = useState(props.userData.gender)
   const [errorName, setErrorName] = useState('')
   const [errorEmail, setErrorEmail] = useState('')
@@ -37,23 +37,21 @@ const Profile = ( props ) => {
 	const [userDataChange, setUserDataChange] = useState('')
 
   const handleSaveUserData = async () => {
-    {/* TODO if login = props.userdata.login, nao passar login */}
-    // alert('oi')
-    if (login == props.userData.login){
-      setUserDataChange( {
+    if(login == props.userData.login){
+      setUserDataChange ={
         name: name,
         // login: login,
         // password: password,
-        birthDate: birthDate,
+        birthDate: isoDate(birthDate),
         gender: gender
-      })
+      }
     }
     else{
       setUserDataChange( {
         name: name,
         login: login,
         // password: password,
-        birthDate: birthDate,
+        birthDate: isoDate(birthDate),
         gender: gender
       })
     }
@@ -69,6 +67,15 @@ const Profile = ( props ) => {
     }
     setLoading(false)
   }
+
+  const formatBirthDate = (text) => {
+    const textLength = text.length
+    if((textLength === 2 || textLength === 5) && textLength > birthDate.length) 
+      return text + '/'
+    else 
+      return text
+  }
+
   return (
     <View>
       <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
@@ -201,12 +208,13 @@ const Profile = ( props ) => {
                 value= {birthDate}
                 label='Data de Nascimento'
                 labelFontSize= {20}
+                maxLength={10}
                 keyboardType='phone-pad'
+                formatText={formatBirthDate}
                 textColor= {colors.accent}
                 baseColor= {colors.accent}
                 tintColor= {colors.accent}
-                onChangeText={(birthDate) => setBirthDate(birthDate)}
-                setValue={birthDate}
+                onChangeText={(text) => setBirthDate(text)}
                 returnKeyType= 'go'
                 error= {errorBirthDate}
                 errorColor= {colors.primary}
