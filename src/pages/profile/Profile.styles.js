@@ -49,6 +49,15 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 		borderRadius: 10,
 	},
+	button_new_password:{
+		margin: 10,
+		marginHorizontal: 20,
+		padding: 10,
+		backgroundColor: colors.accent,
+		justifyContent: 'center',
+		alignItems: 'center',
+		borderRadius: 10,
+	},
 	button_radio:{
 		width: '100%',
 		justifyContent: 'center',
@@ -71,6 +80,35 @@ const styles = StyleSheet.create({
 	radio_text:{
 		color: colors.accent,
 		fontSize: 12,
+	},
+	centeredView: {
+    flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: 22
+  },
+  modalView: {
+    margin: 20,
+		width: '80%',
+		// height: '100%',
+		backgroundColor: "black",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5
+	},
+	inputModal:{
+    elevation: 5,
+		width: '100%',
+		margin: 5,
+		borderRadius: 10
 	}
 
 })
