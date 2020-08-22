@@ -25,6 +25,13 @@ export const formattedDate = (isoDate) => {
     return formattedDate
 }
 
+export const isoDate = (formattedDate) => {
+    const [day, month, year] = formattedDate.split('/')
+    const isoDate = `${year}-${month}-${day}`
+
+    return isoDate
+}
+
 export const nextDays = () => {
     var today = new Date()
     var next = []
