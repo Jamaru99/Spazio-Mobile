@@ -25,6 +25,11 @@ export const formattedDate = (isoDate) => {
     return formattedDate
 }
 
+export const isoDatetime = (isoDate, time) => {
+    const formattedTime = time.length === 4 ? `0${time}` : time
+    return `${isoDate}T${formattedTime}`
+}
+
 export const nextDays = () => {
     var today = new Date()
     var next = []

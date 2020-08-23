@@ -46,7 +46,7 @@ const english = {
 
     // employee
     "employee:header": "New appointment",
-    "employee:title": "Choose the employee:",
+    "employee:title": "Choose the professional:",
 
     // schedule
     "schedule:header": "New appointment",
@@ -54,6 +54,17 @@ const english = {
     "schedule:schedule_title": "Choose time:", 
     "schedule:no_schedule": "No available schedule at this date.",
 
+    // summary
+    "summary:header": "Confirm appointment",
+    "summary:service_label": "Service:",
+    "summary:employee_label": "Professional:",
+    "summary:datetime_label": "Date and time:",
+    "summary:total_label": "Total:",
+    "summary:payment_advise": "Payment by cash or card at the establishment",
+    "summary:button_confirm": "CONFIRM",
+    "summary:button_confirmed": "SCHEDULED!",
+    
+    "error:unexpected": "Error, try again",
     "error:connection": "Check your internet connection"
 }
 
@@ -102,8 +113,19 @@ const portuguese = {
     // schedule
     "schedule:header": "Agendar sessão",
     "schedule:date_title": "Escolha a data:",
-    "schedule:schedule_title": "Escolha o horário:", 
+    "schedule:schedule_title": "Escolha o horário:",
 
+    // summary
+    "summary:header": "Confirmar agendamento",
+    "summary:service_label": "Serviço:",
+    "summary:employee_label": "Profissional:",
+    "summary:datetime_label": "Data e horário:",
+    "summary:total_label": "Total:",
+    "summary:payment_advise": "Pagamento em dinheiro ou cartão no próprio estabelecimento",
+    "summary:button_confirm": "CONFIRMAR",
+    "summary:button_confirmed": "AGENDADO!",
+    
+    "error:unexpected": "Erro, tente novamente",
     "error:connection": "Verifique sua conexão à internet"
 }
 

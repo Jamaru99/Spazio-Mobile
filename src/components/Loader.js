@@ -8,7 +8,7 @@ export const ContentLoader = () => (
     </View>
 )
 
-export const InnerLoader = () => <ActivityIndicator size="small" color={colors.accent} />
+export const InnerLoader = (props) => <ActivityIndicator size="small" color={props.color || colors.accent} />
 
 const Styles = StyleSheet.create({
   loader_container:{

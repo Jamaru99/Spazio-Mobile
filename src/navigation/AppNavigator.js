@@ -35,7 +35,11 @@ const AppNavigator = (props) => (
         component={() => <MainTabNavigator isLogged={props.isLogged} />}
         options={defaultStackOptions}
       />
-      <Screen name={NEW_APPOINTMENT_STACK} component={NewAppointmentStack} options={defaultStackOptions}/>
+      <Screen 
+        name={NEW_APPOINTMENT_STACK}
+        component={() => <NewAppointmentStack isLogged={props.isLogged} />}
+        options={defaultStackOptions}
+      />
     </Navigator>
   </NavigationContainer>
 )

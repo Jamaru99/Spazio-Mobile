@@ -8,3 +8,12 @@ export const getEmployees = async () => {
     return { error: true }
   }
 }
+
+export const getEmployeeDetail = async (id) => {
+  try {
+    const { data } = await getAuthorized(`${EMPLOYEE_BASE_URL}/detail/${id}`)
+    return data
+  } catch {
+    return { error: true }
+  }
+}

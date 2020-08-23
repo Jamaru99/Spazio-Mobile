@@ -83,7 +83,8 @@ const mapStateToProps = (state) => {
   return {
     nextAppointments: state.nextAppointments,
     isLogged: state.isLogged,
-    userId: state.userData._id
+    userId: state.userData._id,
+    newAppointment: state.newAppointment
   }
 }
 
