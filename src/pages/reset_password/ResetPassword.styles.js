@@ -15,6 +15,11 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: 20,
   },
+  input:{
+		width: '100%',
+		margin: 5,
+		borderRadius: 10,
+	},
 })
   
 export default styles;
