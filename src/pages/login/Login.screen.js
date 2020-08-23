@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { doLogin, setUserDataInStorage } from '@services';
 import { setUserDataDispatched } from '@state';
 import { InnerLoader } from '@components';
-import { REGISTER_SCREEN } from '@navigation';
+import { REGISTER_SCREEN, RESET_PASSWORD_SCREEN } from '@navigation';
 
 import styles from './Login.styles'
 
@@ -29,7 +29,6 @@ const LoginScreen = (props) => {
 	}
 	
     return(
-        <View>
     		<ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
 				<View style={styles.container}>
 					<Text style={styles.text}>Para acessar esta página, faça o login!</Text>
@@ -71,11 +70,12 @@ const LoginScreen = (props) => {
 						<TouchableOpacity style={styles.button_register} onPress= {() => props.navigation.navigate(REGISTER_SCREEN) }>
 							<Text style={styles.button_text}>Cadastrar</Text>
 						</TouchableOpacity>
-							{/* TODO fazer um texto com link de esqueceu a senha */}
+						<TouchableOpacity style={styles.button_forgot_password} onPress= {() => props.navigation.navigate(RESET_PASSWORD_SCREEN) }>
+							<Text style={styles.forgot_password_link}>Esqueci a senha</Text>
+						</TouchableOpacity>
 					</View>
 				</View>
 			</ImageBackground>
-        </View>
     )
 }
 

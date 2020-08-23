@@ -9,7 +9,8 @@ import {
   ServiceScreen,
   EmployeeScreen,
   ScheduleScreen,
-  SummaryScreen
+  SummaryScreen,
+  ResetPasswordScreen
 } from '@pages';
 import { texts, colors } from '@utils';
 import {
@@ -21,7 +22,8 @@ import {
   SERVICE_SCREEN,
   EMPLOYEE_SCREEN,
   SCHEDULE_SCREEN,
-  SUMMARY_SCREEN
+  SUMMARY_SCREEN,
+  RESET_PASSWORD_SCREEN
 } from './routes'
 
 const { Navigator, Screen } = createNativeStackNavigator()
@@ -92,6 +94,10 @@ export function LoginStack() {
       <Screen
         name={REGISTER_SCREEN}
         component={RegisterScreen}
+      />
+      <Screen
+        name={RESET_PASSWORD_SCREEN}
+        component={ResetPasswordScreen}
       />
     </Navigator>
   );
