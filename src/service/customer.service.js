@@ -1,4 +1,4 @@
-import { CUSTOMER_BASE_URL, post } from '@utils'
+import { CUSTOMER_BASE_URL, post, put } from '@utils'
 
 export const doLogin = async (password, login) => {
   try {

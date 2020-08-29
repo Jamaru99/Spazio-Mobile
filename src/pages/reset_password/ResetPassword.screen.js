@@ -6,7 +6,6 @@ import {
   ScrollView,
   ImageBackground
 } from 'react-native';
-import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield'
 import Toast from 'react-native-tiny-toast'
 
@@ -17,11 +16,15 @@ import { texts, colors } from '@utils';
 import styles from './ResetPassword.styles';
 
 var randomCode = 0
-var customerId = '5e243ede7e3ff81914f982a0'
+var customerId = ''
 
-const ResetPasswordScreen = (props) => {
+const STEP_SEND_TOKEN = 0
+const STEP_VERIFY_TOKEN = 1
+const STEP_CHANGE_PASSWORD = 2
+
+const ResetPasswordScreen = () => {
   const [loading, setLoading] = useState(false)
-  const [step, setStep] = useState(2)
+  const [step, setStep] = useState(STEP_SEND_TOKEN)
   const [email, setEmail] = useState('')
   const [token, setToken] = useState('')
   const [password, setPassword] = useState('')
@@ -32,13 +35,13 @@ const ResetPasswordScreen = (props) => {
     randomCode = generateRandomCode()
     const data = await resetPassword(email, randomCode)
     customerId = data._id
-    setStep(1)
+    setStep(STEP_VERIFY_TOKEN)
     setLoading(false)
   }
 
   const handleOnVerifyTokenPress = () => {
     if (token === randomCode) {
-      setStep(2)
+      setStep(STEP_CHANGE_PASSWORD)
     } else {
       Toast.show('Código inválido')
     }
@@ -63,18 +66,18 @@ const ResetPasswordScreen = (props) => {
     <View style={styles.container}>
       <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
         <ScrollView contentContainerStyle={styles.main}>
-          {step === 0 &&
+          {step === STEP_SEND_TOKEN &&
             <SendTokenSection
               loading={loading}
               handleOnSendTokenPress={handleOnSendTokenPress}
               setEmail={setEmail} />
           }
-          {step === 1 &&
+          {step === STEP_VERIFY_TOKEN &&
             <VerifyTokenSection
               handleOnVerifyTokenPress={handleOnVerifyTokenPress}
               setToken={setToken} />
           }
-          {step === 2 &&
+          {step === STEP_CHANGE_PASSWORD &&
             <ChangePasswordSection
               loading={loading}
               handleOnChangePasswordPress={handleOnChangePasswordPress}
@@ -177,8 +180,4 @@ function generateRandomCode() {
   return randomCode;
 }
 
-const mapStateToProps = (state) => ({
-  customerData: state.customerData
-})
-
-export default connect(mapStateToProps, null)(ResetPasswordScreen);
+export default ResetPasswordScreen;

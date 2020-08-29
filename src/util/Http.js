@@ -14,6 +14,7 @@ const config = {
 
 export const get = axios.get
 export const post = axios.post
+export const put = axios.put
 
 export const getAuthorized = async (url) => {
     const data = await get(url, config);
