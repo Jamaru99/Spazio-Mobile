@@ -5,8 +5,6 @@ import { View,
          ImageBackground,
          ScrollView,
          Modal,
-         TouchableHighlight,
-         StyleSheet,
        } from 'react-native';
 import { InnerLoader } from '@components';
 import { setUserDataDispatched } from '@state';
@@ -34,28 +32,40 @@ const Profile = ( props ) => {
   const [modalPasswordVisibility, setModalPasswordVisibility] = useState(false)
 	const [newPassword, setNewPassword] = useState('')
 	const [confirmedNewPassword, setConfirmedNewPassword] = useState('')
-	const [userDataChange, setUserDataChange] = useState('')
+  // const [userDataChange, setUserDataChange] = useState({})
+
+  // const [newPassword, setNewPassword] = useState({
+  //   name: props.userData.name,
+  //   gender: props.userData.gender
+  // })
 
 
   const handleSaveUserData = async () => {
-    if(login == props.userData.login){
-      setUserDataChange ({
+    var userDataChange
+    if(password == props.userData.password){
+      userDataChange = {
+        password: password
+      }
+    }
+    else if(login == props.userData.login){
+      userDataChange = {
         name: name,
-        // password: password,
         birthDate: isoDate(birthDate),
         gender: gender
-      })
+      }
     }
     else{
-      setUserDataChange( {
+      userDataChange = {
         name: name,
         login: login,
-        // password: password,
         birthDate: isoDate(birthDate),
         gender: gender
-      })
+      }
     }
+    SaveUserData(userDataChange)
+  }
 
+  const SaveUserData = async (userDataChange) => {
     setLoading(true)
     const userData = await putProfile(props.userData._id, userDataChange)
     if (!userData.error){
@@ -72,9 +82,87 @@ const Profile = ( props ) => {
     const textLength = text.length
     if((textLength === 2 || textLength === 5) && textLength > birthDate.length) 
       return text + '/'
-    else 
+    else
       return text
   }
+  // TODO tirar modal do profile
+// const ModalPassword = () => {
+//   return (
+//     <Modal
+//               animationType="slide"
+//               transparent={true}
+//               visible={modalPasswordVisibility}
+//               onRequestClose={() => {
+//                   setModalPasswordVisibility(!modalPasswordVisibility);
+//               }}
+//             ><View style={styles.centeredView}>
+//             <View style={styles.modalView}>
+//               <Text style={styles.text}>Hello World!</Text>
+//             <View style={styles.container_inputs}>
+//               {/* TODO arrumar o repita a senha */}
+//               <TextField style={styles.inputModal}
+//                 value= {password}
+//                 label='Senha'
+//                 labelFontSize= {20}
+//                 textColor= {colors.accent}
+//                 baseColor= {colors.accent}
+//                 tintColor= {colors.accent}
+//                 onChangeText={(password) => setPassword(password)}
+//                 returnKeyType= 'next'
+//                 secureTextEntry
+//                 // error= {errorPassword}
+//                 // errorColor= {colors.primary}
+//               />
+//               {/* TODO arrumar o repita a senha */}
+//               <TextField style={styles.inputModal}
+//                 value= {newPassword}
+//                 label='Nova senha'
+//                 labelFontSize= {20}
+//                 textColor= {colors.accent}
+//                 baseColor= {colors.accent}
+//                 tintColor= {colors.accent}
+//                 onChangeText={(newPassword) => setNewPassword(newPassword)}
+//                 returnKeyType= 'next'
+//                 secureTextEntry
+//                 // error= {errorPassword}
+//                 // errorColor= {colors.primary}
+//               />
+//               {/* TODO arrumar o repita a senha */}
+//               <TextField style={styles.inputModal}
+//                 value= {confirmedNewPassword}
+//                 label='Confirme a nova senha'
+//                 labelFontSize= {20}
+//                 textColor= {colors.accent}
+//                 baseColor= {colors.accent}
+//                 tintColor= {colors.accent}
+//                 onChangeText={(confirmedNewPassword) => setConfirmedNewPassword(confirmedNewPassword)}
+//                 returnKeyType= 'next'
+//                 secureTextEntry
+//                 error= {errorPassword}
+//                 errorColor= {colors.primary}
+//               />
+//             </View>
+//               <TouchableOpacity
+//                 style={styles.button}
+//                 onPress={() => {
+//                   setModalPasswordVisibility(!modalPasswordVisibility);
+//                 }}
+//               >
+//                 <Text style={styles.text}>Cancelar</Text>
+//               </TouchableOpacity>
+//               <TouchableOpacity
+//                 style={styles.button_new_password}
+//                 onPress={() => {
+//                   setModalPasswordVisibility(!modalPasswordVisibility);
+//                 }}
+//               >
+//                 <Text style={styles.text_new_password}>Redefinir Senha</Text>
+//               </TouchableOpacity>
+//             </View>
+//           </View>
+//         </Modal>
+//   )
+// }
 
   return (
     <View>
@@ -149,7 +237,7 @@ const Profile = ( props ) => {
                   setModalPasswordVisibility(!modalPasswordVisibility);
                 }}
               >
-                <Text style={styles.text}>Redefinir Senha</Text>
+                <Text style={styles.text_new_password}>Redefinir Senha</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -328,42 +416,6 @@ const mapDispatchToProps = {
   setUserDataDispatched,
 }
 
-// const styles1 = StyleSheet.create({
-//   centeredView: {
-//     flex: 1,
-//     justifyContent: "center",
-//     alignItems: "center",
-//     marginTop: 22
-//   },
-//   modalView: {
-//     margin: 20,
-//     backgroundColor: "white",
-//     borderRadius: 20,
-//     padding: 35,
-//     alignItems: "center",
-//     shadowColor: "#000",
-//     shadowOffset: {
-//       width: 0,
-//       height: 2
-//     },
-//     shadowOpacity: 0.25,
-//     shadowRadius: 3.84,
-//     elevation: 5
-//   },
-//   openButton: {
-//     backgroundColor: "#F194FF",
-//     borderRadius: 20,
-//     padding: 10,
-//     elevation: 2
-//   },
-//   textStyle: {
-//     color: "white",
-//     fontWeight: "bold",
-//     textAlign: "center"
-//   },
-//   modalText: {
-//     marginBottom: 15,
-//     textAlign: "center"
-//   }
-// });
+
+
 export default connect (mapStateToProps, mapDispatchToProps	) (Profile);

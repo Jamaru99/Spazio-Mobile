@@ -72,6 +72,10 @@ const styles = StyleSheet.create({
 		color: colors.accent,
 		fontWeight: 'bold',
 	},
+	text_new_password:{
+		color: colors.primary,
+		fontWeight: 'bold',
+	},
 	text_error:{
 		color: colors.primary,
 		fontWeight: 'bold',
