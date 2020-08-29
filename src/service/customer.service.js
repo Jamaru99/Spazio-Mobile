@@ -9,6 +9,15 @@ export const doLogin = async (password, login) => {
   }
 }
 
+export const putProfile = async (id, userData) => {
+  try {
+    const { data } = await put(`${CUSTOMER_BASE_URL}/update/${id}`, userData)
+    return data
+  } catch {
+  return { error: true }
+  }
+}
+
 export const resetPassword = async (email, token) => {
   try {
     const { data } = await post(`${CUSTOMER_BASE_URL}/resetpassword`, { email, token })
