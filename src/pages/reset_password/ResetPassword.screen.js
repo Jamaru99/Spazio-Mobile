@@ -10,17 +10,18 @@ import { connect } from 'react-redux';
 import { TextField } from 'react-native-material-textfield'
 import Toast from 'react-native-tiny-toast'
 
-import { TouchableFooter, InnerLoader } from '@components';
+import { InnerLoader } from '@components';
 import { resetPassword, putProfile } from '@services';
 import { texts, colors } from '@utils';
 
 import styles from './ResetPassword.styles';
 
 var randomCode = 0
+var customerId = '5e243ede7e3ff81914f982a0'
 
 const ResetPasswordScreen = (props) => {
   const [loading, setLoading] = useState(false)
-  const [step, setStep] = useState(0)
+  const [step, setStep] = useState(2)
   const [email, setEmail] = useState('')
   const [token, setToken] = useState('')
   const [password, setPassword] = useState('')
@@ -29,7 +30,8 @@ const ResetPasswordScreen = (props) => {
   const handleOnSendTokenPress = async () => {
     setLoading(true)
     randomCode = generateRandomCode()
-    await resetPassword(email, randomCode)
+    const data = await resetPassword(email, randomCode)
+    customerId = data._id
     setStep(1)
     setLoading(false)
   }
@@ -42,10 +44,10 @@ const ResetPasswordScreen = (props) => {
     }
   }
 
-  handleOnChangePasswordPress = async () => {
+  const handleOnChangePasswordPress = async () => {
     setLoading(true)
     if(password === confirmPassword) {
-      const data = await putProfile(props.customerData._id, { password })
+      const data = await putProfile(customerId, { password })
       if(data.error) {
         Toast.show('Erro inesperado')
       } else {
@@ -115,7 +117,7 @@ const SendTokenSection = ({ loading, handleOnSendTokenPress, setEmail }) => (
 
 const VerifyTokenSection = ({ handleOnVerifyTokenPress, setToken }) => (
   <View>
-    <Text style={styles.advise_text}>Digite o código enviado para seu email</Text>
+    <Text style={styles.advise_text}>Digite o código enviado para seu email:</Text>
     <TextField style={styles.input}
       label='Código'
       labelFontSize={16}
@@ -135,7 +137,7 @@ const VerifyTokenSection = ({ handleOnVerifyTokenPress, setToken }) => (
 const ChangePasswordSection = ({ loading, handleOnChangePasswordPress, setPassword, setConfirmPassword }) => (
   <View>
     <View>
-    <Text style={styles.advise_text}>Digite o código enviado para seu email</Text>
+    <Text style={styles.advise_text}>Digite sua nova senha:</Text>
     <TextField style={styles.input}
       label='Senha'
       labelFontSize={16}

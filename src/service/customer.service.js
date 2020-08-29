@@ -14,7 +14,7 @@ export const putProfile = async (id, userData) => {
     const { data } = await put(`${CUSTOMER_BASE_URL}/update/${id}`, userData)
     return data
   } catch {
-  return { error: true }
+    return { error: true }
   }
 }
 
