@@ -15,7 +15,7 @@ import { texts, colors } from '@utils';
 
 import styles from './ResetPassword.styles';
 
-var randomCode = 0
+var randomCode = ''
 var customerId = ''
 
 const STEP_SEND_TOKEN = 0
@@ -49,9 +49,9 @@ const ResetPasswordScreen = () => {
 
   const handleOnChangePasswordPress = async () => {
     setLoading(true)
-    if(password === confirmPassword) {
+    if (password === confirmPassword) {
       const data = await putProfile(customerId, { password })
-      if(data.error) {
+      if (data.error) {
         Toast.show('Erro inesperado')
       } else {
         Toast.showSuccess('Senha alterada!')
@@ -87,7 +87,7 @@ const ResetPasswordScreen = () => {
           }
         </ScrollView>
       </ImageBackground>
-      
+
     </View>
   );
 };
@@ -140,35 +140,35 @@ const VerifyTokenSection = ({ handleOnVerifyTokenPress, setToken }) => (
 const ChangePasswordSection = ({ loading, handleOnChangePasswordPress, setPassword, setConfirmPassword }) => (
   <View>
     <View>
-    <Text style={styles.advise_text}>Digite sua nova senha:</Text>
-    <TextField style={styles.input}
-      label='Senha'
-      labelFontSize={16}
-      textColor={colors.accent}
-      baseColor={colors.accent}
-      tintColor={colors.accent}
-      onChangeText={(text) => setPassword(text)}
-      returnKeyType='next'
-      secureTextEntry
-    />
-    <TextField style={styles.input}
-      label='Confirmar senha'
-      labelFontSize={16}
-      textColor={colors.accent}
-      baseColor={colors.accent}
-      tintColor={colors.accent}
-      onChangeText={(text) => setConfirmPassword(text)}
-      returnKeyType='next'
-      secureTextEntry
-    />
-    <TouchableOpacity style={styles.button} onPress={handleOnChangePasswordPress}>
-      {
-        loading
-          ? <InnerLoader />
-          : <Text style={styles.button_text}>Alterar senha</Text>
-      }
-    </TouchableOpacity>
-  </View>
+      <Text style={styles.advise_text}>Digite sua nova senha:</Text>
+      <TextField style={styles.input}
+        label='Senha'
+        labelFontSize={16}
+        textColor={colors.accent}
+        baseColor={colors.accent}
+        tintColor={colors.accent}
+        onChangeText={(text) => setPassword(text)}
+        returnKeyType='next'
+        secureTextEntry
+      />
+      <TextField style={styles.input}
+        label='Confirmar senha'
+        labelFontSize={16}
+        textColor={colors.accent}
+        baseColor={colors.accent}
+        tintColor={colors.accent}
+        onChangeText={(text) => setConfirmPassword(text)}
+        returnKeyType='next'
+        secureTextEntry
+      />
+      <TouchableOpacity style={styles.button} onPress={handleOnChangePasswordPress}>
+        {
+          loading
+            ? <InnerLoader />
+            : <Text style={styles.button_text}>Alterar senha</Text>
+        }
+      </TouchableOpacity>
+    </View>
   </View>
 )
 
