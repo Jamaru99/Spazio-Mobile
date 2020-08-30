@@ -20,6 +20,10 @@ const english = {
     "friday": "fri",
     "saturday": "sat",
 
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+
     // home
     "home:header": "Spazio Nina Bernardes",
     "home:tt_opening-hours": "Opening hours",
@@ -38,6 +42,18 @@ const english = {
 
     // login
     "login:header": "Login",
+
+    // reset password
+    "reset_password:header": "Reset password",
+    "reset_password:send_token_advice": "You will be sent a code to your email so that you can change your password",
+    "reset_password:button_send_token": "Send code",
+    "reset_password:verify_token_advice": "Enter the code sent to your email:",
+    "reset_password:button_verify_token": "Verify",
+    "reset_password:change_password_advice": "Enter your new password:",
+    "reset_password:change_password_button": "Change password",
+    "reset_password:toast_invalid_token": "Invalid code",
+    "reset_password:toast_passwords_unmatch": "Passwords don't match",
+    "reset_password:toast_password_changed": "Password has been changed!",
 
     // service
     "service:header": "New appointment",
@@ -81,6 +97,10 @@ const portuguese = {
     "friday": "sex",
     "saturday": "sáb",
 
+    "email": "Email",
+    "password": "Senha",
+    "confirm_password": "Confirmar senha",
+
     // home
     "home:header": "Spazio Nina Bernardes",
     "home:tt_opening-hours": "Horário de funcionamento",
@@ -99,6 +119,18 @@ const portuguese = {
 
     // login
     "login:header": "Login",
+
+    // reset password
+    "reset_password:header": "Resetar senha",
+    "reset_password:send_token_advice": "Enviaremos um código para seu email, para que consiga alterar sua senha",
+    "reset_password:button_send_token": "Enviar código",
+    "reset_password:verify_token_advice": "Digite o código enviado para seu email:",
+    "reset_password:button_verify_token": "Conferir",
+    "reset_password:change_password_advice": "Digite sua nova senha:",
+    "reset_password:change_password_button": "Alterar senha",
+    "reset_password:toast_invalid_token": "Código inválido",
+    "reset_password:toast_passwords_unmatch": "Senhas não coincidem",
+    "reset_password:toast_password_changed": "Senha alterada!",
 
     // service
     "service:header": "Agendar sessão",

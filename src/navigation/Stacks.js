@@ -98,6 +98,7 @@ export function LoginStack() {
       <Screen
         name={RESET_PASSWORD_SCREEN}
         component={ResetPasswordScreen}
+        options={{ title: texts["reset_password:header"] }}
       />
     </Navigator>
   );

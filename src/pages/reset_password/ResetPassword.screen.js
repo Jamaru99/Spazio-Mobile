@@ -6,8 +6,8 @@ import {
   ScrollView,
   ImageBackground
 } from 'react-native';
-import { TextField } from 'react-native-material-textfield'
-import Toast from 'react-native-tiny-toast'
+import { TextField } from 'react-native-material-textfield';
+import Toast from 'react-native-tiny-toast';
 
 import { InnerLoader } from '@components';
 import { resetPassword, putProfile } from '@services';
@@ -43,21 +43,21 @@ const ResetPasswordScreen = () => {
     if (token === randomCode) {
       setStep(STEP_CHANGE_PASSWORD)
     } else {
-      Toast.show('Código inválido')
+      Toast.show(texts["reset_password:toast_invalid_token"])
     }
   }
 
   const handleOnChangePasswordPress = async () => {
     setLoading(true)
-    if (password === confirmPassword) {
+    if (password === confirmPassword && password.length > 0) {
       const data = await putProfile(customerId, { password })
       if (data.error) {
-        Toast.show('Erro inesperado')
+        Toast.show(texts["error:connection"])
       } else {
-        Toast.showSuccess('Senha alterada!')
+        Toast.showSuccess(texts["reset_password:toast_password_changed"])
       }
     } else {
-      Toast.show('Não coincide')
+      Toast.show(texts["reset_password:toast_passwords_unmatch"])
     }
     setLoading(false)
   }
@@ -70,12 +70,14 @@ const ResetPasswordScreen = () => {
             <SendTokenSection
               loading={loading}
               handleOnSendTokenPress={handleOnSendTokenPress}
-              setEmail={setEmail} />
+              setEmail={setEmail}
+            />
           }
           {step === STEP_VERIFY_TOKEN &&
             <VerifyTokenSection
               handleOnVerifyTokenPress={handleOnVerifyTokenPress}
-              setToken={setToken} />
+              setToken={setToken}
+            />
           }
           {step === STEP_CHANGE_PASSWORD &&
             <ChangePasswordSection
@@ -87,22 +89,21 @@ const ResetPasswordScreen = () => {
           }
         </ScrollView>
       </ImageBackground>
-
     </View>
   );
 };
 
 const SendTokenSection = ({ loading, handleOnSendTokenPress, setEmail }) => (
   <View>
-    <Text style={styles.advise_text}>Enviaremos um código para seu email, para que consiga alterar sua senha</Text>
-    <TextField style={styles.input}
-      label='Email'
+    <Text style={styles.advise_text}>{texts["reset_password:send_token_advice"]}</Text>
+    <TextField 
+      style={styles.input}
+      label={texts["email"]}
       labelFontSize={16}
       textColor={colors.accent}
       baseColor={colors.accent}
       tintColor={colors.accent}
       onChangeText={(text) => setEmail(text)}
-      returnKeyType='next'
       keyboardType='email-address'
       autoCapitalize='none'
       autoCorrect={false}
@@ -112,7 +113,7 @@ const SendTokenSection = ({ loading, handleOnSendTokenPress, setEmail }) => (
       {
         loading
           ? <InnerLoader />
-          : <Text style={styles.button_text}>Enviar código</Text>
+          : <Text style={styles.button_text}>{texts["reset_password:button_send_token"]}</Text>
       }
     </TouchableOpacity>
   </View>
@@ -120,7 +121,7 @@ const SendTokenSection = ({ loading, handleOnSendTokenPress, setEmail }) => (
 
 const VerifyTokenSection = ({ handleOnVerifyTokenPress, setToken }) => (
   <View>
-    <Text style={styles.advise_text}>Digite o código enviado para seu email:</Text>
+    <Text style={styles.advise_text}>{texts["reset_password:verify_token_advice"]}</Text>
     <TextField style={styles.input}
       label='Código'
       labelFontSize={16}
@@ -128,11 +129,10 @@ const VerifyTokenSection = ({ handleOnVerifyTokenPress, setToken }) => (
       baseColor={colors.accent}
       tintColor={colors.accent}
       onChangeText={(text) => setToken(text)}
-      returnKeyType='next'
-      keyboardType='number'
+      keyboardType='number-pad'
     />
     <TouchableOpacity style={styles.button} onPress={handleOnVerifyTokenPress}>
-      <Text style={styles.button_text}>Conferir</Text>
+      <Text style={styles.button_text}>{texts["reset_password:button_verify_token"]}</Text>
     </TouchableOpacity>
   </View>
 )
@@ -140,32 +140,32 @@ const VerifyTokenSection = ({ handleOnVerifyTokenPress, setToken }) => (
 const ChangePasswordSection = ({ loading, handleOnChangePasswordPress, setPassword, setConfirmPassword }) => (
   <View>
     <View>
-      <Text style={styles.advise_text}>Digite sua nova senha:</Text>
+      <Text style={styles.advise_text}>{texts["reset_password:change_password_advice"]}</Text>
       <TextField style={styles.input}
-        label='Senha'
+        label={texts["password"]}
         labelFontSize={16}
         textColor={colors.accent}
         baseColor={colors.accent}
         tintColor={colors.accent}
         onChangeText={(text) => setPassword(text)}
-        returnKeyType='next'
+        autoCapitalize='none'
         secureTextEntry
       />
       <TextField style={styles.input}
-        label='Confirmar senha'
+        label={texts["confirm_password"]}
         labelFontSize={16}
         textColor={colors.accent}
         baseColor={colors.accent}
         tintColor={colors.accent}
         onChangeText={(text) => setConfirmPassword(text)}
-        returnKeyType='next'
+        autoCapitalize='none'
         secureTextEntry
       />
       <TouchableOpacity style={styles.button} onPress={handleOnChangePasswordPress}>
         {
           loading
             ? <InnerLoader />
-            : <Text style={styles.button_text}>Alterar senha</Text>
+            : <Text style={styles.button_text}>{texts["reset_password:change_password_button"]}</Text>
         }
       </TouchableOpacity>
     </View>
