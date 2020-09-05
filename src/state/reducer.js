@@ -1,4 +1,5 @@
 import {
+    SET_INFO,
     SET_APPOINTMENTS,
     SET_USER_DATA,
     SET_SERVICES,
@@ -9,6 +10,7 @@ import {
 
 const initialState = {
     isLogged: false,
+    info: {},
     userData: {},
     nextAppointments: [],
     services: [],
@@ -19,6 +21,11 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch(action.type){
+        case SET_INFO:
+            return {
+                ...state, 
+                info: action.payload,
+            }
         case SET_APPOINTMENTS:
             return {
                 ...state, 

@@ -1,4 +1,5 @@
 export {
+    setInfoDispatched,
     setAppointmentsDispatched,
     setUserDataDispatched,
     setServicesDispatched,

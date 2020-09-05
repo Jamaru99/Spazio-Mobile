@@ -1,132 +1,145 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  Text, 
-  View, 
-  Image,  
+  Text,
+  View,
+  Image,
   TouchableOpacity,
-  Linking, 
+  Linking,
   ScrollView,
   ImageBackground
 } from 'react-native';
+import { connect } from 'react-redux';
 
-import { TouchableFooter } from '@components';
+import { TouchableFooter, ContentLoader } from '@components';
 import { dialCall, texts } from '@utils';
 import { NEW_APPOINTMENT_STACK } from '@navigation';
+import { getInfo } from '@services';
+import { setInfoDispatched } from '@state';
 
 import Styles from './Home.styles';
 
-const Home = (props) => {
+const HomeScreen = (props) => {
+
+  const [loading, setLoading] = useState(false)
+
+  useEffect(() => {
+    setInfo()
+  }, [setInfo])
+
+  const setInfo = async () => {
+    setLoading(true)
+    const data = await getInfo()
+    props.setInfoDispatched(data)
+    setLoading(false)
+  }
+
   return (
     <View style={Styles.container}>
       <ImageBackground source={require('../../img/Background.jpg')} style={Styles.background}>
         <View style={Styles.main}>
+          {loading
+            ? <ContentLoader />
+            : (
+              <ScrollView>
+                <View style={Styles.container_logo}>
+                  <Image style={Styles.img_logo} source={require('../../img/logo.png')} />
+                </View>
 
-          <ScrollView>
-            {/* TO DO painel de fotos */}
-            {/* <View style={Styles.panel}>
-              <Image style={Styles.img_panel}
-                source={require('../../img/panel/panel_img1.jpg')}
-              ></Image>
-            </View> */}
-            
-            <View style={Styles.container_logo}>
-              <Image style={Styles.img_logo}
-                source={require('../../img/logo.png')}
-              ></Image>
-            </View>
+                <View>
+                  <Text style={Styles.title}>
+                    {texts["home:tt_opening-hours"]}
+                  </Text>
+                  <Text style={Styles.text}>
+                    {texts["home:hours-week"]}
+                  </Text>
+                  <Text style={Styles.text}>
+                    {texts["home:hours-weekend"]}
+                  </Text>
+                  <Text style={Styles.text}>
+                    {texts["home:hours-change"]}
+                  </Text>
+                </View>
 
-            <View>
-              <Text style={Styles.title}>
-                {texts["home:tt_opening-hours"]}
-              </Text>
-              <Text style={Styles.text}>
-                {texts["home:hours-week"]}
-              </Text>
-              <Text style={Styles.text}>
-                {texts["home:hours-weekend"]}
-              </Text>
-              <Text style={Styles.text}>
-                {texts["home:hours-change"]}
-              </Text>
+                <View>
+                  <Text style={Styles.title}>
+                    {texts["home:tt_address"]}
+                  </Text>
+                  <Text style={Styles.text}>
+                    {texts["home:address"]}
+                  </Text>
+                </View>
 
-            </View>
+                <View style={Styles.networks_container}>
+                  <View style={Styles.network_content}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        Linking.openURL('https://www.instagram.com/spazio.ninabernardes/')
+                      }
+                    >
+                      <View>
+                        <Image style={Styles.network_icon}
+                          source={require('../../img/icons/icon_insta.png')}
+                        ></Image>
+                      </View>
+                    </TouchableOpacity>
 
-            <View>
-              <Text style={Styles.title}>
-                {texts["home:tt_address"]} 
-              </Text> 
-              <Text style={Styles.text}>
-                {texts["home:address"]} 
-              </Text> 
-            </View>
-
-            <View style={Styles.networks_container}>
-              <View style={Styles.network_content}>
-                <TouchableOpacity
-                  onPress={() => 
-                    Linking.openURL('https://www.instagram.com/spazio.ninabernardes/')
-                  }
-                  >
-                  <View>
-                    <Image style={Styles.network_icon}
-                    source={require('../../img/icons/icon_insta.png')}
-                    ></Image>
+                    <Text style={Styles.link} onPress={() =>
+                      Linking.openURL('https://www.instagram.com/spazio.ninabernardes/')
+                    }>{props.info.instagram}</Text>
                   </View>
-                </TouchableOpacity>
 
-                <Text style={Styles.link} onPress={() => 
-                    Linking.openURL('https://www.instagram.com/spazio.ninabernardes/')
-                  }>@spazio.ninabernardes</Text>
-              </View>
+                  <View style={Styles.network_content}>
+                    <TouchableOpacity
+                      onPress={dialCall}
+                    >
+                      <View>
+                        <Image style={Styles.network_icon} source={require('../../img/icons/icon_whats.png')} />
+                      </View>
+                    </TouchableOpacity>
 
-              <View style={Styles.network_content}>
-                <TouchableOpacity
-                  onPress={dialCall}
-                >
-                  <View>
-                    <Image style={Styles.network_icon}
-                    source={require('../../img/icons/icon_whats.png')}
-                    ></Image>
+                    <Text style={Styles.link}
+                      onPress={dialCall}
+                    >{props.info.phoneNumber}</Text>
                   </View>
-                </TouchableOpacity>
 
-                <Text style={Styles.link} 
-                onPress={dialCall}
-                  >(11) 99647-1809</Text>
-              </View>
+                  <View style={Styles.network_content}>
+                    <TouchableOpacity
+                      onPress={() =>
+                        Linking.openURL('mailto:nina.profissionaldabeleza@gmail.com')}
+                      title='nina.profissionaldabeleza@gmail.com'
+                    >
+                      <View>
+                        <Image style={Styles.network_icon}
+                          source={require('../../img/icons/icon_gmail.png')}
+                        ></Image>
+                      </View>
+                    </TouchableOpacity>
 
-              <View style={Styles.network_content}>
-                <TouchableOpacity
-                  onPress={() => 
-                    Linking.openURL('mailto:nina.profissionaldabeleza@gmail.com')}
-                    title='nina.profissionaldabeleza@gmail.com'
-                >
-                  <View>
-                    <Image style={Styles.network_icon}
-                    source={require('../../img/icons/icon_gmail.png')}
-                    ></Image>
+                    <Text style={Styles.link}
+                      onPress={() =>
+                        Linking.openURL('mailto:nina.profissionaldabeleza@gmail.com')}
+                      title='nina.profissionaldabeleza@gmail.com'
+                    >{props.info.email}</Text>
                   </View>
-                </TouchableOpacity>
-
-                <Text style={Styles.link} 
-                  onPress={() => 
-                    Linking.openURL('mailto:nina.profissionaldabeleza@gmail.com')}
-                    title='nina.profissionaldabeleza@gmail.com'
-                    >nina.profissionaldabeleza@gmail.com</Text>
-              </View>
-
-            </View>
-
-          </ScrollView>
+                </View>
+              </ScrollView>
+            )
+          }
         </View>
         <TouchableFooter
           onPress={() => props.navigation.navigate(NEW_APPOINTMENT_STACK)}
         />
       </ImageBackground>
     </View>
+  )
+}
 
-  );
-};
+const mapStateToProps = (state) => ({
+  info: state.info
+})
 
+const mapDispatchToProps = {
+  setInfoDispatched
+}
 
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(HomeScreen);
