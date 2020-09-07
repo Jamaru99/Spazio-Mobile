@@ -19,10 +19,8 @@ import styles from './Profile.styles';
 
 
 const Profile = ( props ) => {
+  const [form, setForm] = useState({...props.userData, birthDate: formattedDatetime(props.userData.birthDate)[0]})
   const [loading, setLoading] = useState(false)
-  const [name, setName] = useState(props.userData.name)
-  const [login, setLogin] = useState(props.userData.login)
-	const [password, setPassword] = useState(props.userData.password)
   const [birthDate, setBirthDate] = useState(formattedDatetime(props.userData.birthDate)[0])
   const [gender, setGender] = useState(props.userData.gender)
   const [errorName, setErrorName] = useState('')
@@ -32,8 +30,10 @@ const Profile = ( props ) => {
   const [modalPasswordVisibility, setModalPasswordVisibility] = useState(false)
 	const [newPassword, setNewPassword] = useState('')
 	const [confirmedNewPassword, setConfirmedNewPassword] = useState('')
-  // const [userDataChange, setUserDataChange] = useState({})
 
+  const onChange = field => text => {
+    setForm({...form, [field]: text})
+  }
   // const [newPassword, setNewPassword] = useState({
   //   name: props.userData.name,
   //   gender: props.userData.gender
@@ -42,24 +42,24 @@ const Profile = ( props ) => {
 
   const handleSaveUserData = async () => {
     var userDataChange
-    if(password == props.userData.password){
+    if(form.password != props.userData.password){
       userDataChange = {
-        password: password
+        password: form.password
       }
     }
-    else if(login == props.userData.login){
+    else if(form.login == props.userData.login){
       userDataChange = {
-        name: name,
-        birthDate: isoDate(birthDate),
-        gender: gender
+        name: form.name,
+        birthDate: isoDate(form.birthDate),
+        gender: form.gender
       }
     }
     else{
       userDataChange = {
-        name: name,
-        login: login,
-        birthDate: isoDate(birthDate),
-        gender: gender
+        name: form.name,
+        login: form.login,
+        birthDate: isoDate(form.birthDate),
+        gender: form.gender
       }
     }
     SaveUserData(userDataChange)
@@ -80,7 +80,7 @@ const Profile = ( props ) => {
 
   const formatBirthDate = (text) => {
     const textLength = text.length
-    if((textLength === 2 || textLength === 5) && textLength > birthDate.length) 
+    if((textLength === 2 || textLength === 5) && textLength > form.birthDate.length) 
       return text + '/'
     else
       return text
@@ -182,13 +182,13 @@ const Profile = ( props ) => {
             <View style={styles.container_inputs}>
               {/* TODO arrumar o repita a senha */}
               <TextField style={styles.inputModal}
-                value= {password}
+                value= {form.password}
                 label='Senha'
                 labelFontSize= {20}
                 textColor= {colors.accent}
                 baseColor= {colors.accent}
                 tintColor= {colors.accent}
-                onChangeText={(password) => setPassword(password)}
+                editable= {false}
                 returnKeyType= 'next'
                 secureTextEntry
                 // error= {errorPassword}
@@ -243,32 +243,33 @@ const Profile = ( props ) => {
           </View>
         </Modal>
             <Text style={styles.text}>{props.userData.name}</Text>
-            <Text style={styles.text}>{name}</Text>
             <Text style={styles.text}>{props.userData.login}</Text>
-            <Text style={styles.text}>{login}</Text>
+            <Text style={styles.text}>{props.userData.gender}</Text>
+            <Text style={styles.text}>{form.name}</Text>
+            <Text style={styles.text}>{form.login}</Text>
+            <Text style={styles.text}>{form.gender}</Text>
             <View style={styles.container_inputs}>
               <TextField style={styles.input}
-                value= {name}
+                value= {form.name}
                 label='Nome'
                 labelFontSize= {20}
                 textColor= {colors.accent}
                 baseColor= {colors.accent}
                 tintColor= {colors.accent}
-                onChangeText={(name) => setName(name)}
+                onChangeText={onChange("name")}
                 returnKeyType= 'next'
                 error= {errorName}
                 errorColor= {colors.primary}
               />
 
-              {/* TODO: não pode alterar o email */}
               <TextField style={styles.input}
-                value= {login}
+                value= {form.login}
                 label='Email'
                 labelFontSize= {20}
                 textColor= {colors.accent}
                 baseColor= {colors.accent}
                 tintColor= {colors.accent}
-                onChangeText={(login) => setLogin(login)}
+                onChangeText={onChange("login")}
                 returnKeyType= 'next'
                 keyboardType= 'email-address'
                 autoCapitalize= 'none'
@@ -278,22 +279,21 @@ const Profile = ( props ) => {
               />
 
               <TextField style={styles.input}
-                value= {password}
+                value= {form.password}
                 label='Senha'
                 labelFontSize= {20}
                 textColor= {colors.accent}
                 baseColor= {colors.accent}
                 tintColor= {colors.accent}
-                onChangeText={(password) => setPassword(password)}
+                editable= {false}
                 returnKeyType= 'next'
                 secureTextEntry
                 error= {errorPassword}
                 errorColor= {colors.primary}
               />
 
-              {/* TODO arrumar mask do txtfield */}
               <TextField style={styles.input}
-                value= {birthDate}
+                value= {form.birthDate}
                 label='Data de Nascimento'
                 labelFontSize= {20}
                 maxLength={10}
@@ -302,7 +302,7 @@ const Profile = ( props ) => {
                 textColor= {colors.accent}
                 baseColor= {colors.accent}
                 tintColor= {colors.accent}
-                onChangeText={(text) => setBirthDate(text)}
+                onChangeText={onChange("birthDate")}
                 returnKeyType= 'go'
                 error= {errorBirthDate}
                 errorColor= {colors.primary}
@@ -314,13 +314,15 @@ const Profile = ( props ) => {
 
             <View style={ styles.container_radios }>
               <TouchableOpacity style={styles.button_radio} 
-                    onPress={(gender) =>{ setGender('m')}}
+                    onPress={onChange("gender")}
+                    // onPress={(gender) =>{ setGender('m')}}
               >
                 <View style={ styles.content_radio }>
                   <RadioButton 
                     value="m"
-                    status={gender === 'm' ? 'checked' : 'unchecked'}
-                    onPress={(gender) =>{ setGender('m')}}
+                    status={form.gender === 'm' ? 'checked' : 'unchecked'}
+                    onPress={onChange("gender")}
+                    // onPress={(gender) =>{ setGender('m')}}
                     color={colors.primary}
                     uncheckedColor={colors.accent}
                   />
