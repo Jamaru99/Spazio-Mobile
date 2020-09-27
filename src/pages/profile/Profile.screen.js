@@ -21,24 +21,16 @@ import styles from './Profile.styles';
 const Profile = ( props ) => {
   const [form, setForm] = useState({...props.userData, birthDate: formattedDatetime(props.userData.birthDate)[0]})
   const [loading, setLoading] = useState(false)
-  const [birthDate, setBirthDate] = useState(formattedDatetime(props.userData.birthDate)[0])
   const [gender, setGender] = useState(props.userData.gender)
   const [errorName, setErrorName] = useState('')
   const [errorEmail, setErrorEmail] = useState('')
 	const [errorPassword, setErrorPassword] = useState('')
   const [errorBirthDate, setErrorBirthDate] = useState('')
   const [modalPasswordVisibility, setModalPasswordVisibility] = useState(false)
-	const [newPassword, setNewPassword] = useState('')
-	const [confirmedNewPassword, setConfirmedNewPassword] = useState('')
 
   const onChange = field => text => {
     setForm({...form, [field]: text})
   }
-  // const [newPassword, setNewPassword] = useState({
-  //   name: props.userData.name,
-  //   gender: props.userData.gender
-  // })
-
 
   const handleSaveUserData = async () => {
     var userDataChange
@@ -85,169 +77,19 @@ const Profile = ( props ) => {
     else
       return text
   }
-  // TODO tirar modal do profile
-// const ModalPassword = () => {
-//   return (
-//     <Modal
-//               animationType="slide"
-//               transparent={true}
-//               visible={modalPasswordVisibility}
-//               onRequestClose={() => {
-//                   setModalPasswordVisibility(!modalPasswordVisibility);
-//               }}
-//             ><View style={styles.centeredView}>
-//             <View style={styles.modalView}>
-//               <Text style={styles.text}>Hello World!</Text>
-//             <View style={styles.container_inputs}>
-//               {/* TODO arrumar o repita a senha */}
-//               <TextField style={styles.inputModal}
-//                 value= {password}
-//                 label='Senha'
-//                 labelFontSize= {20}
-//                 textColor= {colors.accent}
-//                 baseColor= {colors.accent}
-//                 tintColor= {colors.accent}
-//                 onChangeText={(password) => setPassword(password)}
-//                 returnKeyType= 'next'
-//                 secureTextEntry
-//                 // error= {errorPassword}
-//                 // errorColor= {colors.primary}
-//               />
-//               {/* TODO arrumar o repita a senha */}
-//               <TextField style={styles.inputModal}
-//                 value= {newPassword}
-//                 label='Nova senha'
-//                 labelFontSize= {20}
-//                 textColor= {colors.accent}
-//                 baseColor= {colors.accent}
-//                 tintColor= {colors.accent}
-//                 onChangeText={(newPassword) => setNewPassword(newPassword)}
-//                 returnKeyType= 'next'
-//                 secureTextEntry
-//                 // error= {errorPassword}
-//                 // errorColor= {colors.primary}
-//               />
-//               {/* TODO arrumar o repita a senha */}
-//               <TextField style={styles.inputModal}
-//                 value= {confirmedNewPassword}
-//                 label='Confirme a nova senha'
-//                 labelFontSize= {20}
-//                 textColor= {colors.accent}
-//                 baseColor= {colors.accent}
-//                 tintColor= {colors.accent}
-//                 onChangeText={(confirmedNewPassword) => setConfirmedNewPassword(confirmedNewPassword)}
-//                 returnKeyType= 'next'
-//                 secureTextEntry
-//                 error= {errorPassword}
-//                 errorColor= {colors.primary}
-//               />
-//             </View>
-//               <TouchableOpacity
-//                 style={styles.button}
-//                 onPress={() => {
-//                   setModalPasswordVisibility(!modalPasswordVisibility);
-//                 }}
-//               >
-//                 <Text style={styles.text}>Cancelar</Text>
-//               </TouchableOpacity>
-//               <TouchableOpacity
-//                 style={styles.button_new_password}
-//                 onPress={() => {
-//                   setModalPasswordVisibility(!modalPasswordVisibility);
-//                 }}
-//               >
-//                 <Text style={styles.text_new_password}>Redefinir Senha</Text>
-//               </TouchableOpacity>
-//             </View>
-//           </View>
-//         </Modal>
-//   )
-// }
 
   return (
     <View>
       <ImageBackground source={require('../../img/Background.jpg')} style={styles.background}>
 				<ScrollView>
           <View style={styles.container}>
-            <Modal
-              animationType="slide"
-              transparent={true}
-              visible={modalPasswordVisibility}
-              onRequestClose={() => {
-                  setModalPasswordVisibility(!modalPasswordVisibility);
-              }}
-            ><View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <Text style={styles.text}>Hello World!</Text>
-            <View style={styles.container_inputs}>
-              {/* TODO arrumar o repita a senha */}
-              <TextField style={styles.inputModal}
-                value= {form.password}
-                label='Senha'
-                labelFontSize= {20}
-                textColor= {colors.accent}
-                baseColor= {colors.accent}
-                tintColor= {colors.accent}
-                editable= {false}
-                returnKeyType= 'next'
-                secureTextEntry
-                // error= {errorPassword}
-                // errorColor= {colors.primary}
-              />
-              {/* TODO arrumar o repita a senha */}
-              <TextField style={styles.inputModal}
-                value= {newPassword}
-                label='Nova senha'
-                labelFontSize= {20}
-                textColor= {colors.accent}
-                baseColor= {colors.accent}
-                tintColor= {colors.accent}
-                onChangeText={(newPassword) => setNewPassword(newPassword)}
-                returnKeyType= 'next'
-                secureTextEntry
-                // error= {errorPassword}
-                // errorColor= {colors.primary}
-              />
-              {/* TODO arrumar o repita a senha */}
-              <TextField style={styles.inputModal}
-                value= {confirmedNewPassword}
-                label='Confirme a nova senha'
-                labelFontSize= {20}
-                textColor= {colors.accent}
-                baseColor= {colors.accent}
-                tintColor= {colors.accent}
-                onChangeText={(confirmedNewPassword) => setConfirmedNewPassword(confirmedNewPassword)}
-                returnKeyType= 'next'
-                secureTextEntry
-                error= {errorPassword}
-                errorColor= {colors.primary}
-              />
-            </View>
-              <TouchableOpacity
-                style={styles.button}
-                onPress={() => {
-                  setModalPasswordVisibility(!modalPasswordVisibility);
-                }}
-              >
-                <Text style={styles.text}>Cancelar</Text>
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.button_new_password}
-                onPress={() => {
-                  setModalPasswordVisibility(!modalPasswordVisibility);
-                }}
-              >
-                <Text style={styles.text_new_password}>Redefinir Senha</Text>
-              </TouchableOpacity>
-            </View>
-          </View>
-        </Modal>
+          <ModalPassword 
+            visibility={modalPasswordVisibility}
+            setVisibility={setModalPasswordVisibility}
+            password={form.password}
+          />
             <Text style={styles.text}>{props.userData.name}</Text>
-            <Text style={styles.text}>{props.userData.login}</Text>
-            <Text style={styles.text}>{props.userData.gender}</Text>
             <Text style={styles.text}>{form.name}</Text>
-            <Text style={styles.text}>{form.login}</Text>
-            <Text style={styles.text}>{form.gender}</Text>
             <View style={styles.container_inputs}>
               <TextField style={styles.input}
                 value= {form.name}
@@ -386,27 +228,90 @@ const Profile = ( props ) => {
   )
 }
 
-function ModalChangePassword({ modalVisible, setModalVisible }) {
-  return (
-    <Modal animationType="slide" visible={modalVisible} transparent={true}>
-      <View style={styles.centeredView}>
-        <View style={styles.modalView}>
-          <TextField label='Senha atual *' secureTextEntry />
-          <TextField label='Nova senha *' secureTextEntry />
-          <TextField label='Confirmar nova senha *' secureTextEntry />
-          <TouchableOpacity
-            style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
-            onPress={() => {
-              setModalVisible(!modalVisible);
-            }}
-          >
-            <Text style={styles.textStyle}>Change Password</Text>
-          </TouchableOpacity>
+  const ModalPassword = (props) => {
+    // const [password, setPassword] = useState('')
+    const [newPassword, setNewPassword] = useState('')
+  	const [confirmedNewPassword, setConfirmedNewPassword] = useState('')
+    return (
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={props.visibility}
+        onRequestClose={() => {
+          props.setVisibility(!props.visibility);
+        }}
+      >
+        <View style={styles.centeredView}>
+          <View style={styles.modalView}>
+            <Text style={styles.text}>Hello World!</Text>
+            <Text style={styles.text}>{props.password}</Text>
+            <View style={styles.container_inputs}>
+              <TextField style={styles.inputModal}
+                value= {''}
+                label='Senha'
+                labelFontSize= {20}
+                textColor= {colors.accent}
+                baseColor= {colors.accent}
+                tintColor= {colors.accent}
+                onChangeText={(password) => setPassword(password)}
+                returnKeyType= 'next'
+                secureTextEntry
+                // error= {errorPassword}
+                // errorColor= {colors.primary}
+              />
+              {/* TODO arrumar o repita a senha */}
+              <TextField style={styles.inputModal}
+                value= {newPassword}
+                label='Nova senha'
+                labelFontSize= {20}
+                textColor= {colors.accent}
+                baseColor= {colors.accent}
+                tintColor= {colors.accent}
+                onChangeText={(newPassword) => setNewPassword(newPassword)}
+                returnKeyType= 'next'
+                secureTextEntry
+                // error= {errorPassword}
+                // errorColor= {colors.primary}
+              />
+              {/* TODO arrumar o confirma repita a senha */}
+              <TextField style={styles.inputModal}
+                value= {confirmedNewPassword}
+                label='Confirme a nova senha'
+                labelFontSize= {20}
+                textColor= {colors.accent}
+                baseColor= {colors.accent}
+                tintColor= {colors.accent}
+                onChangeText={(confirmedNewPassword) => setConfirmedNewPassword(confirmedNewPassword)}
+                returnKeyType= 'next'
+                secureTextEntry
+                // error= {errorPassword}
+                // errorColor= {colors.primary}
+              />
+            </View>
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => {
+                props.setVisibility(!props.visibility);
+              }}
+            >
+              <Text style={styles.text}>Cancelar</Text>
+            </TouchableOpacity>
+
+            {/* TODO: verificar se senha é igual ao props.form.password */}
+            <TouchableOpacity
+              style={styles.button_new_password}
+              onPress={() => {
+                props.setVisibility(!props.visibility);
+              }}
+            >
+              <Text style={styles.text_new_password}>Redefinir Senha</Text>
+            </TouchableOpacity>
+          </View>
         </View>
-      </View>
-    </Modal>
-  )
-}
+      </Modal>
+    )
+  }
+
 const mapStateToProps = (state) => {
   return {
     isLogged: state.isLogged,
@@ -417,7 +322,5 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = {
   setUserDataDispatched,
 }
-
-
 
 export default connect (mapStateToProps, mapDispatchToProps	) (Profile);
