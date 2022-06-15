@@ -26,12 +26,3 @@ export const resetPassword = async (email, token) => {
     return { error: true }
   }
 }
-
-export const putProfile = async (id, userData) => {
-  try {
-    const { data } = await put(`${CUSTOMER_BASE_URL}/update/${id}`, userData)
-    return data
-  } catch {
-  return { error: true }
-  }
-}
