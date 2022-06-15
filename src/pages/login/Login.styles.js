@@ -45,11 +45,11 @@ const styles = StyleSheet.create({
 		borderRadius: 10,
 		borderWidth: 2,
 		borderColor: colors.primary,
-
 	},
 	button_text:{
 		color: colors.accent,
 		fontWeight: 'bold',
+		textAlign: 'center'
 	},
 	text:{
 		color: colors.accent,
@@ -59,8 +59,16 @@ const styles = StyleSheet.create({
 		color: colors.primary,
 		fontWeight: 'bold',
 		fontSize: 18,
+	},
+	button_forgot_password:{
+		marginTop: 15,
+		padding: 15
+	},
+	forgot_password_link:{
+		color: colors.link,
+		fontWeight: 'bold',
+		textAlign: 'center'
 	}
-
 })
 
 export default styles;

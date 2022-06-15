@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     fontSize: 18
   },
   date_item_container: {
-    backgroundColor: 'black',
+    backgroundColor: colors.black,
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
     fontSize: 19   
   },
   date_item_text_selected:{
-    color: 'black',
+    color: colors.black,
   },
   schedule_item_container: {
     marginTop: 10,

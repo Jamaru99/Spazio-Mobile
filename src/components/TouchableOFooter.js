@@ -1,11 +1,17 @@
 import React from 'react';
 import { TouchableOpacity, Text, StyleSheet } from 'react-native';
+
+import { InnerLoader } from './Loader'
 import { colors } from '@utils'
 
 const TouchableFooter = (props) => {
     return (
         <TouchableOpacity style={styles.button} onPress={props.onPress}>
-            <Text style={styles.text}> AGENDAR </Text>
+            {
+                props.loading
+                ? <InnerLoader color={colors.primary} />
+                : <Text style={styles.text}>{props.text || "AGENDAR"}</Text>
+            }
         </TouchableOpacity>
     );
 };

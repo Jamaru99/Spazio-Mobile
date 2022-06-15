@@ -61,8 +61,6 @@ const Home = (props) => {
             </View>
 
             <View style={Styles.networks_container}>
-
-              
               <View style={Styles.network_content}>
                 <TouchableOpacity
                   onPress={() => 

@@ -9,7 +9,8 @@ import {
   ServiceScreen,
   EmployeeScreen,
   ScheduleScreen,
-  SummaryScreen
+  SummaryScreen,
+  ResetPasswordScreen
 } from '@pages';
 import { texts, colors } from '@utils';
 import {
@@ -21,7 +22,8 @@ import {
   SERVICE_SCREEN,
   EMPLOYEE_SCREEN,
   SCHEDULE_SCREEN,
-  SUMMARY_SCREEN
+  SUMMARY_SCREEN,
+  RESET_PASSWORD_SCREEN
 } from './routes'
 
 const { Navigator, Screen } = createNativeStackNavigator()
@@ -93,11 +95,16 @@ export function LoginStack() {
         name={REGISTER_SCREEN}
         component={RegisterScreen}
       />
+      <Screen
+        name={RESET_PASSWORD_SCREEN}
+        component={ResetPasswordScreen}
+        options={{ title: texts["reset_password:header"] }}
+      />
     </Navigator>
   );
 }
 
-export function NewAppointmentStack() {
+export function NewAppointmentStack(props) {
   return (
     <Navigator
       initialRouteName={SERVICE_SCREEN}
@@ -120,8 +127,8 @@ export function NewAppointmentStack() {
       />
       <Screen
         name={SUMMARY_SCREEN}
-        component={SummaryScreen}
-        options={{ title: 'Confirmar agendamento' }}
+        component={props.isLogged ? SummaryScreen : LoginStack}
+        options={{ title: texts["summary:header"], headerShown: props.isLogged }}
       />
     </Navigator>
   );

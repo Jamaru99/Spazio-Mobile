@@ -53,13 +53,13 @@ const ServiceScreen = (props) => {
 
 const ServiceItem = (props) => {
 
-  const handleOnPress = (id) => {
+  const handleOnPress = () => {
     if(props.service.employees.length > 1) {
-      props.updateNewAppointmentDispatched({ serviceId: id })
+      props.updateNewAppointmentDispatched({ service: props.service })
       props.navigation.navigate(EMPLOYEE_SCREEN, { serviceEmployees: props.service.employees })
     } else {
       props.updateNewAppointmentDispatched({
-        serviceId: id,
+        service: props.service,
         employeeId: props.service.employees[0] || ""
       })
       props.navigation.navigate(SCHEDULE_SCREEN)
@@ -67,7 +67,7 @@ const ServiceItem = (props) => {
   }
 
   return (
-    <TouchableOpacity style={styles.service_item_container} onPress={() => handleOnPress(props.service._id)}>
+    <TouchableOpacity style={styles.service_item_container} onPress={handleOnPress}>
       <View>
         <Text style={styles.service_item_text_primary}>{props.service.name}</Text>
         <Text style={styles.service_item_text_secondary}>{props.service.description}</Text>

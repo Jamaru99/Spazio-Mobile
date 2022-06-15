@@ -20,6 +20,10 @@ const english = {
     "friday": "fri",
     "saturday": "sat",
 
+    "email": "Email",
+    "password": "Password",
+    "confirm_password": "Confirm password",
+
     // home
     "home:header": "Spazio Nina Bernardes",
     "home:tt_opening-hours": "Opening hours",
@@ -39,6 +43,18 @@ const english = {
     // login
     "login:header": "Login",
 
+    // reset password
+    "reset_password:header": "Reset password",
+    "reset_password:send_token_advice": "You will be sent a code to your email so that you can change your password",
+    "reset_password:button_send_token": "Send code",
+    "reset_password:verify_token_advice": "Enter the code sent to your email:",
+    "reset_password:button_verify_token": "Verify",
+    "reset_password:change_password_advice": "Enter your new password:",
+    "reset_password:change_password_button": "Change password",
+    "reset_password:toast_invalid_token": "Invalid code",
+    "reset_password:toast_passwords_unmatch": "Passwords don't match",
+    "reset_password:toast_password_changed": "Password has been changed!",
+
     // service
     "service:header": "New appointment",
     "service:title": "Choose the service you want:",
@@ -46,7 +62,7 @@ const english = {
 
     // employee
     "employee:header": "New appointment",
-    "employee:title": "Choose the employee:",
+    "employee:title": "Choose the professional:",
 
     // schedule
     "schedule:header": "New appointment",
@@ -54,6 +70,17 @@ const english = {
     "schedule:schedule_title": "Choose time:", 
     "schedule:no_schedule": "No available schedule at this date.",
 
+    // summary
+    "summary:header": "Confirm appointment",
+    "summary:service_label": "Service:",
+    "summary:employee_label": "Professional:",
+    "summary:datetime_label": "Date and time:",
+    "summary:total_label": "Total:",
+    "summary:payment_advise": "Payment by cash or card at the establishment",
+    "summary:button_confirm": "CONFIRM",
+    "summary:button_confirmed": "SCHEDULED!",
+    
+    "error:unexpected": "Error, try again",
     "error:connection": "Check your internet connection"
 }
 
@@ -69,6 +96,10 @@ const portuguese = {
     "thursday": "qui",
     "friday": "sex",
     "saturday": "sáb",
+
+    "email": "Email",
+    "password": "Senha",
+    "confirm_password": "Confirmar senha",
 
     // home
     "home:header": "Spazio Nina Bernardes",
@@ -89,6 +120,18 @@ const portuguese = {
     // login
     "login:header": "Login",
 
+    // reset password
+    "reset_password:header": "Resetar senha",
+    "reset_password:send_token_advice": "Enviaremos um código para seu email, para que consiga alterar sua senha",
+    "reset_password:button_send_token": "Enviar código",
+    "reset_password:verify_token_advice": "Digite o código enviado para seu email:",
+    "reset_password:button_verify_token": "Conferir",
+    "reset_password:change_password_advice": "Digite sua nova senha:",
+    "reset_password:change_password_button": "Alterar senha",
+    "reset_password:toast_invalid_token": "Código inválido",
+    "reset_password:toast_passwords_unmatch": "Senhas não coincidem",
+    "reset_password:toast_password_changed": "Senha alterada!",
+
     // service
     "service:header": "Agendar sessão",
     "service:title": "Selecione o serviço desejado:",
@@ -102,8 +145,19 @@ const portuguese = {
     // schedule
     "schedule:header": "Agendar sessão",
     "schedule:date_title": "Escolha a data:",
-    "schedule:schedule_title": "Escolha o horário:", 
+    "schedule:schedule_title": "Escolha o horário:",
 
+    // summary
+    "summary:header": "Confirmar agendamento",
+    "summary:service_label": "Serviço:",
+    "summary:employee_label": "Profissional:",
+    "summary:datetime_label": "Data e horário:",
+    "summary:total_label": "Total:",
+    "summary:payment_advise": "Pagamento em dinheiro ou cartão no próprio estabelecimento",
+    "summary:button_confirm": "CONFIRMAR",
+    "summary:button_confirmed": "AGENDADO!",
+    
+    "error:unexpected": "Erro, tente novamente",
     "error:connection": "Verifique sua conexão à internet"
 }
 
