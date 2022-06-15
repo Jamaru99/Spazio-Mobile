@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	background: {
-		// flex: 1,
 		resizeMode: "cover",
 		width: '100%',
 		height: '100%',
@@ -19,7 +18,6 @@ const styles = StyleSheet.create({
 		alignItems: 'center',
 	},
 	container_buttons:{
-		// width: 150,
 		justifyContent: 'space-between',
 	},
 	input:{

@@ -7,7 +7,8 @@
     "ios": "react-native run-ios",
     "start": "react-native start",
     "test": "jest",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "buildbundle": "react-native bundle --platform android --dev false --entry-file index.js --bundle-output android/app/src/main/assets/index.android.bundle --assets-dest android/app/src/main/res"
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.6",
@@ -19,9 +20,11 @@
     "babel-plugin-module-resolver": "^4.0.0",
     "react": "16.9.0",
     "react-native": "0.61.5",
+    "react-native-easy-toast": "^1.2.0",
     "react-native-gesture-handler": "^1.5.6",
     "react-native-ionicons": "^4.6.4",
     "react-native-material-textfield": "^0.16.1",
+    "react-native-paper": "^3.10.1",
     "react-native-reanimated": "^1.7.0",
     "react-native-safe-area-context": "^0.7.2",
     "react-native-screens": "^2.7.0",

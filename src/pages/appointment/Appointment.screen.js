@@ -69,7 +69,7 @@ const AppointmentItem = (props) => {
 
           {/* TODO botao funcionar */}
           <TouchableOpacity style={Styles.button} onPress={() => alert('cancelado')}>
-              <Text style={Styles.button_text}>Cancelar</Text>
+              <Text style={Styles.button_text}>{texts["cancel"]}</Text>
             </TouchableOpacity>
           </View>
 
