@@ -23,6 +23,8 @@ const english = {
     "email": "Email",
     "password": "Password",
     "confirm_password": "Confirm password",
+    "cancel": "Cancel",
+    "schedule": "SCHEDULE",
 
     // home
     "home:header": "Spazio Nina Bernardes",
@@ -100,6 +102,8 @@ const portuguese = {
     "email": "Email",
     "password": "Senha",
     "confirm_password": "Confirmar senha",
+    "cancel": "Cancelar",
+    "schedule": "AGENDAR",
 
     // home
     "home:header": "Spazio Nina Bernardes",

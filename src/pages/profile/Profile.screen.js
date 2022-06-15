@@ -10,7 +10,7 @@ import { InnerLoader } from '@components';
 import { setUserDataDispatched } from '@state';
 import { setUserDataInStorage } from '@services';
 import { putProfile } from '@services';
-import { colors, formattedDatetime, isoDate } from '@utils';
+import { colors, formattedDatetime, isoDate, texts } from '@utils';
 import { TextField } from 'react-native-material-textfield'
 import { RadioButton } from 'react-native-paper'
 import { connect } from 'react-redux';
@@ -294,7 +294,7 @@ const Profile = ( props ) => {
                 props.setVisibility(!props.visibility);
               }}
             >
-              <Text style={styles.text}>Cancelar</Text>
+              <Text style={styles.text}>{texts["cancel"]}</Text>
             </TouchableOpacity>
 
             {/* TODO: verificar se senha é igual ao props.form.password */}
